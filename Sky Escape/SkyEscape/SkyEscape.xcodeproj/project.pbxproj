@@ -34,7 +34,6 @@
 		096092221D5453390085B693 /* skyBoom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921A1D5453390085B693 /* skyBoom.mp3 */; };
 		096092231D5453390085B693 /* crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921B1D5453390085B693 /* crash.mp3 */; };
 		096092241D5453390085B693 /* gunfire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921C1D5453390085B693 /* gunfire.mp3 */; };
-		0977CD171D715F140079AA38 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0977CD161D715F140079AA38 /* intro.mp3 */; };
 		098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0961D710E77000AD49D /* guardianpi.ttf */; };
 		098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA0981D710EAB000AD49D /* InstructionScene.swift */; };
 		098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 098AA09A1D710EB8000AD49D /* InstructionScene.sks */; };
@@ -107,7 +106,6 @@
 		0960921A1D5453390085B693 /* skyBoom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skyBoom.mp3; sourceTree = "<group>"; };
 		0960921B1D5453390085B693 /* crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crash.mp3; sourceTree = "<group>"; };
 		0960921C1D5453390085B693 /* gunfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gunfire.mp3; sourceTree = "<group>"; };
-		0977CD161D715F140079AA38 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
 		098AA0961D710E77000AD49D /* guardianpi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guardianpi.ttf; sourceTree = "<group>"; };
 		098AA0981D710EAB000AD49D /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		098AA09A1D710EB8000AD49D /* InstructionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructionScene.sks; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 				098AA0B81D711400000AD49D /* coin.mp3 */,
 				0960921B1D5453390085B693 /* crash.mp3 */,
 				0960921C1D5453390085B693 /* gunfire.mp3 */,
-				0977CD161D715F140079AA38 /* intro.mp3 */,
 				098AA0A61D710F5E000AD49D /* mortar.mp3 */,
 				098AA0BA1D7134E3000AD49D /* mp5Gun.mp3 */,
 				091457361D58E45500986C3B /* planeMachineGun.mp3 */,
@@ -437,7 +434,6 @@
 				0914573D1D58E45500986C3B /* planeMachineGun.mp3 in Resources */,
 				096092221D5453390085B693 /* skyBoom.mp3 in Resources */,
 				096092231D5453390085B693 /* crash.mp3 in Resources */,
-				0977CD171D715F140079AA38 /* intro.mp3 in Resources */,
 				09A3F08C1D5D595500A54FBF /* thunder.mp3 in Resources */,
 				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
 				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,

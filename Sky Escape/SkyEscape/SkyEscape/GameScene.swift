@@ -36,7 +36,9 @@ var rain = SKEmitterNode(fileNamed: "Rain")
 // Global sound
 // Audio nodes for sound effects and music
 var audioPlayer = AVAudioPlayer()
-var intro = SKAudioNode()
+var player = AVAudioEngine()
+var audioFile = AVAudioFile()
+var audioPlayerNode = AVAudioPlayerNode()
 var bgMusic = SKAudioNode()
 var startGameSound = SKAudioNode()
 var biplaneFlyingSound = SKAudioNode()
@@ -53,6 +55,7 @@ var mortarSound = SKAudioNode()
 var airplaneFlyBySound = SKAudioNode()
 var airplaneP51Sound = SKAudioNode()
 var mp5GunSound = SKAudioNode()
+
 
 // HUD global variables
 let maxHealth = 100
@@ -88,6 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var animationFrames = [SKTexture]()
     var airplanesAtlas: SKTextureAtlas = SKTextureAtlas(named: "Airplanes")
     var assetsAtlas: SKTextureAtlas = SKTextureAtlas(named: "Assets")
+    var imagesAtlas: SKTextureAtlas = SKTextureAtlas(named: "Images")
     
     // Enemy planes
     var skyEnemy = SKSpriteNode()
@@ -150,106 +154,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-//        if gameStarted == false {
-//            
-//            gameStarted = true
+        // Sets the physics delegate and physics body
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        physicsWorld.contactDelegate = self // Physics delegate set
         
-            // Backgroung color set with RGB
-            backgroundColor = SKColor.init(red: 127/255, green: 189/255, blue: 248/255, alpha: 1.0)
-            
-            // Sets the physics delegate and physics body
-            self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
-            physicsWorld.contactDelegate = self // Physics delegate set
-            
-            // Added HUD with PAUSE
-            createHUD()
-            
-            
-            /********************************* Adding Scroll Background *********************************/
-            // MARK: - Scroll Background
-            
-            // Adding scrolling Main Background
-            createBackground()
-            
-            // Adding scrolling midground
-            createMidground()
-            
-            // Adding scrolling foreground
-            createForeground()
-            
-            /*************************************** Spawning Nodes *************************************/
-            // MARK: - Spawning
-            
-            // Adding our player's plane to the scene
-            createPlane()
-            
-            
-            /********************************* Spawn Timers *********************************/
-            // MARK: - Spawn Timers
-            
-            // Spawning bullets timer call
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: #selector(GameScene.spawnBullets), userInfo: nil, repeats: false)
-            
-            // Spawning wingmen timer call
-            wingTimer = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(GameScene.spawnWingman), userInfo: nil, repeats: true)
-            
-            // Spawning wingmen timer call
-            wingTimer = NSTimer.scheduledTimerWithTimeInterval(12.0, target: self, selector: #selector(GameScene.spawnBomber), userInfo: nil, repeats: true)
-            
-            // Spawning enemies timer call
-            enemyTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(GameScene.spawnEnemyPlane), userInfo: nil, repeats: true)
-            
-            // Spawning enemy fire timer call
-            enemyShoots = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(GameScene.spawnEnemyFire), userInfo: nil, repeats: true)
-            
-            // Set enemy tank spawn intervals
-            coinsTimer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(GameScene.spawnCoins), userInfo: nil, repeats: true)
-            
-            // Spawning enemy fire timer call
-            powerUpTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(GameScene.spawnPowerUps), userInfo: nil, repeats: true)
-            
-            // Cloud sound timer will for 12 sec and stop, then run again
-            cloudTimer = NSTimer.scheduledTimerWithTimeInterval(24.0, target: self, selector: #selector(GameScene.rainBadCloud), userInfo: nil, repeats: true)
-            
-            
-            /********************************* Preloading Sound & Music *********************************/
-            // MARK: - Spawning
-            
-            // After import AVFoundation, needs do,catch statement to preload sound so no delay
-            do {
-                let sounds = ["intro", "coin", "startGame", "bgMusic", "biplaneFlying", "gunfire", "mortar", "crash", "powerUp", "skyBoom", "planesFight", "planeMachineGun", "bGCannons", "tank", "prop", "airplaneFlyBy", "airplanep51", "mp5Gun"]
-                
-                for sound in sounds {
-                    let player = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(sound, ofType: "mp3")!))
-                    
-                    player.prepareToPlay()
-                }
-            } catch {
-                print("AVAudio has had an \(error).")
-            }
-            
-            // Adds background sound to game
-            bgMusic = SKAudioNode(fileNamed: "bgMusic")
-            bgMusic.runAction(SKAction.play())
-            bgMusic.autoplayLooped = false
-            bgMusic.removeFromParent()
-            self.addChild(bgMusic)
-            
-            biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
-            biplaneFlyingSound.runAction(SKAction.play())
-            biplaneFlyingSound.autoplayLooped = true
-            
-            biplaneFlyingSound.removeFromParent()
-            self.addChild(biplaneFlyingSound)
-//        }
-    }
-    
-    
-    /********************************** Simulating Physics ***************************************/
-    // MARK: - Simulate Physics
-    
-    override func didSimulatePhysics() {
+        // Backgroung color set with RGB
+        backgroundColor = SKColor.init(red: 127/255, green: 189/255, blue: 248/255, alpha: 1.0)
         
+        // Adds background sound to game
+        let bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true)
+        playSound(bgMusic)
+        
+        
+        /********************************* Adding Scroll Background *********************************/
+        // MARK: - Scroll Background
+        
+        // Adding scrolling Main Background
+        createBackground()
+        
+        // Adding scrolling midground
+        createMidground()
+        
+        // Adding scrolling foreground
+        createForeground()
     }
     
     
@@ -259,36 +186,109 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        touchLocation = touches.first!.locationInNode(self)
-        
-        for touch: AnyObject in touches {
-            let location = (touch as! UITouch).locationInNode(self)
+        if gameStarted == false {
             
-            /* Allows to tap on screen and plane will present
-             at that axis and shoot at point touched */
-            myPlane.position.y = location.y // Allows a tap to touch on the y axis
-            myPlane.position.x = location.x // Allows a tap to touch on the x axis
+            gameStarted = true
             
-            // Introduces the pause feature
             
-            createHUD() /* function opens up the HUD and makes the button accessible
-             also, has displays for health and score. */
+            touchLocation = touches.first!.locationInNode(self)
             
-            let node = self.nodeAtPoint(location)
-            if (node.name == "PauseButton") || (node.name == "PauseButtonContainer") {
-                showPauseAlert()
-            }
-            
-            // Counts number of enemies
-            if let theName = self.nodeAtPoint(location).name {
-                if theName == "Enemy" {
-                    self.removeChildrenInArray([self.nodeAtPoint(location)])
-                    score += 1
+            for touch: AnyObject in touches {
+                let location = (touch as! UITouch).locationInNode(self)
+                
+                /* Allows to tap on screen and plane will present
+                 at that axis and shoot at point touched */
+                myPlane.position.y = location.y // Allows a tap to touch on the y axis
+                myPlane.position.x = location.x // Allows a tap to touch on the x axis
+                
+                
+                // Call function when play sound
+                let startGameSound = SKAction.playSoundFileNamed("startGame", waitForCompletion: false)
+                playSound(startGameSound)
+                
+                
+                // Added HUD with PAUSE
+                createHUD() /* function opens up the HUD and makes the button accessible
+                 also, has displays for health and score. */
+                
+                let node = self.nodeAtPoint(location)
+                if (node.name == "PauseButton") || (node.name == "PauseButtonContainer") {
+                    showPauseAlert()
                 }
-            }
-            
-            if (gameOver == true) { // If goal is hit - game is completed
-                checkIfGameIsOver()
+                
+                // Counts number of enemies
+                if let theName = self.nodeAtPoint(location).name {
+                    if theName == "Enemy" {
+                        self.removeChildrenInArray([self.nodeAtPoint(location)])
+                        score += 1
+                    }
+                }
+                
+                if (gameOver == true) { // If goal is hit - game is completed
+                    checkIfGameIsOver()
+                }
+                
+                
+                /*************************************** Spawning Nodes *************************************/
+                // MARK: - Spawning
+                
+                // Adding our player's plane to the scene
+                createPlane()
+                
+                
+                /********************************* Spawn Timers *********************************/
+                // MARK: - Spawn Timers
+                
+                // Spawning bullets timer call
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: #selector(GameScene.spawnBullets), userInfo: nil, repeats: false)
+                
+                // Spawning wingmen timer call
+                wingTimer = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(GameScene.spawnWingman), userInfo: nil, repeats: true)
+                
+                // Spawning wingmen timer call
+                wingTimer = NSTimer.scheduledTimerWithTimeInterval(12.0, target: self, selector: #selector(GameScene.spawnBomber), userInfo: nil, repeats: true)
+                
+                // Spawning enemies timer call
+                enemyTimer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(GameScene.spawnEnemyPlane), userInfo: nil, repeats: true)
+                
+                // Spawning enemy fire timer call
+                enemyShoots = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(GameScene.spawnEnemyFire), userInfo: nil, repeats: true)
+                
+                // Set enemy tank spawn intervals
+                coinsTimer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(GameScene.spawnCoins), userInfo: nil, repeats: true)
+                
+                // Spawning enemy fire timer call
+                powerUpTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: #selector(GameScene.spawnPowerUps), userInfo: nil, repeats: true)
+                
+                // Cloud sound timer will for 12 sec and stop, then run again
+                cloudTimer = NSTimer.scheduledTimerWithTimeInterval(24.0, target: self, selector: #selector(GameScene.rainBadCloud), userInfo: nil, repeats: true)
+                
+                
+                /********************************* Preloading Sound & Music *********************************/
+                // MARK: - Spawning
+                
+                // After import AVFoundation, needs do,catch statement to preload sound so no delay
+                func setUpEngine() {
+                    do {
+                        let sounds = ["coin", "startGame", "bgMusic", "biplaneFlying", "gunfire", "mortar", "crash", "powerUp", "skyBoom", "planesFight", "planeMachineGun", "bGCannons", "tank", "prop", "airplaneFlyBy", "airplanep51", "mp5Gun"]
+                        
+                        for sound in sounds {
+                            let player = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(sound, ofType: "mp3")!))
+                            
+                            player.prepareToPlay()
+                            
+                        }
+                    } catch {
+                        print("AVAudio has had an \(error).")
+                    }
+                }
+                
+                biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
+                biplaneFlyingSound.runAction(SKAction.play())
+                biplaneFlyingSound.autoplayLooped = true
+                
+                biplaneFlyingSound.removeFromParent()
+                self.addChild(biplaneFlyingSound)
             }
         }
     }
@@ -591,6 +591,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /********************************* Background Functions *********************************/
     // MARK: - Background Functions
     
+    // Add sound to other classes to avoid AV being nil and crashing
+    func playSound(soundVariable: SKAction) {
+        runAction(soundVariable)
+    }
+    
     // Adding scrolling background
     func createBackground() {
         let myBackground = SKTexture(imageNamed: "clouds")
@@ -611,11 +616,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enumerateChildNodesWithName("Background", usingBlock: ({
             (node, error) in
             
-            node.position.x -= 0.5
+            node.position.x -= 1.0
             
             if node.position.x < -((self.scene?.size.width)!) {
                 
-                node.position.x += (self.scene?.size.width)! * 2
+                node.position.x += (self.scene?.size.width)!
             }
         }))
     }
@@ -624,7 +629,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createMidground() {
         let midground1 = SKTexture(imageNamed: "mountains")
         
-        for i in 0...1 {
+        for i in 0...2 {
             let ground = SKSpriteNode(texture: midground1)
             ground.name = "Midground"
             ground.zPosition = -20
@@ -643,7 +648,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enumerateChildNodesWithName("Midground", usingBlock: ({
             (node, error) in
             
-            node.position.x -= 1.0
+            node.position.x -= 2.0
             
             if node.position.x < -((self.scene?.size.width)!) {
                 
@@ -656,7 +661,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createForeground() {
         let foreground = SKTexture(imageNamed: "lonelytree")
         
-        for i in 0...1 {
+        for i in 0...6 {
             let ground = SKSpriteNode(texture: foreground)
             ground.name = "Foreground"
             ground.zPosition = 0
@@ -665,12 +670,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(ground)
             
             // Create physics body
-            ground.physicsBody?.dynamic = false
-            ground.physicsBody?.affectedByGravity = false
             ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
             ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground1
             ground.physicsBody?.contactTestBitMask = PhysicsCategory.MyPlane4
             ground.physicsBody?.collisionBitMask = PhysicsCategory.Ground1
+            ground.physicsBody?.affectedByGravity = false
+            ground.physicsBody?.dynamic = false
         }
     }
     
@@ -680,11 +685,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enumerateChildNodesWithName("Foreground", usingBlock: ({
             (node, error) in
             
-            node.position.x -= 2.0
+            node.position.x -= 6.0
             
             if node.position.x < -((self.scene?.size.width)!) {
                 
-                node.position.x += (self.scene?.size.width)! * 2
+                node.position.x += (self.scene?.size.width)! * 6
             }
         }))
     }
@@ -695,14 +700,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createPlane() {
         
-        for i in 1...airplanesAtlas.textureNames.count { // Iterates loop for plane animation
-            let plane = "MyFokker\(i)"
+        for i in 1...imagesAtlas.textureNames.count { // Iterates loop for plane animation
+            let plane = "myPlane\(i)"
             planeArray.append(SKTexture(imageNamed: plane))
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: airplanesAtlas.textureNames[0])
-        myPlane.setScale(0.7)
+        myPlane = SKSpriteNode(imageNamed: imagesAtlas.textureNames[0])
+        myPlane.setScale(0.2)
         myPlane.zPosition = 6
         myPlane.position = CGPoint(x: self.size.width / 6, y: self.size.height / 2)
         self.addChild(myPlane)
@@ -742,7 +747,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullets.physicsBody?.dynamic = false
         
         // Shoot em up!
-        let action = SKAction.moveToX(self.size.width + 150, duration: 0.5)
+        let action = SKAction.moveToX(self.size.width + 150, duration: 1.0)
         let actionDone = SKAction.removeFromParent()
         bullets.runAction(SKAction.sequence([action, actionDone]))
         
@@ -755,7 +760,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Alternate wingmen 1 of 2 passby's in the distance
         wingman = SKSpriteNode(imageNamed: "Fokker")
         wingman.zPosition = -19
-        wingman.setScale(0.5)
+        wingman.setScale(0.2)
         
         // Calculate random spawn points for wingmen
         let random = CGFloat(arc4random_uniform(1000) + 400)
@@ -781,7 +786,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Alternate wingmen 2 of 2 passby's in the distance
         bomber = SKSpriteNode(imageNamed: "bomber")
         bomber.zPosition = -19
-        bomber.setScale(0.4)
+        bomber.setScale(0.3)
         
         // Calculate random spawn points for bomber
         let random = CGFloat(arc4random_uniform(1000) + 400)
@@ -874,7 +879,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemyFire.colorBlendFactor = 1.0
         
         // Shoot em up!
-        let action = SKAction.moveToX(-30, duration: 1.0)
+        let action = SKAction.moveToX(-30, duration: 1.2)
         let actionDone = SKAction.removeFromParent()
         enemyFire.runAction(SKAction.sequence([action, actionDone]))
         
@@ -1227,5 +1232,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.scene!.view?.paused = true
             })
         })
+    }
+    
+    /********************************** Simulating Physics ***************************************/
+    // MARK: - Simulate Physics
+    
+    override func didSimulatePhysics() {
+        
     }
 }

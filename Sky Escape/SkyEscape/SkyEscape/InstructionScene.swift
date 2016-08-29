@@ -14,12 +14,15 @@ class InstructionScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        bGCannonsSound = SKAudioNode(fileNamed: "bgCannons")
-        bGCannonsSound.runAction(SKAction.play())
-        bGCannonsSound.autoplayLooped = true
-        
-        bGCannonsSound.removeFromParent()
-        self.addChild(bGCannonsSound)
+        //init
+        var bGCannonsSound = SKAction.playSoundFileNamed("bGCannons", waitForCompletion: false)
+
+        func playSound(soundVariable: SKAction) {
+            runAction(soundVariable)
+        }
+
+        // Call function when play sound:
+        playSound(bGCannonsSound)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

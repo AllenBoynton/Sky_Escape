@@ -14,19 +14,21 @@ class MainMenu: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        bgMusic = SKAudioNode(fileNamed: "bgMusic")
-        bgMusic.runAction(SKAction.play())
-        bgMusic.autoplayLooped = true
+        var bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: false)
         
-        bgMusic.removeFromParent()
-        self.addChild(bgMusic)
+        func playSound(soundVariable: SKAction) {
+            runAction(soundVariable)
+        }
+        
+        playSound(bgMusic)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        let game: GameScene = GameScene(fileNamed: "GameScene")!
+        let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
         game.scaleMode = .AspectFit
+        bgMusic.runAction(SKAction.stop())
         let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
-        self.view?.presentScene(game, transition: transition)        
+        self.view?.presentScene(game, transition: transition)
     }
 }
