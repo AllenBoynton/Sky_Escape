@@ -1,0 +1,744 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		091191191D5A1C810096801E /* FireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091191181D5A1C810096801E /* FireExplosion.sks */; };
+		091457381D58E45500986C3B /* airplanep51.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457311D58E45500986C3B /* airplanep51.mp3 */; };
+		091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457321D58E45500986C3B /* airplaneFlyBy.mp3 */; };
+		0914573C1D58E45500986C3B /* bGCannons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457351D58E45500986C3B /* bGCannons.mp3 */; };
+		0914573D1D58E45500986C3B /* planeMachineGun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457361D58E45500986C3B /* planeMachineGun.mp3 */; };
+		0914573E1D58E45500986C3B /* planesFight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457371D58E45500986C3B /* planesFight.mp3 */; };
+		091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091573161D540E1A00C9B907 /* AppDelegate.swift */; };
+		0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915731A1D540E1A00C9B907 /* GameScene.swift */; };
+		0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915731C1D540E1A00C9B907 /* GameViewController.swift */; };
+		091573201D540E1A00C9B907 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0915731E1D540E1A00C9B907 /* Main.storyboard */; };
+		091573221D540E1A00C9B907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 091573211D540E1A00C9B907 /* Assets.xcassets */; };
+		091573301D540E1A00C9B907 /* SkyEscapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915732F1D540E1A00C9B907 /* SkyEscapeTests.swift */; };
+		0915733B1D540E1A00C9B907 /* SkyEscapeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915733A1D540E1A00C9B907 /* SkyEscapeUITests.swift */; };
+		091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091573521D5410DF00C9B907 /* SpriteKit.framework */; };
+		0915736C1D54392D00C9B907 /* Gunfire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0915736A1D54392D00C9B907 /* Gunfire.sks */; };
+		0915736D1D54392D00C9B907 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0915736B1D54392D00C9B907 /* spark.png */; };
+		0916308F1D64074D00E86A4E /* tank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0916308E1D64074D00E86A4E /* tank.mp3 */; };
+		091630911D653F6700E86A4E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091630901D653F6700E86A4E /* GameScene.sks */; };
+		091B3A591D710A5300100CF1 /* Airplanes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 091B3A581D710A5300100CF1 /* Airplanes.atlas */; };
+		091B3A5F1D710A7100100CF1 /* Assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 091B3A5C1D710A7100100CF1 /* Assets.atlas */; };
+		093EABED1D545F370069F120 /* Images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093EABEC1D545F370069F120 /* Images.atlas */; };
+		0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0948E8051D5CEDBC004F7E9F /* startGame.mp3 */; };
+		0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 096092171D5453390085B693 /* bgMusic.mp3 */; };
+		096092201D5453390085B693 /* biplaneFlying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 096092181D5453390085B693 /* biplaneFlying.mp3 */; };
+		096092221D5453390085B693 /* skyBoom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921A1D5453390085B693 /* skyBoom.mp3 */; };
+		096092231D5453390085B693 /* crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921B1D5453390085B693 /* crash.mp3 */; };
+		096092241D5453390085B693 /* gunfire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921C1D5453390085B693 /* gunfire.mp3 */; };
+		0977CD171D715F140079AA38 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0977CD161D715F140079AA38 /* intro.mp3 */; };
+		098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0961D710E77000AD49D /* guardianpi.ttf */; };
+		098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA0981D710EAB000AD49D /* InstructionScene.swift */; };
+		098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 098AA09A1D710EB8000AD49D /* InstructionScene.sks */; };
+		098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA09C1D710EC5000AD49D /* MainMenu.swift */; };
+		098AA09F1D710ED4000AD49D /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 098AA09E1D710ED4000AD49D /* MainMenu.sks */; };
+		098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA0A01D710EFA000AD49D /* RandomFunction.swift */; };
+		098AA0A71D710F5E000AD49D /* mortar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0A61D710F5E000AD49D /* mortar.mp3 */; };
+		098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0A81D710FDB000AD49D /* powerUp.mp3 */; };
+		098AA0AB1D710FE7000AD49D /* prop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0AA1D710FE7000AD49D /* prop.mp3 */; };
+		098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0B21D71103A000AD49D /* Thank you.pdf */; };
+		098AA0B71D711150000AD49D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0B61D711150000AD49D /* LaunchScreen.storyboard */; };
+		098AA0B91D711400000AD49D /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0B81D711400000AD49D /* coin.mp3 */; };
+		098AA0BB1D7134E3000AD49D /* mp5Gun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0BA1D7134E3000AD49D /* mp5Gun.mp3 */; };
+		09A3F08C1D5D595500A54FBF /* thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09A3F08B1D5D595500A54FBF /* thunder.mp3 */; };
+		09A3F08E1D5D61C000A54FBF /* Rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09A3F08D1D5D61C000A54FBF /* Rain.sks */; };
+		09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC3E351D5A971B004BEB39 /* AVFoundation.framework */; };
+		09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09D75D4E1D550BBC00AF76C5 /* Smoke.sks */; };
+		09D75D511D550BE800AF76C5 /* Explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09D75D501D550BE800AF76C5 /* Explode.sks */; };
+		09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D75D561D5803B300AF76C5 /* CoreMotion.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0915732C1D540E1A00C9B907 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0915730B1D540E1A00C9B907 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 091573121D540E1A00C9B907;
+			remoteInfo = SkyEscape;
+		};
+		091573371D540E1A00C9B907 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0915730B1D540E1A00C9B907 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 091573121D540E1A00C9B907;
+			remoteInfo = SkyEscape;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		091191181D5A1C810096801E /* FireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireExplosion.sks; sourceTree = "<group>"; };
+		091457311D58E45500986C3B /* airplanep51.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplanep51.mp3; sourceTree = "<group>"; };
+		091457321D58E45500986C3B /* airplaneFlyBy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplaneFlyBy.mp3; sourceTree = "<group>"; };
+		091457351D58E45500986C3B /* bGCannons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bGCannons.mp3; sourceTree = "<group>"; };
+		091457361D58E45500986C3B /* planeMachineGun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = planeMachineGun.mp3; sourceTree = "<group>"; };
+		091457371D58E45500986C3B /* planesFight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = planesFight.mp3; sourceTree = "<group>"; };
+		091573131D540E1A00C9B907 /* SkyEscape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyEscape.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		091573161D540E1A00C9B907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0915731A1D540E1A00C9B907 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		0915731C1D540E1A00C9B907 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		0915731F1D540E1A00C9B907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		091573211D540E1A00C9B907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		091573261D540E1A00C9B907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0915732B1D540E1A00C9B907 /* SkyEscapeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyEscapeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0915732F1D540E1A00C9B907 /* SkyEscapeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyEscapeTests.swift; sourceTree = "<group>"; };
+		091573311D540E1A00C9B907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		091573361D540E1A00C9B907 /* SkyEscapeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyEscapeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0915733A1D540E1A00C9B907 /* SkyEscapeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyEscapeUITests.swift; sourceTree = "<group>"; };
+		0915733C1D540E1A00C9B907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		091573521D5410DF00C9B907 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		0915736A1D54392D00C9B907 /* Gunfire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Gunfire.sks; sourceTree = "<group>"; };
+		0915736B1D54392D00C9B907 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		0916308E1D64074D00E86A4E /* tank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tank.mp3; sourceTree = "<group>"; };
+		091630901D653F6700E86A4E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		091B3A581D710A5300100CF1 /* Airplanes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Airplanes.atlas; sourceTree = "<group>"; };
+		091B3A5C1D710A7100100CF1 /* Assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Assets.atlas; sourceTree = "<group>"; };
+		093EABEC1D545F370069F120 /* Images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Images.atlas; sourceTree = "<group>"; };
+		0948E8051D5CEDBC004F7E9F /* startGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startGame.mp3; sourceTree = "<group>"; };
+		096092171D5453390085B693 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
+		096092181D5453390085B693 /* biplaneFlying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = biplaneFlying.mp3; sourceTree = "<group>"; };
+		0960921A1D5453390085B693 /* skyBoom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skyBoom.mp3; sourceTree = "<group>"; };
+		0960921B1D5453390085B693 /* crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crash.mp3; sourceTree = "<group>"; };
+		0960921C1D5453390085B693 /* gunfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gunfire.mp3; sourceTree = "<group>"; };
+		0977CD161D715F140079AA38 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
+		098AA0961D710E77000AD49D /* guardianpi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guardianpi.ttf; sourceTree = "<group>"; };
+		098AA0981D710EAB000AD49D /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
+		098AA09A1D710EB8000AD49D /* InstructionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructionScene.sks; sourceTree = "<group>"; };
+		098AA09C1D710EC5000AD49D /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		098AA09E1D710ED4000AD49D /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		098AA0A01D710EFA000AD49D /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
+		098AA0A61D710F5E000AD49D /* mortar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mortar.mp3; sourceTree = "<group>"; };
+		098AA0A81D710FDB000AD49D /* powerUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = powerUp.mp3; sourceTree = "<group>"; };
+		098AA0AA1D710FE7000AD49D /* prop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = prop.mp3; sourceTree = "<group>"; };
+		098AA0B21D71103A000AD49D /* Thank you.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Thank you.pdf"; sourceTree = "<group>"; };
+		098AA0B61D711150000AD49D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		098AA0B81D711400000AD49D /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
+		098AA0BA1D7134E3000AD49D /* mp5Gun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mp5Gun.mp3; sourceTree = "<group>"; };
+		09A3F08B1D5D595500A54FBF /* thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunder.mp3; sourceTree = "<group>"; };
+		09A3F08D1D5D61C000A54FBF /* Rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rain.sks; sourceTree = "<group>"; };
+		09CC3E351D5A971B004BEB39 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		09D75D4E1D550BBC00AF76C5 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
+		09D75D501D550BE800AF76C5 /* Explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explode.sks; sourceTree = "<group>"; };
+		09D75D561D5803B300AF76C5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		091573101D540E1A00C9B907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */,
+				09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */,
+				091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573281D540E1A00C9B907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573331D540E1A00C9B907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0915730A1D540E1A00C9B907 = {
+			isa = PBXGroup;
+			children = (
+				0915734F1D540FDE00C9B907 /* Frameworks */,
+				091573151D540E1A00C9B907 /* SkyEscape */,
+				0915732E1D540E1A00C9B907 /* SkyEscapeTests */,
+				091573391D540E1A00C9B907 /* SkyEscapeUITests */,
+				091573141D540E1A00C9B907 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		091573141D540E1A00C9B907 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				091573131D540E1A00C9B907 /* SkyEscape.app */,
+				0915732B1D540E1A00C9B907 /* SkyEscapeTests.xctest */,
+				091573361D540E1A00C9B907 /* SkyEscapeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		091573151D540E1A00C9B907 /* SkyEscape */ = {
+			isa = PBXGroup;
+			children = (
+				091573491D540E6700C9B907 /* AppDelegate */,
+				091573691D54390400C9B907 /* Emmitter */,
+				0915734D1D540EBA00C9B907 /* Resources */,
+				0915734A1D540E8400C9B907 /* Scene.sks */,
+				0915734B1D540E9100C9B907 /* Scene.swift */,
+				0915734C1D540EA400C9B907 /* Storyboards */,
+				091573481D540E4D00C9B907 /* ViewControllers */,
+			);
+			path = SkyEscape;
+			sourceTree = "<group>";
+		};
+		0915732E1D540E1A00C9B907 /* SkyEscapeTests */ = {
+			isa = PBXGroup;
+			children = (
+				0915732F1D540E1A00C9B907 /* SkyEscapeTests.swift */,
+				091573311D540E1A00C9B907 /* Info.plist */,
+			);
+			path = SkyEscapeTests;
+			sourceTree = "<group>";
+		};
+		091573391D540E1A00C9B907 /* SkyEscapeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0915733A1D540E1A00C9B907 /* SkyEscapeUITests.swift */,
+				0915733C1D540E1A00C9B907 /* Info.plist */,
+			);
+			path = SkyEscapeUITests;
+			sourceTree = "<group>";
+		};
+		091573481D540E4D00C9B907 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0915731C1D540E1A00C9B907 /* GameViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		091573491D540E6700C9B907 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				091573161D540E1A00C9B907 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0915734A1D540E8400C9B907 /* Scene.sks */ = {
+			isa = PBXGroup;
+			children = (
+				098AA09A1D710EB8000AD49D /* InstructionScene.sks */,
+				098AA09E1D710ED4000AD49D /* MainMenu.sks */,
+				091630901D653F6700E86A4E /* GameScene.sks */,
+			);
+			name = Scene.sks;
+			sourceTree = "<group>";
+		};
+		0915734B1D540E9100C9B907 /* Scene.swift */ = {
+			isa = PBXGroup;
+			children = (
+				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
+				098AA0981D710EAB000AD49D /* InstructionScene.swift */,
+				098AA09C1D710EC5000AD49D /* MainMenu.swift */,
+				0915731A1D540E1A00C9B907 /* GameScene.swift */,
+			);
+			name = Scene.swift;
+			sourceTree = "<group>";
+		};
+		0915734C1D540EA400C9B907 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				098AA0B61D711150000AD49D /* LaunchScreen.storyboard */,
+				0915731E1D540E1A00C9B907 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		0915734D1D540EBA00C9B907 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				091573211D540E1A00C9B907 /* Assets.xcassets */,
+				091B3A581D710A5300100CF1 /* Airplanes.atlas */,
+				091B3A5C1D710A7100100CF1 /* Assets.atlas */,
+				093EABEC1D545F370069F120 /* Images.atlas */,
+				098AA0B21D71103A000AD49D /* Thank you.pdf */,
+				091573261D540E1A00C9B907 /* Info.plist */,
+				098AA0961D710E77000AD49D /* guardianpi.ttf */,
+				096092161D5453390085B693 /* Sound */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		0915734F1D540FDE00C9B907 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09CC3E351D5A971B004BEB39 /* AVFoundation.framework */,
+				09D75D561D5803B300AF76C5 /* CoreMotion.framework */,
+				091573521D5410DF00C9B907 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
+			path = SkyEscape.xcodeproj;
+			sourceTree = "<group>";
+		};
+		091573691D54390400C9B907 /* Emmitter */ = {
+			isa = PBXGroup;
+			children = (
+				09D75D501D550BE800AF76C5 /* Explode.sks */,
+				091191181D5A1C810096801E /* FireExplosion.sks */,
+				0915736A1D54392D00C9B907 /* Gunfire.sks */,
+				09A3F08D1D5D61C000A54FBF /* Rain.sks */,
+				09D75D4E1D550BBC00AF76C5 /* Smoke.sks */,
+				0915736B1D54392D00C9B907 /* spark.png */,
+			);
+			name = Emmitter;
+			sourceTree = "<group>";
+		};
+		096092161D5453390085B693 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				091457321D58E45500986C3B /* airplaneFlyBy.mp3 */,
+				091457311D58E45500986C3B /* airplanep51.mp3 */,
+				091457351D58E45500986C3B /* bGCannons.mp3 */,
+				096092171D5453390085B693 /* bgMusic.mp3 */,
+				096092181D5453390085B693 /* biplaneFlying.mp3 */,
+				098AA0B81D711400000AD49D /* coin.mp3 */,
+				0960921B1D5453390085B693 /* crash.mp3 */,
+				0960921C1D5453390085B693 /* gunfire.mp3 */,
+				0977CD161D715F140079AA38 /* intro.mp3 */,
+				098AA0A61D710F5E000AD49D /* mortar.mp3 */,
+				098AA0BA1D7134E3000AD49D /* mp5Gun.mp3 */,
+				091457361D58E45500986C3B /* planeMachineGun.mp3 */,
+				091457371D58E45500986C3B /* planesFight.mp3 */,
+				098AA0A81D710FDB000AD49D /* powerUp.mp3 */,
+				098AA0AA1D710FE7000AD49D /* prop.mp3 */,
+				0960921A1D5453390085B693 /* skyBoom.mp3 */,
+				0948E8051D5CEDBC004F7E9F /* startGame.mp3 */,
+				0916308E1D64074D00E86A4E /* tank.mp3 */,
+				09A3F08B1D5D595500A54FBF /* thunder.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		091573121D540E1A00C9B907 /* SkyEscape */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0915733F1D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscape" */;
+			buildPhases = (
+				0915730F1D540E1A00C9B907 /* Sources */,
+				091573101D540E1A00C9B907 /* Frameworks */,
+				091573111D540E1A00C9B907 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkyEscape;
+			productName = SkyEscape;
+			productReference = 091573131D540E1A00C9B907 /* SkyEscape.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0915732A1D540E1A00C9B907 /* SkyEscapeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 091573421D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscapeTests" */;
+			buildPhases = (
+				091573271D540E1A00C9B907 /* Sources */,
+				091573281D540E1A00C9B907 /* Frameworks */,
+				091573291D540E1A00C9B907 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0915732D1D540E1A00C9B907 /* PBXTargetDependency */,
+			);
+			name = SkyEscapeTests;
+			productName = SkyEscapeTests;
+			productReference = 0915732B1D540E1A00C9B907 /* SkyEscapeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		091573351D540E1A00C9B907 /* SkyEscapeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 091573451D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscapeUITests" */;
+			buildPhases = (
+				091573321D540E1A00C9B907 /* Sources */,
+				091573331D540E1A00C9B907 /* Frameworks */,
+				091573341D540E1A00C9B907 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				091573381D540E1A00C9B907 /* PBXTargetDependency */,
+			);
+			name = SkyEscapeUITests;
+			productName = SkyEscapeUITests;
+			productReference = 091573361D540E1A00C9B907 /* SkyEscapeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0915730B1D540E1A00C9B907 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Full Sail";
+				TargetAttributes = {
+					091573121D540E1A00C9B907 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 979TTQWNS8;
+					};
+					0915732A1D540E1A00C9B907 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 979TTQWNS8;
+						TestTargetID = 091573121D540E1A00C9B907;
+					};
+					091573351D540E1A00C9B907 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 979TTQWNS8;
+						TestTargetID = 091573121D540E1A00C9B907;
+					};
+				};
+			};
+			buildConfigurationList = 0915730E1D540E1A00C9B907 /* Build configuration list for PBXProject "SkyEscape" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0915730A1D540E1A00C9B907;
+			productRefGroup = 091573141D540E1A00C9B907 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				091573121D540E1A00C9B907 /* SkyEscape */,
+				0915732A1D540E1A00C9B907 /* SkyEscapeTests */,
+				091573351D540E1A00C9B907 /* SkyEscapeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		091573111D540E1A00C9B907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A3F08E1D5D61C000A54FBF /* Rain.sks in Resources */,
+				098AA0A71D710F5E000AD49D /* mortar.mp3 in Resources */,
+				098AA09F1D710ED4000AD49D /* MainMenu.sks in Resources */,
+				098AA0B91D711400000AD49D /* coin.mp3 in Resources */,
+				0916308F1D64074D00E86A4E /* tank.mp3 in Resources */,
+				0914573C1D58E45500986C3B /* bGCannons.mp3 in Resources */,
+				0914573D1D58E45500986C3B /* planeMachineGun.mp3 in Resources */,
+				096092221D5453390085B693 /* skyBoom.mp3 in Resources */,
+				096092231D5453390085B693 /* crash.mp3 in Resources */,
+				0977CD171D715F140079AA38 /* intro.mp3 in Resources */,
+				09A3F08C1D5D595500A54FBF /* thunder.mp3 in Resources */,
+				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
+				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,
+				091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */,
+				098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */,
+				0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */,
+				0915736D1D54392D00C9B907 /* spark.png in Resources */,
+				098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */,
+				096092241D5453390085B693 /* gunfire.mp3 in Resources */,
+				093EABED1D545F370069F120 /* Images.atlas in Resources */,
+				098AA0AB1D710FE7000AD49D /* prop.mp3 in Resources */,
+				091191191D5A1C810096801E /* FireExplosion.sks in Resources */,
+				091573221D540E1A00C9B907 /* Assets.xcassets in Resources */,
+				091573201D540E1A00C9B907 /* Main.storyboard in Resources */,
+				091630911D653F6700E86A4E /* GameScene.sks in Resources */,
+				098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */,
+				091B3A591D710A5300100CF1 /* Airplanes.atlas in Resources */,
+				091B3A5F1D710A7100100CF1 /* Assets.atlas in Resources */,
+				0914573E1D58E45500986C3B /* planesFight.mp3 in Resources */,
+				0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */,
+				09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */,
+				096092201D5453390085B693 /* biplaneFlying.mp3 in Resources */,
+				098AA0B71D711150000AD49D /* LaunchScreen.storyboard in Resources */,
+				0915736C1D54392D00C9B907 /* Gunfire.sks in Resources */,
+				098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */,
+				098AA0BB1D7134E3000AD49D /* mp5Gun.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573291D540E1A00C9B907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573341D540E1A00C9B907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0915730F1D540E1A00C9B907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */,
+				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
+				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
+				098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */,
+				098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */,
+				091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573271D540E1A00C9B907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				091573301D540E1A00C9B907 /* SkyEscapeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		091573321D540E1A00C9B907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0915733B1D540E1A00C9B907 /* SkyEscapeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0915732D1D540E1A00C9B907 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 091573121D540E1A00C9B907 /* SkyEscape */;
+			targetProxy = 0915732C1D540E1A00C9B907 /* PBXContainerItemProxy */;
+		};
+		091573381D540E1A00C9B907 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 091573121D540E1A00C9B907 /* SkyEscape */;
+			targetProxy = 091573371D540E1A00C9B907 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0915731E1D540E1A00C9B907 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0915731F1D540E1A00C9B907 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0915733D1D540E1A00C9B907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				"Texture Atlas Maximum Size" = 4096x4096;
+			};
+			name = Debug;
+		};
+		0915733E1D540E1A00C9B907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				"Texture Atlas Maximum Size" = 4096x4096;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		091573401D540E1A00C9B907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SkyEscape/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		091573411D540E1A00C9B907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SkyEscape/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		091573431D540E1A00C9B907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = SkyEscapeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyEscape.app/SkyEscape";
+			};
+			name = Debug;
+		};
+		091573441D540E1A00C9B907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SkyEscapeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyEscape.app/SkyEscape";
+			};
+			name = Release;
+		};
+		091573461D540E1A00C9B907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = SkyEscapeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SkyEscape;
+			};
+			name = Debug;
+		};
+		091573471D540E1A00C9B907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SkyEscapeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SkyEscape;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0915730E1D540E1A00C9B907 /* Build configuration list for PBXProject "SkyEscape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0915733D1D540E1A00C9B907 /* Debug */,
+				0915733E1D540E1A00C9B907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0915733F1D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				091573401D540E1A00C9B907 /* Debug */,
+				091573411D540E1A00C9B907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		091573421D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscapeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				091573431D540E1A00C9B907 /* Debug */,
+				091573441D540E1A00C9B907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		091573451D540E1A00C9B907 /* Build configuration list for PBXNativeTarget "SkyEscapeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				091573461D540E1A00C9B907 /* Debug */,
+				091573471D540E1A00C9B907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0915730B1D540E1A00C9B907 /* Project object */;
+}
