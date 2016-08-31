@@ -27,6 +27,23 @@
 		091630911D653F6700E86A4E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091630901D653F6700E86A4E /* GameScene.sks */; };
 		091B3A591D710A5300100CF1 /* Airplanes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 091B3A581D710A5300100CF1 /* Airplanes.atlas */; };
 		091B3A5F1D710A7100100CF1 /* Assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 091B3A5C1D710A7100100CF1 /* Assets.atlas */; };
+		09247CD71D75F96D0058D35D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CD61D75F96D0058D35D /* Player.swift */; };
+		09247CD91D7616610058D35D /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CD81D7616610058D35D /* Bullet.swift */; };
+		09247CDB1D7618460058D35D /* EnemyBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CDA1D7618460058D35D /* EnemyBullet.swift */; };
+		09247CDD1D761C780058D35D /* PlayerBullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CDC1D761C780058D35D /* PlayerBullet.swift */; };
+		09247CF41D762C920058D35D /* Attack.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CED1D762C920058D35D /* Attack.atlas */; };
+		09247CF51D762C920058D35D /* AttackDamaged.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CEE1D762C920058D35D /* AttackDamaged.atlas */; };
+		09247CF61D762C920058D35D /* Death.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CEF1D762C920058D35D /* Death.atlas */; };
+		09247CF71D762C920058D35D /* DownDamage.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CF01D762C920058D35D /* DownDamage.atlas */; };
+		09247CF81D762C920058D35D /* Hit.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CF11D762C920058D35D /* Hit.atlas */; };
+		09247CF91D762C920058D35D /* HitDamaged.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CF21D762C920058D35D /* HitDamaged.atlas */; };
+		09247CFA1D762C920058D35D /* UpDamage.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CF31D762C920058D35D /* UpDamage.atlas */; };
+		09247CFC1D762F310058D35D /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CFB1D762F310058D35D /* Sounds.swift */; };
+		09247CFE1D7646620058D35D /* Backgrounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CFD1D7646620058D35D /* Backgrounds.swift */; };
+		09247D001D764E5A0058D35D /* SkyEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247CFF1D764E5A0058D35D /* SkyEnemy.swift */; };
+		09247D021D76668F0058D35D /* Wingmen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247D011D76668F0058D35D /* Wingmen.swift */; };
+		09247D041D7668490058D35D /* Wingman1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247D031D7668490058D35D /* Wingman1.swift */; };
+		09247D061D7669800058D35D /* Wingman2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09247D051D7669800058D35D /* Wingman2.swift */; };
 		093EABED1D545F370069F120 /* Images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093EABEC1D545F370069F120 /* Images.atlas */; };
 		0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0948E8051D5CEDBC004F7E9F /* startGame.mp3 */; };
 		0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 096092171D5453390085B693 /* bgMusic.mp3 */; };
@@ -99,6 +116,23 @@
 		091630901D653F6700E86A4E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		091B3A581D710A5300100CF1 /* Airplanes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Airplanes.atlas; sourceTree = "<group>"; };
 		091B3A5C1D710A7100100CF1 /* Assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Assets.atlas; sourceTree = "<group>"; };
+		09247CD61D75F96D0058D35D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		09247CD81D7616610058D35D /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		09247CDA1D7618460058D35D /* EnemyBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyBullet.swift; sourceTree = "<group>"; };
+		09247CDC1D761C780058D35D /* PlayerBullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerBullet.swift; sourceTree = "<group>"; };
+		09247CED1D762C920058D35D /* Attack.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Attack.atlas; sourceTree = "<group>"; };
+		09247CEE1D762C920058D35D /* AttackDamaged.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = AttackDamaged.atlas; sourceTree = "<group>"; };
+		09247CEF1D762C920058D35D /* Death.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Death.atlas; sourceTree = "<group>"; };
+		09247CF01D762C920058D35D /* DownDamage.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = DownDamage.atlas; sourceTree = "<group>"; };
+		09247CF11D762C920058D35D /* Hit.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Hit.atlas; sourceTree = "<group>"; };
+		09247CF21D762C920058D35D /* HitDamaged.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HitDamaged.atlas; sourceTree = "<group>"; };
+		09247CF31D762C920058D35D /* UpDamage.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = UpDamage.atlas; sourceTree = "<group>"; };
+		09247CFB1D762F310058D35D /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		09247CFD1D7646620058D35D /* Backgrounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backgrounds.swift; sourceTree = "<group>"; };
+		09247CFF1D764E5A0058D35D /* SkyEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyEnemy.swift; sourceTree = "<group>"; };
+		09247D011D76668F0058D35D /* Wingmen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wingmen.swift; sourceTree = "<group>"; };
+		09247D031D7668490058D35D /* Wingman1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wingman1.swift; sourceTree = "<group>"; };
+		09247D051D7669800058D35D /* Wingman2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wingman2.swift; sourceTree = "<group>"; };
 		093EABEC1D545F370069F120 /* Images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Images.atlas; sourceTree = "<group>"; };
 		0948E8051D5CEDBC004F7E9F /* startGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startGame.mp3; sourceTree = "<group>"; };
 		096092171D5453390085B693 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
@@ -212,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				0915731C1D540E1A00C9B907 /* GameViewController.swift */,
+				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -237,7 +272,16 @@
 		0915734B1D540E9100C9B907 /* Scene.swift */ = {
 			isa = PBXGroup;
 			children = (
-				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
+				09247CFB1D762F310058D35D /* Sounds.swift */,
+				09247D051D7669800058D35D /* Wingman2.swift */,
+				09247D031D7668490058D35D /* Wingman1.swift */,
+				09247D011D76668F0058D35D /* Wingmen.swift */,
+				09247CDA1D7618460058D35D /* EnemyBullet.swift */,
+				09247CDC1D761C780058D35D /* PlayerBullet.swift */,
+				09247CD81D7616610058D35D /* Bullet.swift */,
+				09247CFF1D764E5A0058D35D /* SkyEnemy.swift */,
+				09247CD61D75F96D0058D35D /* Player.swift */,
+				09247CFD1D7646620058D35D /* Backgrounds.swift */,
 				098AA0981D710EAB000AD49D /* InstructionScene.swift */,
 				098AA09C1D710EC5000AD49D /* MainMenu.swift */,
 				0915731A1D540E1A00C9B907 /* GameScene.swift */,
@@ -257,6 +301,7 @@
 		0915734D1D540EBA00C9B907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09247CDE1D762C360058D35D /* MyPlanes */,
 				091573211D540E1A00C9B907 /* Assets.xcassets */,
 				091B3A581D710A5300100CF1 /* Airplanes.atlas */,
 				091B3A5C1D710A7100100CF1 /* Assets.atlas */,
@@ -291,6 +336,20 @@
 				0915736B1D54392D00C9B907 /* spark.png */,
 			);
 			name = Emmitter;
+			sourceTree = "<group>";
+		};
+		09247CDE1D762C360058D35D /* MyPlanes */ = {
+			isa = PBXGroup;
+			children = (
+				09247CED1D762C920058D35D /* Attack.atlas */,
+				09247CEE1D762C920058D35D /* AttackDamaged.atlas */,
+				09247CEF1D762C920058D35D /* Death.atlas */,
+				09247CF01D762C920058D35D /* DownDamage.atlas */,
+				09247CF11D762C920058D35D /* Hit.atlas */,
+				09247CF21D762C920058D35D /* HitDamaged.atlas */,
+				09247CF31D762C920058D35D /* UpDamage.atlas */,
+			);
+			name = MyPlanes;
 			sourceTree = "<group>";
 		};
 		096092161D5453390085B693 /* Sound */ = {
@@ -427,6 +486,7 @@
 			files = (
 				09A3F08E1D5D61C000A54FBF /* Rain.sks in Resources */,
 				098AA0A71D710F5E000AD49D /* mortar.mp3 in Resources */,
+				09247CF51D762C920058D35D /* AttackDamaged.atlas in Resources */,
 				098AA09F1D710ED4000AD49D /* MainMenu.sks in Resources */,
 				098AA0B91D711400000AD49D /* coin.mp3 in Resources */,
 				0916308F1D64074D00E86A4E /* tank.mp3 in Resources */,
@@ -436,26 +496,32 @@
 				096092231D5453390085B693 /* crash.mp3 in Resources */,
 				09A3F08C1D5D595500A54FBF /* thunder.mp3 in Resources */,
 				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
+				09247CF61D762C920058D35D /* Death.atlas in Resources */,
 				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,
 				091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */,
 				098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */,
 				0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */,
+				09247CF81D762C920058D35D /* Hit.atlas in Resources */,
 				0915736D1D54392D00C9B907 /* spark.png in Resources */,
 				098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */,
 				096092241D5453390085B693 /* gunfire.mp3 in Resources */,
 				093EABED1D545F370069F120 /* Images.atlas in Resources */,
+				09247CF91D762C920058D35D /* HitDamaged.atlas in Resources */,
 				098AA0AB1D710FE7000AD49D /* prop.mp3 in Resources */,
 				091191191D5A1C810096801E /* FireExplosion.sks in Resources */,
 				091573221D540E1A00C9B907 /* Assets.xcassets in Resources */,
 				091573201D540E1A00C9B907 /* Main.storyboard in Resources */,
 				091630911D653F6700E86A4E /* GameScene.sks in Resources */,
+				09247CF71D762C920058D35D /* DownDamage.atlas in Resources */,
 				098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */,
 				091B3A591D710A5300100CF1 /* Airplanes.atlas in Resources */,
 				091B3A5F1D710A7100100CF1 /* Assets.atlas in Resources */,
 				0914573E1D58E45500986C3B /* planesFight.mp3 in Resources */,
 				0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */,
 				09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */,
+				09247CFA1D762C920058D35D /* UpDamage.atlas in Resources */,
 				096092201D5453390085B693 /* biplaneFlying.mp3 in Resources */,
+				09247CF41D762C920058D35D /* Attack.atlas in Resources */,
 				098AA0B71D711150000AD49D /* LaunchScreen.storyboard in Resources */,
 				0915736C1D54392D00C9B907 /* Gunfire.sks in Resources */,
 				098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */,
@@ -485,11 +551,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */,
+				09247D021D76668F0058D35D /* Wingmen.swift in Sources */,
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
+				09247D001D764E5A0058D35D /* SkyEnemy.swift in Sources */,
 				098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */,
+				09247CD71D75F96D0058D35D /* Player.swift in Sources */,
+				09247CFC1D762F310058D35D /* Sounds.swift in Sources */,
 				098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */,
+				09247CFE1D7646620058D35D /* Backgrounds.swift in Sources */,
+				09247CDD1D761C780058D35D /* PlayerBullet.swift in Sources */,
 				091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */,
+				09247D061D7669800058D35D /* Wingman2.swift in Sources */,
+				09247CDB1D7618460058D35D /* EnemyBullet.swift in Sources */,
+				09247CD91D7616610058D35D /* Bullet.swift in Sources */,
+				09247D041D7668490058D35D /* Wingman1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
