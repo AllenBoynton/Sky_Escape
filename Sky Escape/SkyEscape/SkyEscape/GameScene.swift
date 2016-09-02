@@ -45,7 +45,7 @@ let darkenOpacity: CGFloat = 0.5
 let darkenDuration: CFTimeInterval = 2
 
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, UIAccelerometerDelegate {
     
     /************************** Property constants declared ************/
     // MARK: - Property constants declared
@@ -56,6 +56,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // CoreMotion properties
     let motionManager = CMMotionManager()
     var yAcceleration = CGFloat(0)
+    var screenRect = CGRect.zero
+    var screenHeight: CGFloat = 0.0
+    var screenWidth: CGFloat = 0.0
+    var currentMaxAccelX: Double = 0.0
+    var currentMaxAccelY: Double = 0.0
     
     // Preloaded sound class
     let sound: Sounds = Sounds()
@@ -88,12 +93,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var randomEnemy = SKSpriteNode()
     var enemyFire = SKSpriteNode()
     
+    
     // Sky nodes
     var badCloud = SKSpriteNode()
     var powerUp = SKSpriteNode()
     var skyCoins = SKSpriteNode()
+    
+    // Atlas group
     var powerUpsAtlas = SKTextureAtlas(named: "PowerUps")
     var coinsAtlas = SKTextureAtlas(named: "Coins")
+    var soldierShootAtlas = SKTextureAtlas(named: "SoldierShoot")
+    var soldierWalkAtlas = SKTextureAtlas(named: "SoldierWalk")
+    var tankForwardAtlas = SKTextureAtlas(named: "TankForward")
+    var tankAttackAtlas = SKTextureAtlas(named: "TankAttack")
+    var turretAtlas = SKTextureAtlas(named: "Turret")
     
     // Game metering GUI
     var score = 0
@@ -660,36 +673,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
     }
     
-
+    
     /*********************************** Animation Functions *********************************/
     // MARK: - Plane animation functions
-    
-    /* func createPlane() {
-        
-        for i in 1...imagesAtlas.textureNames.count { // Iterates loop for plane animation
-            let plane = "myPlane\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
-        }
-        
-        // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: imagesAtlas.textureNames[0])
-        myPlane.setScale(0.2)
-        myPlane.zPosition = 6
-        myPlane.position = CGPoint(x: self.size.width / 6, y: self.size.height / 2)
-        self.addChild(myPlane)
-        
-        // Body physics of player's plane
-        myPlane.physicsBody = SKPhysicsBody(rectangleOfSize: myPlane.size)
-        myPlane.physicsBody?.categoryBitMask = PhysicsCategory.MyPlane4
-        // Will only collide and bounce with no extra code or reactions
-        myPlane.physicsBody?.collisionBitMask = PhysicsCategory.Cloud32 | PhysicsCategory.Enemy8
-        // Will make contact and have the abilty to carry out more code
-        myPlane.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy8 | PhysicsCategory.Ground1 | PhysicsCategory.EnemyFire16 | PhysicsCategory.PowerUp64 | PhysicsCategory.Coins128 | PhysicsCategory.Rain256
-        myPlane.physicsBody?.dynamic = false
-        myPlane.physicsBody?.affectedByGravity = false
-        
-        myPlane.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(planeArray, timePerFrame: 0.05)))
-    } */
     
     func updatePlayer() {
         
@@ -709,7 +695,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smokeTrail.position = CGPoint(x: 20 + player.position.x - (player.size.height / 2), y: player.position.y)
         
         // Update plane's position
-//        print(yAcceleration * 1000.0)
         if ((yAcceleration * 1000.0) > 50) {
             player.texture = SKTexture(imageNamed: "1Fokker_down_1")
             player.removeAllChildren()
@@ -748,7 +733,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullets.setScale(0.8)
         bullets.zPosition = 80
         
-        runAction(SKAction.playSoundFileNamed("shoot", waitForCompletion: true))
+//        runAction(SKAction.playSoundFileNamed("shoot", waitForCompletion: true))
         
         addChild(bullets)
 
@@ -781,56 +766,70 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Adding ally forces in background
-//    func spawnWingman() {
-//        
-//        // Alternate wingmen 1 of 2 passby's in the distance
-//        wingman = SKSpriteNode(imageNamed: "Fokker")
-//        wingman.zPosition = -19
-//        wingman.setScale(0.2)
-//        
-//        // Calculate random spawn points for wingmen
-//        let random = CGFloat(arc4random_uniform(1000) + 400)
-//        wingman.position = CGPoint(x: -self.size.width, y: random)
-//        
-//        // Body physics for player's wingmen
-//        wingman.physicsBody = SKPhysicsBody(rectangleOfSize: wingman.size)
-//        wingman.physicsBody?.affectedByGravity = false
-//        wingman.physicsBody?.dynamic = false
-//        
-//        // Move wingmen forward
-//        let action = SKAction.moveToX(self.size.width + 50, duration: 18.0)
-//        let actionDone = SKAction.removeFromParent()
-//        wingman.runAction(SKAction.sequence([action, actionDone]))
-//        
-//        wingman.removeFromParent()
-//        self.addChild(wingman) // Generate the random wingman
-//    }
-//    
-//    // Adding ally forces in background
-//    func spawnBomber() {
-//        
-//        // Alternate wingmen 2 of 2 passby's in the distance
-//        bomber = SKSpriteNode(imageNamed: "bomber")
-//        bomber.zPosition = -19
-//        bomber.setScale(0.3)
-//        
-//        // Calculate random spawn points for bomber
-//        let random = CGFloat(arc4random_uniform(1000) + 400)
-//        bomber.position = CGPoint(x: -self.size.width, y: random)
-//        
-//        // Body physics for player's bomber
-//        bomber.physicsBody = SKPhysicsBody(rectangleOfSize: bomber.size)
-//        bomber.physicsBody?.affectedByGravity = false
-//        bomber.physicsBody?.dynamic = false
-//        
-//        // Move bomber forward
-//        let action = SKAction.moveToX(self.size.width + 80, duration: 22.0)
-//        let actionDone = SKAction.removeFromParent()
-//        bomber.runAction(SKAction.sequence([action, actionDone]))
-//        
-//        bomber.removeFromParent()
-//        self.addChild(bomber) // Generate the random wingman
-//    }
+    func spawnWingman() {
+        
+        // Alternate wingmen 1 of 2 passby's in the distance
+        wingman = SKSpriteNode(imageNamed: "Fokker")
+        wingman.zPosition = -19
+        wingman.setScale(0.2)
+        
+        // Calculate random spawn points for wingmen
+        let random = CGFloat(arc4random_uniform(1000) + 400)
+        wingman.position = CGPoint(x: -self.size.width, y: random)
+        
+        // Body physics for player's wingmen
+        wingman.physicsBody = SKPhysicsBody(rectangleOfSize: wingman.size)
+        wingman.physicsBody?.affectedByGravity = false
+        wingman.physicsBody?.dynamic = false
+        
+        // Move wingmen forward
+        let action = SKAction.moveToX(self.size.width + 50, duration: 18.0)
+        let actionDone = SKAction.removeFromParent()
+        wingman.runAction(SKAction.sequence([action, actionDone]))
+        
+        wingman.removeFromParent()
+        self.addChild(wingman) // Generate the random wingman
+        
+        // Wingman1 timer
+        runAction(SKAction.repeatActionForever(SKAction.sequence([
+            SKAction.runBlock(spawnWingman),
+            SKAction.waitForDuration(10.0)
+            ])
+            ))
+    }
+    
+    // Adding ally forces in background
+    func spawnBomber() {
+        
+        // Alternate wingmen 2 of 2 passby's in the distance
+        bomber = SKSpriteNode(imageNamed: "bomber")
+        bomber.zPosition = -19
+        bomber.setScale(0.3)
+        
+        // Calculate random spawn points for bomber
+        let random = CGFloat(arc4random_uniform(1000) + 400)
+        bomber.position = CGPoint(x: -self.size.width, y: random)
+        
+        // Body physics for player's bomber
+        bomber.physicsBody = SKPhysicsBody(rectangleOfSize: bomber.size)
+        bomber.physicsBody?.affectedByGravity = false
+        bomber.physicsBody?.dynamic = false
+        
+        // Move bomber forward
+        let action = SKAction.moveToX(self.size.width + 80, duration: 22.0)
+        let actionDone = SKAction.removeFromParent()
+        bomber.runAction(SKAction.sequence([action, actionDone]))
+        
+        bomber.removeFromParent()
+        self.addChild(bomber) // Generate the random wingman
+        
+        // Ally bomber timer
+        runAction(SKAction.repeatActionForever(SKAction.sequence([
+            SKAction.runBlock(spawnBomber),
+            SKAction.waitForDuration(6.0)
+            ])
+            ))
+    }
     
     // Generate enemy fighter planes
     func spawnEnemyPlane() {
@@ -866,29 +865,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         randomEnemy.physicsBody?.dynamic = false
         randomEnemy.physicsBody?.affectedByGravity = false
 
-        // Linear interpolated path
-        let enemyPath = CGPathCreateMutable()
-
-        let cp1x = random(min: 0+randomEnemy.size.width, max:size.width-randomEnemy.size.width)
-        let cp1y = random(min: 0+randomEnemy.size.height, max:size.height-randomEnemy.size.height)
-        
-        let cp2x = random(min: 0+randomEnemy.size.width, max:size.width-randomEnemy.size.width)
-        let cp2y = random(min: 0, max:cp1y)
-        
-        let xEnd = random(min: 0+randomEnemy.size.width, max:size.width-randomEnemy.size.width)
-        
-        CGPathMoveToPoint(enemyPath, nil, randomEnemy.position.x, randomEnemy.position.y)
-        CGPathAddCurveToPoint(enemyPath, nil, cp1x, cp1y, cp2x, cp2y, xEnd, -randomEnemy.size.height)
-        
-        let followPath = SKAction.followPath(enemyPath, asOffset: false, orientToPath: true, duration: 3.0)
-        let actionRemove = SKAction.removeFromParent()
-        
-        randomEnemy.runAction(SKAction.sequence([followPath,actionRemove]))
-        
-//        // Move enemies forward
-//        let action = SKAction.moveToX(-200, duration: 4.0)
-//        let actionDone = SKAction.removeFromParent()
-//        randomEnemy.runAction(SKAction.sequence([action, actionDone]))
+        // Move enemies forward
+        let action = SKAction.moveToX(-200, duration: 4.0)
+        let actionDone = SKAction.removeFromParent()
+        randomEnemy.runAction(SKAction.sequence([action, actionDone]))
         
         // Add sound
         airplaneFlyBySound = SKAudioNode(fileNamed: "airplaneFlyBy")
