@@ -47,7 +47,6 @@ class Player: SKSpriteNode {
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }

@@ -32,6 +32,7 @@ var mortarSound = SKAudioNode(fileNamed: "mortar")
 var airplaneFlyBySound = SKAudioNode(fileNamed: "airplaneFlyBy")
 var airplaneP51Sound = SKAudioNode(fileNamed: "airplanep51")
 var mp5GunSound = SKAudioNode(fileNamed: "mp5Gun")
+var shootSound = SKAudioNode(fileNamed: "shoot")
 
 
 class Sounds: SKAudioNode {
@@ -43,7 +44,7 @@ class Sounds: SKAudioNode {
     // After import AVFoundation, needs do,catch statement to preload sound so no delay
     func setUpEngine() {
         do {
-            let sounds = ["coin", "startGame", "bgMusic", "biplaneFlying", "gunfire", "mortar", "crash", "powerUp", "skyBoom", "planesFight", "planeMachineGun", "bGCannons", "tank", "prop", "airplaneFlyBy", "airplanep51", "mp5Gun"]
+            let sounds = ["coin", "startGame", "bgMusic", "biplaneFlying", "gunfire", "mortar", "crash", "powerUp", "skyBoom", "planesFight", "planeMachineGun", "bGCannons", "tank", "prop", "airplaneFlyBy", "airplanep51", "mp5Gun", "shoot"]
             
             for sound in sounds {
                 
