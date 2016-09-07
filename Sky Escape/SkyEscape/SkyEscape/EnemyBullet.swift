@@ -18,7 +18,7 @@ class EnemyBullet: Bullets {
         super.init(coder: aDecoder)
     }
     
-    func fireEnemyBullet(scene: SKScene){
+    func fireEnemyBullets(scene: SKScene){
         let bullet = EnemyBullet(imageName: "bullet", bulletSound: "mp5Gun")
         bullet.position.x = self.position.x - self.size.width / 2
         bullet.position.y = self.position.y

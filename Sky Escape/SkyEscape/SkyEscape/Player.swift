@@ -13,10 +13,11 @@ import SpriteKit
 class Player: SKSpriteNode {
     
     private var canFire = true
+    private var canBomb = true
     
     // MyPlane setup
     var node = SKNode()
-    var myPlane = SKSpriteNode()
+    var player = SKSpriteNode()
     var planeArray = [SKTexture]()
     
     // MyPlane's animation setup
@@ -45,7 +46,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever(SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -53,13 +54,13 @@ class Player: SKSpriteNode {
     // myPlane flying downward / no animation
     func playerDown() {
         
-        myPlane = SKSpriteNode(imageNamed: "1Fokker_down_1")
+        player = SKSpriteNode(imageNamed: "1Fokker_down_1")
     }
     
     // myPlane flying upwards / no animation
     func playerUp() {
         
-        myPlane = SKSpriteNode(imageNamed: "1Fokker_up_1")
+        player = SKSpriteNode(imageNamed: "1Fokker_up_1")
     }
     
     // myPlane hit in battle
@@ -73,7 +74,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -89,7 +90,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -104,7 +105,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -119,7 +120,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -134,7 +135,7 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -149,31 +150,55 @@ class Player: SKSpriteNode {
         }
         
         // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
+        player = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
     
     func firePlayerBullet(scene: SKScene){
-        if(!canFire){
+        
+        if(!canFire) {
             return
         }
         else {
             canFire = false
-            let bullet = PlayerBullet(imageName: "fireBullet",bulletSound: "gunfire")
+            let bullet = PlayerBullet(imageName: "fireBullet", bulletSound: "gunfire")
             bullet.position.x = self.position.x
-            bullet.position.y = self.position.y + self.size.height/2
+            bullet.position.y = self.position.y + self.size.height / 2
             scene.addChild(bullet)
             let moveBulletAction = SKAction.moveTo(CGPoint(x:self.position.x,y:scene.size.height + bullet.size.height), duration: 1.0)
             let removeBulletAction = SKAction.removeFromParent()
             bullet.runAction(SKAction.sequence([moveBulletAction,removeBulletAction]))
             let waitToEnableFire = SKAction.waitForDuration(0.5)
-            runAction(waitToEnableFire,completion:{
+            runAction(waitToEnableFire,completion: {
                 self.canFire = true
             })
         }
     }
     
+    func firePlayerBombs(scene: SKScene){
+        
+        if(!canFire) {
+            return
+        }
+        else {
+            canBomb = false
+            let bombs = PlayerBombs(imageName: "bomb", bombSound: "bombaway")
+            bombs.position.x = self.position.x
+            bombs.position.y = self.position.y + self.size.height / 2
+            scene.addChild(bombs)
+            
+            let moveBombAction = SKAction.moveTo(CGPoint(x:self.position.x,y:scene.size.height + bombs.size.height), duration: 3.0)
+            let removeBombAction = SKAction.removeFromParent()
+            bombs.runAction(SKAction.sequence([moveBombAction,removeBombAction]))
+            let waitToEnableFire = SKAction.waitForDuration(0.5)
+            runAction(waitToEnableFire, completion: {
+                self.canBomb = true
+            })
+        }
+    }
+    
+
     func respawn() {
         
     }

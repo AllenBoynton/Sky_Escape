@@ -26,7 +26,7 @@ class PlayerBombs: Bombs {
         scene.addChild(bombs)
         
         // Shoot em up!
-        let action = SKAction.moveToX(-100, duration: 2.0)
+        let action = SKAction.moveToY(-100, duration: 2.0)
         let actionDone = SKAction.removeFromParent()
         bombs.runAction(SKAction.sequence([action, actionDone]))
     }

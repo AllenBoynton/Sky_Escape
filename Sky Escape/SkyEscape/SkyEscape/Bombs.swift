@@ -15,8 +15,8 @@ class Bombs: SKSpriteNode {
         
         let texture = SKTexture(imageNamed: imageName)
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        
         if(bombSound != nil) {
-            
             runAction(SKAction.playSoundFileNamed(bombSound!, waitForCompletion: false))
         }
     }
@@ -24,5 +24,4 @@ class Bombs: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }

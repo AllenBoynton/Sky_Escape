@@ -26,7 +26,7 @@ class PlayerBullet: Bullets {
         scene.addChild(bullet)
         
         // Shoot em up!
-        let action = SKAction.moveToY(size.width + bullet.size.width, duration: 1.5)
+        let action = SKAction.moveToX(size.width + bullet.size.width, duration: 1.5)
         let actionDone = SKAction.removeFromParent()
         bullet.runAction(SKAction.sequence([action, actionDone]))
     }
