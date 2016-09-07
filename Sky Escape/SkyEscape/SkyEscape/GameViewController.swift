@@ -38,6 +38,8 @@ class GameViewController: UIViewController {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return .Landscape
+        } else if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            return .Landscape
         } else {
             return .All
         }

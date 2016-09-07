@@ -12,20 +12,19 @@ import SpriteKit
 
 class Player: SKSpriteNode {
     
-    // MyPlane animation setup
+    private var canFire = true
+    
+    // MyPlane setup
     var node = SKNode()
     var myPlane = SKSpriteNode()
     var planeArray = [SKTexture]()
     
-    // Image atlas's for animation
+    // MyPlane's animation setup
     var animation = SKAction()
     var animationFrames = [SKTexture]()
     
-    // Shooting
-    private var canFire = true
-    
     init() {
-        let texture = SKTexture(imageNamed: "1Fokker_default_1")
+        let texture = SKTexture(imageNamed: "MyFokker1")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         animate()
     }
@@ -41,13 +40,13 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "Attack")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "MyFokker\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "MyFokker\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
+        animation = SKAction.repeatActionForever(SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
     
@@ -69,13 +68,12 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "Hit")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_hit_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_hit_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -86,13 +84,12 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "HitDamaged")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_hit_damaged_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_hit_damaged_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -102,13 +99,12 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "UpDamage")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_up_damaged_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_up_damaged_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -118,13 +114,12 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "DownDamage")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_down_damaged_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_down_damaged_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -134,13 +129,12 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "AttackDamaged")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_attack_damaged_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_attack_damaged_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
@@ -150,31 +144,34 @@ class Player: SKSpriteNode {
         let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "Death")
         
         for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "1Fokker_death_\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+            let myPlane = "1Fokker_death_\(i)"
+            planeArray.append(SKTexture(imageNamed: myPlane))
         }
         
         // Add user's animated bi-plane
         myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
         animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
         self.runAction(animation)
     }
     
-    func fireBullet(scene: SKScene){
-        
-        let myPlaneAtlas: SKTextureAtlas = SKTextureAtlas(named: "Attack")
-        
-        for i in 1...myPlaneAtlas.textureNames.count {
-            let plane = "MyFokker\(i)"
-            planeArray.append(SKTexture(imageNamed: plane))
+    func firePlayerBullet(scene: SKScene){
+        if(!canFire){
+            return
         }
-        
-        // Add user's animated bi-plane
-        myPlane = SKSpriteNode(imageNamed: myPlaneAtlas.textureNames[0])
-        
-        animation = SKAction.repeatActionForever( SKAction.animateWithTextures(planeArray, timePerFrame: 0.1))
-        self.runAction(animation)
+        else {
+            canFire = false
+            let bullet = PlayerBullet(imageName: "fireBullet",bulletSound: "gunfire")
+            bullet.position.x = self.position.x
+            bullet.position.y = self.position.y + self.size.height/2
+            scene.addChild(bullet)
+            let moveBulletAction = SKAction.moveTo(CGPoint(x:self.position.x,y:scene.size.height + bullet.size.height), duration: 1.0)
+            let removeBulletAction = SKAction.removeFromParent()
+            bullet.runAction(SKAction.sequence([moveBulletAction,removeBulletAction]))
+            let waitToEnableFire = SKAction.waitForDuration(0.5)
+            runAction(waitToEnableFire,completion:{
+                self.canFire = true
+            })
+        }
     }
     
     func respawn() {
