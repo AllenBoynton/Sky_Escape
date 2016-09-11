@@ -326,9 +326,15 @@
 		0915734D1D540EBA00C9B907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09247CED1D762C920058D35D /* Attack.atlas */,
+				09247CEE1D762C920058D35D /* AttackDamaged.atlas */,
+				09247CEF1D762C920058D35D /* Death.atlas */,
+				09247CF01D762C920058D35D /* DownDamage.atlas */,
+				09247CF11D762C920058D35D /* Hit.atlas */,
+				09247CF21D762C920058D35D /* HitDamaged.atlas */,
+				09247CF31D762C920058D35D /* UpDamage.atlas */,
 				093BC8391D7E316400C745FB /* EnemyArray.atlas */,
 				093BC8071D7B6BBC00C745FB /* EnemyPlanes */,
-				09247CDE1D762C360058D35D /* MyPlanes */,
 				09247D121D7907A50058D35D /* SoldierShoot.atlas */,
 				09247D131D7907A50058D35D /* SoldierWalk.atlas */,
 				09247D141D7907A50058D35D /* TankAttack.atlas */,
@@ -366,20 +372,6 @@
 				0915736B1D54392D00C9B907 /* spark.png */,
 			);
 			name = Emmitter;
-			sourceTree = "<group>";
-		};
-		09247CDE1D762C360058D35D /* MyPlanes */ = {
-			isa = PBXGroup;
-			children = (
-				09247CED1D762C920058D35D /* Attack.atlas */,
-				09247CEE1D762C920058D35D /* AttackDamaged.atlas */,
-				09247CEF1D762C920058D35D /* Death.atlas */,
-				09247CF01D762C920058D35D /* DownDamage.atlas */,
-				09247CF11D762C920058D35D /* Hit.atlas */,
-				09247CF21D762C920058D35D /* HitDamaged.atlas */,
-				09247CF31D762C920058D35D /* UpDamage.atlas */,
-			);
-			name = MyPlanes;
 			sourceTree = "<group>";
 		};
 		09247D0D1D78F1B30058D35D /* SkyItems */ = {
