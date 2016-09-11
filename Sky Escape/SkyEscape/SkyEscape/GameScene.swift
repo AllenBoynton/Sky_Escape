@@ -43,15 +43,15 @@ var audioPlayer = AVAudioPlayer()
 //var player = AVAudioEngine()
 //var audioFile = AVAudioFile()
 //var audioPlayerNode = AVAudioPlayerNode()
-var airplaneFlyBySound = SKAudioNode(fileNamed: "airplaneFlyBy")
+//var airplaneFlyBySound = SKAudioNode(fileNamed: "airplaneFlyBy")
 //var airplaneP51Sound = SKAudioNode(fileNamed: "airplanep51")
 var bGCannonsSound = SKAudioNode(fileNamed: "bGCannons")
 var bgMusic = SKAudioNode(fileNamed: "bgMusic")
-var biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
+//var biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
 //var bombSound = SKAudioNode(fileNamed: "bombaway")
 var coinSound = SKAudioNode(fileNamed: "coin")
 var crashSound = SKAudioNode(fileNamed: "crash")
-var gunfireSound = SKAudioNode(fileNamed: "gunfire")
+//var gunfireSound = SKAudioNode(fileNamed: "gunfire")
 //var mortarSound = SKAudioNode(fileNamed: "mortar")
 //var mp5GunSound = SKAudioNode(fileNamed: "mp5Gun")
 //var planeMGunSound = SKAudioNode(fileNamed: "planeMachineGun")
@@ -208,7 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBackground()
         
         // Adding scrolling midground
-//        createMidground()
+        createMidground()
         
         // Adding scrolling foreground
         createForeground()
@@ -370,7 +370,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 func setUpEngine() {
                 
                     do {
-                        let sounds = ["airplaneFlyBy", "airplanep51", "bGCannons", "bgMusic", "biplaneFlying", "bombaway", "coin", "crash",  "gunfire", "mortar", "mp5Gun", "planeMachineGun", "powerUp", "prop", "rocket", "shoot", "skyBoom", "startGame", "tank", "tankFiring"]
+                        let sounds = [/*"airplaneFlyBy", "airplanep51", "bGCannons", "bgMusic", "biplaneFlying", "bombaway",*/ "coin", "crash"/*,  "gunfire", "mortar", "mp5Gun", "planeMachineGun"*/, "powerUp"/*, "prop", "rocket"*/, "shoot"/*, "skyBoom"*/, "startGame"/*, "tank", "tankFiring"*/]
                         
                         for sound in sounds {
                             
@@ -385,19 +385,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 // Adds background sound to game
-                bgMusic = SKAudioNode(fileNamed: "bgMusic")
-                bgMusic.runAction(SKAction.play())
-                bgMusic.autoplayLooped = true
-                
-                bgMusic.removeFromParent()
-                self.addChild(bgMusic)
-                
-                biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
-                biplaneFlyingSound.runAction(SKAction.play())
-                biplaneFlyingSound.autoplayLooped = true
-                
-                biplaneFlyingSound.removeFromParent()
-                self.addChild(biplaneFlyingSound)
+//                bgMusic = SKAudioNode(fileNamed: "bgMusic")
+//                bgMusic.runAction(SKAction.play())
+//                bgMusic.autoplayLooped = true
+//                
+//                bgMusic.removeFromParent()
+//                self.addChild(bgMusic)
+//                
+//                biplaneFlyingSound = SKAudioNode(fileNamed: "biplaneFlying")
+//                biplaneFlyingSound.runAction(SKAction.play())
+//                biplaneFlyingSound.autoplayLooped = true
+//                
+//                biplaneFlyingSound.removeFromParent()
+//                self.addChild(biplaneFlyingSound)
             }
         }
     }
@@ -448,7 +448,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Move backgrounds
         moveBackground()
-//        moveMidground()
+        moveMidground()
         moveForeground()
         
         // Placing position of our own bullets on our plane
@@ -661,7 +661,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add bomb physics
         bombs.physicsBody = SKPhysicsBody(rectangleOfSize: bombs.size)
         bombs.physicsBody?.categoryBitMask = PhysicsCategory.Bombs256
-        bombs.physicsBody?.collisionBitMask = PhysicsCategory.None
+        bombs.physicsBody?.collisionBitMask = PhysicsCategory.All
+        bombs.physicsBody?.contactTestBitMask = PhysicsCategory.All
         bombs.physicsBody?.allowsRotation = false
         bombs.physicsBody?.dynamic = false
         
@@ -742,8 +743,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Added star's physics
         powerUps.physicsBody = SKPhysicsBody(edgeLoopFromRect: powerUps.frame)
         powerUps.physicsBody?.categoryBitMask = PhysicsCategory.PowerUp32
-        powerUps.physicsBody?.collisionBitMask = PhysicsCategory.MyPlane4
-        powerUps.physicsBody?.contactTestBitMask = PhysicsCategory.MyPlane4
+        powerUps.physicsBody?.collisionBitMask = PhysicsCategory.All
+        powerUps.physicsBody?.contactTestBitMask = PhysicsCategory.All
         powerUps.physicsBody?.dynamic = false
         
         // Add sound
@@ -776,8 +777,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Added skyCoins physics
         coins.physicsBody = SKPhysicsBody(edgeLoopFromRect: coins.frame)
         coins.physicsBody?.categoryBitMask = PhysicsCategory.Coins64
-        coins.physicsBody?.collisionBitMask = PhysicsCategory.MyPlane4
-        coins.physicsBody?.contactTestBitMask = PhysicsCategory.MyPlane4
+        coins.physicsBody?.collisionBitMask = PhysicsCategory.All
+        coins.physicsBody?.contactTestBitMask = PhysicsCategory.All
         coins.physicsBody?.dynamic = false
         
         // Add sound
@@ -812,8 +813,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explosion.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         explosion.name = "SkyBomb"
         explosion.physicsBody?.categoryBitMask = PhysicsCategory.SkyBombs128
-        explosion.physicsBody?.contactTestBitMask = PhysicsCategory.None
-        explosion.physicsBody?.collisionBitMask = PhysicsCategory.MyPlane4 | PhysicsCategory.Enemy8
+        explosion.physicsBody?.contactTestBitMask = PhysicsCategory.All
+        explosion.physicsBody?.collisionBitMask = PhysicsCategory.All
         explosion.physicsBody?.dynamic = false
         
 //        skyBoomSound = SKAudioNode(fileNamed: "skyBoom")
@@ -1041,7 +1042,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tanks.physicsBody?.categoryBitMask = PhysicsCategory.Tanks2048
         tanks.physicsBody?.collisionBitMask = PhysicsCategory.All
         tanks.physicsBody?.contactTestBitMask = PhysicsCategory.MyBullets2 | PhysicsCategory.Bombs256
-        tanks.physicsBody?.dynamic = true
+        tanks.physicsBody?.dynamic = false
         tanks.physicsBody?.affectedByGravity = false
     }
 
@@ -1065,7 +1066,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shooterTanks.physicsBody?.categoryBitMask = PhysicsCategory.Tanks2048
         shooterTanks.physicsBody?.collisionBitMask = PhysicsCategory.None
         shooterTanks.physicsBody?.contactTestBitMask = PhysicsCategory.MyPlane4 | PhysicsCategory.Bombs256
-        shooterTanks.physicsBody?.dynamic = true
+        shooterTanks.physicsBody?.dynamic = false
         shooterTanks.physicsBody?.affectedByGravity = false
         
         // Move tank forward and fire
@@ -1302,13 +1303,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
     }
     
-    /********************************** Simulating Physics ***************************************/
-    // MARK: - Simulate Physics
-    
-    override func didSimulatePhysics() {
-        
-    }
-    
     
     /************************************ didBeginContact *****************************************/
     // MARK: - didBeginContact
@@ -1358,6 +1352,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explosion.position = (contactBody2.node?.position)!
             smoke.position = (contactBody2.node?.position)!
             
+            explosion.removeFromParent()
+            smoke.removeFromParent()
             self.addChild(explosion)
             self.addChild(smoke)
             
@@ -1468,8 +1464,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explode = SKEmitterNode(fileNamed: "Explode")!
             explode.position = contactBody2.node!.position
             
+            explode.removeFromParent()
             self.addChild(explode)
             
+            powerUps.removeFromParent()
             contactBody2.node!.removeFromParent()
             
             // Calling pre-loaded sound to the star hits
@@ -1481,31 +1479,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(powerUpSound)
             
             // Points per star added to score and health
-            health += 1
+            health += 20
             powerUpCount += 1
             playerHP = max(0, health + 1)
         }
-        else if ((contactBody1.categoryBitMask == 4) && (contactBody2.categoryBitMask == 512)) {
-            explosion = SKEmitterNode(fileNamed: "FireExplosion")!
-            smoke = SKEmitterNode(fileNamed: "Smoke")!
+        else if ((contactBody1.categoryBitMask == 4) && (contactBody2.categoryBitMask == 32)) {
+            explode = SKEmitterNode(fileNamed: "Explode")!
+            explode.position = contactBody2.node!.position
             
-            explosion.position = contactBody1.node!.position
-            smoke.position = contactBody1.node!.position
+            explode.removeFromParent()
+            self.addChild(explode)
+            
+            powerUps.removeFromParent()
+            contactBody2.node!.removeFromParent()
+            
+            // Calling pre-loaded sound to the star hits
+            powerUpSound = SKAudioNode(fileNamed: "powerUp")
+            powerUpSound.runAction(SKAction.play())
+            powerUpSound.autoplayLooped = false
+            
+            powerUpSound.removeFromParent()
+            self.addChild(powerUpSound)
+            
+            // Points per star added to score and health
+            health += 20
+            powerUpCount += 1
+            playerHP = max(0, health + 1)
+        }
+        else if ((contactBody1.categoryBitMask == 4) && (contactBody2.categoryBitMask == 64)) {
+            explode = SKEmitterNode(fileNamed: "Explode")!
+            explosion.position = contactBody2.node!.position
             
             explosion.removeFromParent()
-            smoke.removeFromParent()
             self.addChild(explosion)
-            self.addChild(smoke)
             
-            crashSound = SKAudioNode(fileNamed: "crash")
-            crashSound.runAction(SKAction.play())
-            crashSound.autoplayLooped = false
-            crashSound.removeFromParent()
-            self.addChild(crashSound)
+            contactBody2.node!.removeFromParent()
             
-            // Sky bomb hits us - we lose health
-            health -= 1
-            playerHP = max(0, health - 1)
+            coinSound = SKAudioNode(fileNamed: "coin")
+            coinSound.runAction(SKAction.play())
+            coinSound.autoplayLooped = false
+            coinSound.removeFromParent()
+            self.addChild(coinSound)
+            
+            // Coins++
+            coinCount += 1
         }
             
         // VS Enemy
@@ -1536,10 +1553,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Add sound to other classes to avoid AV being nil and crashing
-        func playSound(soundVariable: SKAction) {
-            runAction(soundVariable)
-        }
+    func playSound(soundVariable: SKAction) {
+        runAction(soundVariable)
+    }
 
+    
+    /********************************** Simulating Physics ***************************************/
+    // MARK: - Simulate Physics
+    
+    override func didSimulatePhysics() {
+        
+    }
+    
     
     /*********************************** Random Functions ****************************************/
     // MARK: - Simulate Physics

@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-//import AVFoundation
+import AVFoundation
 
 
 class InstructionScene: SKScene {
@@ -15,14 +15,14 @@ class InstructionScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         //init
-//        var bGCannonsSound = SKAction.playSoundFileNamed("bGCannons", waitForCompletion: false)
-//
-//        func playSound(soundVariable: SKAction) {
-//            runAction(soundVariable)
-//        }
+        var bGCannonsSound = SKAction.playSoundFileNamed("bGCannons", waitForCompletion: false)
+
+        func playSound(soundVariable: SKAction) {
+            runAction(soundVariable)
+        }
 
         // Call function when play sound:
-//        playSound(bGCannonsSound)
+        playSound(bGCannonsSound)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

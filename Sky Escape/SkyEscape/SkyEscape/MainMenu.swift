@@ -7,27 +7,27 @@
 //
 
 import SpriteKit
-//import AVFoundation
+import AVFoundation
 
 
 class MainMenu: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-//        var bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: false)
-//        
-//        func playSound(soundVariable: SKAction) {
-//            runAction(soundVariable)
-//        }
+        var bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: false)
         
-//        playSound(bgMusic)
+        func playSound(soundVariable: SKAction) {
+            runAction(soundVariable)
+        }
+        
+        playSound(bgMusic)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
         game.scaleMode = .AspectFit
-//        bgMusic.runAction(SKAction.stop())
+        bgMusic.runAction(SKAction.stop())
         let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
         self.view?.presentScene(game, transition: transition)
     }
