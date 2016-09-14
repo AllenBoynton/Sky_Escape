@@ -8,7 +8,7 @@
 
 import SpriteKit
 import AVFoundation
-import Shephertz_App42_iOS_API
+//import Shephertz_App42_iOS_API
 
 // Binary connections for collision and colliding
 struct PhysicsCategory {
@@ -385,25 +385,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 
                 // After import AVFoundation, needs do,catch statement to preload sound so no delay
                 
-                    do {
-                        let sounds = [/*"airplaneFlyBy", "airplanep51", "bGCannons", "bgMusic", "biplaneFlying", "bombaway",*/ "coin", "crash"/*,  "gunfire", "mortar", "mp5Gun", "planeMachineGun"*/, "powerUp"/*, "prop", "rocket"*/, "shoot"/*, "skyBoom"*/, "startGame"/*, "tank", "tankFiring"*/]
-                        
-                        for sound in sounds {
-                            
-                            let player = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(sound, ofType: "mp3")!))
-                            
-                            player.prepareToPlay()
-                            
-                        }
-                    } catch {
-                        print("AVAudio has had an \(error).")
-                    }
-                
-                // Adds background sound to game
-                bgMusic.runAction(SKAction.play())
-                bgMusic.autoplayLooped = true
-                bgMusic.removeFromParent()
-                self.addChild(bgMusic)
+//                    do {
+//                        let sounds = [/*"airplaneFlyBy", "airplanep51", "bGCannons", "bgMusic", "biplaneFlying", "bombaway",*/ "coin", "crash"/*,  "gunfire", "mortar", "mp5Gun", "planeMachineGun"*/, "powerUp"/*, "prop", "rocket"*/, "shoot"/*, "skyBoom"*/, "startGame"/*, "tank", "tankFiring"*/]
+//                        
+//                        for sound in sounds {
+//                            
+//                            let player = try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(sound, ofType: "mp3")!))
+//                            
+//                            player.prepareToPlay()
+//                            
+//                        }
+//                    } catch {
+//                        print("AVAudio has had an \(error).")
+//                    }
+//                
+//                // Adds background sound to game
+//                bgMusic.runAction(SKAction.play())
+//                bgMusic.autoplayLooped = true
+//                bgMusic.removeFromParent()
+//                self.addChild(bgMusic)
             }
         }
     }

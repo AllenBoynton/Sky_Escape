@@ -12,6 +12,9 @@ import AVFoundation
 
 class MainMenu: SKScene {
     
+    var infoButton = SKSpriteNode()
+    var node = SKNode()
+    
     override func didMoveToView(view: SKView) {
         
         var bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: false)
@@ -25,10 +28,32 @@ class MainMenu: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
-        game.scaleMode = .AspectFit
-        bgMusic.runAction(SKAction.stop())
-        let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
-        self.view?.presentScene(game, transition: transition)
+        for touch: AnyObject in touches {
+            let location = (touch as! UITouch).locationInNode(self)
+            
+            // Info button to show credits
+            infoButton = SKScene(fileNamed: "MainMenu")!.childNodeWithName("info") as! SKSpriteNode
+            infoButton.zPosition = 1000
+            infoButton.name = "InfoButton"
+            
+            infoButton.removeFromParent()
+            self.addChild(infoButton)
+            
+            let node = self.nodeAtPoint(location)
+            if (node.name == "InfoButton") {
+                
+                let info: CreditsScene = CreditsScene(fileNamed: "CreditsScene")!
+                info.scaleMode = .AspectFit
+                bgMusic.runAction(SKAction.stop())
+                let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
+                self.view?.presentScene(info, transition: transition)
+            }
+            
+            let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
+            game.scaleMode = .AspectFit
+            bgMusic.runAction(SKAction.stop())
+            let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
+            self.view?.presentScene(game, transition: transition)
+        }
     }
 }

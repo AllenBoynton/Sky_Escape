@@ -69,7 +69,12 @@
 		0979CC801D87B2C800018C20 /* Missiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC7F1D87B2C800018C20 /* Missiles.sks */; };
 		0979CC821D88D2A200018C20 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979CC811D88D2A200018C20 /* GameOverScene.swift */; };
 		0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979CC831D88D2BC00018C20 /* CreditsScene.swift */; };
-		0979CC861D890C4600018C20 /* Shephertz_App42_iOS_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */; };
+		0979CC881D89105100018C20 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0979CC871D89105100018C20 /* AudioToolbox.framework */; };
+		0979CC8B1D89174100018C20 /* App42ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979CC8A1D89174100018C20 /* App42ServiceList.swift */; };
+		0979CC8D1D891B7500018C20 /* App42Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC8C1D891B7500018C20 /* App42Services.plist */; };
+		0979CC911D891BB200018C20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC8F1D891BB200018C20 /* InfoPlist.strings */; };
+		0979CC931D891BCA00018C20 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC921D891BCA00018C20 /* FBConnect.bundle */; };
+		0979CC951D8921AF00018C20 /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC941D8921AF00018C20 /* CreditsScene.sks */; };
 		098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0961D710E77000AD49D /* guardianpi.ttf */; };
 		098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA0981D710EAB000AD49D /* InstructionScene.swift */; };
 		098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 098AA09A1D710EB8000AD49D /* InstructionScene.sks */; };
@@ -176,6 +181,13 @@
 		0979CC811D88D2A200018C20 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		0979CC831D88D2BC00018C20 /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shephertz_App42_iOS_API.framework; sourceTree = "<group>"; };
+		0979CC871D89105100018C20 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0979CC891D89105100018C20 /* SkyEscape.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SkyEscape.entitlements; sourceTree = "<group>"; };
+		0979CC8A1D89174100018C20 /* App42ServiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App42ServiceList.swift; sourceTree = "<group>"; };
+		0979CC8C1D891B7500018C20 /* App42Services.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = App42Services.plist; sourceTree = "<group>"; };
+		0979CC901D891BB200018C20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		0979CC921D891BCA00018C20 /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
+		0979CC941D8921AF00018C20 /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
 		098AA0961D710E77000AD49D /* guardianpi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guardianpi.ttf; sourceTree = "<group>"; };
 		098AA0981D710EAB000AD49D /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		098AA09A1D710EB8000AD49D /* InstructionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructionScene.sks; sourceTree = "<group>"; };
@@ -201,7 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */,
-				0979CC861D890C4600018C20 /* Shephertz_App42_iOS_API.framework in Frameworks */,
+				0979CC881D89105100018C20 /* AudioToolbox.framework in Frameworks */,
 				09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */,
 				091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */,
 			);
@@ -248,6 +260,7 @@
 		091573151D540E1A00C9B907 /* SkyEscape */ = {
 			isa = PBXGroup;
 			children = (
+				0979CC891D89105100018C20 /* SkyEscape.entitlements */,
 				091573491D540E6700C9B907 /* AppDelegate */,
 				091573691D54390400C9B907 /* Emmitter */,
 				0915734D1D540EBA00C9B907 /* Resources */,
@@ -283,6 +296,7 @@
 				0915731C1D540E1A00C9B907 /* GameViewController.swift */,
 				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
 				093BC83B1D7F9BA400C745FB /* Utilities.swift */,
+				0979CC8A1D89174100018C20 /* App42ServiceList.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -309,6 +323,7 @@
 				0979CC7D1D87AF8700018C20 /* Bombs.sks */,
 				0979CC791D87AE8100018C20 /* FireBullet.sks */,
 				093205C81D82637700BF2A36 /* Player.sks */,
+				0979CC941D8921AF00018C20 /* CreditsScene.sks */,
 				098AA09A1D710EB8000AD49D /* InstructionScene.sks */,
 				098AA09E1D710ED4000AD49D /* MainMenu.sks */,
 				091630901D653F6700E86A4E /* GameScene.sks */,
@@ -359,7 +374,10 @@
 				09247D0D1D78F1B30058D35D /* SkyItems */,
 				093EABEC1D545F370069F120 /* Images.atlas */,
 				098AA0B21D71103A000AD49D /* Thank you.pdf */,
+				0979CC8C1D891B7500018C20 /* App42Services.plist */,
+				0979CC8E1D891BB200018C20 /* en.lproj */,
 				091573261D540E1A00C9B907 /* Info.plist */,
+				0979CC921D891BCA00018C20 /* FBConnect.bundle */,
 				098AA0961D710E77000AD49D /* guardianpi.ttf */,
 				096092161D5453390085B693 /* Sound */,
 			);
@@ -369,6 +387,7 @@
 		0915734F1D540FDE00C9B907 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0979CC871D89105100018C20 /* AudioToolbox.framework */,
 				0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */,
 				09CC3E351D5A971B004BEB39 /* AVFoundation.framework */,
 				09D75D561D5803B300AF76C5 /* CoreMotion.framework */,
@@ -435,6 +454,15 @@
 				093BC8051D7B56AA00C745FB /* tankFiring.mp3 */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		0979CC8E1D891BB200018C20 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				0979CC8F1D891BB200018C20 /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = DownDamage.atlas/en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +534,11 @@
 					091573121D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 979TTQWNS8;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
 					};
 					0915732A1D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -556,8 +589,10 @@
 				0914573D1D58E45500986C3B /* planeMachineGun.mp3 in Resources */,
 				096092221D5453390085B693 /* skyBoom.mp3 in Resources */,
 				090D7D101D8285BE00392376 /* PowerUps.sks in Resources */,
+				0979CC911D891BB200018C20 /* InfoPlist.strings in Resources */,
 				090D7D0A1D8282C800392376 /* Turrets.sks in Resources */,
 				096092231D5453390085B693 /* crash.mp3 in Resources */,
+				0979CC951D8921AF00018C20 /* CreditsScene.sks in Resources */,
 				09247D1A1D7907A50058D35D /* TankForward.atlas in Resources */,
 				093BC83A1D7E316400C745FB /* EnemyArray.atlas in Resources */,
 				090D7D121D82864D00392376 /* Coins.sks in Resources */,
@@ -592,6 +627,7 @@
 				091573201D540E1A00C9B907 /* Main.storyboard in Resources */,
 				093205C91D82637700BF2A36 /* Player.sks in Resources */,
 				091630911D653F6700E86A4E /* GameScene.sks in Resources */,
+				0979CC8D1D891B7500018C20 /* App42Services.plist in Resources */,
 				09247CF71D762C920058D35D /* DownDamage.atlas in Resources */,
 				098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */,
 				090D7D081D82821800392376 /* EnemyPlanes.sks in Resources */,
@@ -608,6 +644,7 @@
 				093BC80C1D7B6BBC00C745FB /* Enemy1Attack.atlas in Resources */,
 				09247D191D7907A50058D35D /* TankAttack.atlas in Resources */,
 				098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */,
+				0979CC931D891BCA00018C20 /* FBConnect.bundle in Resources */,
 				098AA0BB1D7134E3000AD49D /* mp5Gun.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,6 +673,7 @@
 				093BC83C1D7F9BA400C745FB /* Utilities.swift in Sources */,
 				0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */,
 				0979CC821D88D2A200018C20 /* GameOverScene.swift in Sources */,
+				0979CC8B1D89174100018C20 /* App42ServiceList.swift in Sources */,
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
 				0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */,
@@ -683,6 +721,14 @@
 				0915731F1D540E1A00C9B907 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0979CC8F1D891BB200018C20 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0979CC901D891BB200018C20 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -779,6 +825,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SkyEscape/SkyEscape.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
@@ -795,6 +842,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SkyEscape/SkyEscape.entitlements;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
