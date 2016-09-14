@@ -1,23 +1,1 @@
-# MGD-1608Mobile Game DesignAllen Boyntonhttps://github.com/AllenBoynton/MGD-16083 Sprites - I have more than that but the Bi-Plane, Bullet and Star, 4 enemy planes, 2 ally planes, etc.2 Sound Effects - Sound of planes, gunfire sound, thunderstorm sound plus many more
-1 Type of input control (tap) - Release of tap fires bullets
-
-1 Point entity is moving plane by clicking on screen or dragging
-
-1 entity collision is bullet to enemy
-
-linear interpolation is cloud moving around and all planes on a random flight pattern2 Game events - Tapping the screen will move the plane on the y axis, Tapping the screen will fire the bullet and produce a machine gun firing sound. Dragging on the screen will move the plane and give a rapid fire.
-
-1 Bi-Plane animation or stars that spin and get bigger then smaller.
-
-1 pause button - temperamental - within the HUD function. Health meter, to be under plane, is in the works.
-
-1 score label and 1 health label
-
-3 or more emitters when bullets are shot, cloud pours rain…
-
-Game works fine on either iPhone 6 or 6 Plus also my iPad when set up for it in main VC
-
-Game Over functions in place. Will have separate scene with score and either Game Over or Victory.
-
-
-
+Allen BoyntonImmersive Application Deployment 1609Your Immersive ElementGithub: https://github.com/AllenBoynton/IAD-1609/tree/master/Sky%20EscapeThree distinct features of my tactical element are as follows and are present within the game:   1) Enemies will now move at random patterns rather than a straight line.   I now have the enemies set on a random speed scale. Some may come out with a 6 second cross screen time, others with a 2.  This goes for most all enemies. My Fokker plane enemies enter the game about a minute into it and have a custom random path I created. They also have varying speeds.   2) Enemies will be increased from only sky enemies to ground enemies as well.	I have incorporated soldiers that are more for distraction. They spawn in range from every 2 seconds and 10 seconds. I have 1 tank that also has a custom pathway and is for distraction. Later in the game it would also shoot missiles. The one tank from the right side shoots the missiles. It moves onto the screen (animated, as with most objects) and it stops about 1/3 the way in the scene. It allows more time to give off a few missiles and moves on. All tanks are spawned. 3) Power-ups will give the user invincibility to give them a fighting chance back if they have fallen behind.  The power ups are only generated but once a minute. I did not want to give the game away. It gives significant health (25 points) back to the player to give it time to be virtually invincible. I made quite a few attempts to give our player a glowing, pulsing aura and have it just pass through all and kill. Which it does without the visual effects.I had to comment out much of the sound. My screens load properly and game works correctly until it gets heated. I get an error of an AV -42, which is an overload. I attempted all fixes I could find and none worked. So, I commented most of the audio and some of the visual emitters to help save memory. I need to see what I can do about that.

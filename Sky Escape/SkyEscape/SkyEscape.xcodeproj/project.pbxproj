@@ -14,6 +14,7 @@
 		090D7D101D8285BE00392376 /* PowerUps.sks in Resources */ = {isa = PBXBuildFile; fileRef = 090D7D0F1D8285BE00392376 /* PowerUps.sks */; };
 		090D7D121D82864D00392376 /* Coins.sks in Resources */ = {isa = PBXBuildFile; fileRef = 090D7D111D82864D00392376 /* Coins.sks */; };
 		091191191D5A1C810096801E /* FireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091191181D5A1C810096801E /* FireExplosion.sks */; };
+		0911939D1D85B96A00A6E2AA /* AllyPlanes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0911939C1D85B96A00A6E2AA /* AllyPlanes.atlas */; };
 		091457381D58E45500986C3B /* airplanep51.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457311D58E45500986C3B /* airplanep51.mp3 */; };
 		091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457321D58E45500986C3B /* airplaneFlyBy.mp3 */; };
 		0914573C1D58E45500986C3B /* bGCannons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457351D58E45500986C3B /* bGCannons.mp3 */; };
@@ -53,9 +54,6 @@
 		093BC80F1D7B6BBC00C745FB /* Enemy2Die.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC80B1D7B6BBC00C745FB /* Enemy2Die.atlas */; };
 		093BC8191D7B97AE00C745FB /* bombaway.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 093BC8181D7B97AE00C745FB /* bombaway.mp3 */; };
 		093BC81B1D7B97B700C745FB /* rocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 093BC81A1D7B97B700C745FB /* rocket.mp3 */; };
-		093BC8271D7CC30900C745FB /* Missiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093BC8261D7CC30900C745FB /* Missiles.swift */; };
-		093BC8291D7CC5D600C745FB /* TurretMissiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093BC8281D7CC5D600C745FB /* TurretMissiles.swift */; };
-		093BC82B1D7CC61200C745FB /* TankMissiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093BC82A1D7CC61200C745FB /* TankMissiles.swift */; };
 		093BC83A1D7E316400C745FB /* EnemyArray.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC8391D7E316400C745FB /* EnemyArray.atlas */; };
 		093BC83C1D7F9BA400C745FB /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093BC83B1D7F9BA400C745FB /* Utilities.swift */; };
 		093EABED1D545F370069F120 /* Images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093EABEC1D545F370069F120 /* Images.atlas */; };
@@ -65,6 +63,13 @@
 		096092221D5453390085B693 /* skyBoom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921A1D5453390085B693 /* skyBoom.mp3 */; };
 		096092231D5453390085B693 /* crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921B1D5453390085B693 /* crash.mp3 */; };
 		096092241D5453390085B693 /* gunfire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0960921C1D5453390085B693 /* gunfire.mp3 */; };
+		0979CC7A1D87AE8100018C20 /* FireBullet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC791D87AE8100018C20 /* FireBullet.sks */; };
+		0979CC7C1D87AF0E00018C20 /* EnemyFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC7B1D87AF0E00018C20 /* EnemyFire.sks */; };
+		0979CC7E1D87AF8700018C20 /* Bombs.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC7D1D87AF8700018C20 /* Bombs.sks */; };
+		0979CC801D87B2C800018C20 /* Missiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0979CC7F1D87B2C800018C20 /* Missiles.sks */; };
+		0979CC821D88D2A200018C20 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979CC811D88D2A200018C20 /* GameOverScene.swift */; };
+		0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0979CC831D88D2BC00018C20 /* CreditsScene.swift */; };
+		0979CC861D890C4600018C20 /* Shephertz_App42_iOS_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */; };
 		098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 098AA0961D710E77000AD49D /* guardianpi.ttf */; };
 		098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA0981D710EAB000AD49D /* InstructionScene.swift */; };
 		098AA09B1D710EB8000AD49D /* InstructionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 098AA09A1D710EB8000AD49D /* InstructionScene.sks */; };
@@ -109,6 +114,7 @@
 		090D7D0F1D8285BE00392376 /* PowerUps.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PowerUps.sks; sourceTree = "<group>"; };
 		090D7D111D82864D00392376 /* Coins.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coins.sks; sourceTree = "<group>"; };
 		091191181D5A1C810096801E /* FireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireExplosion.sks; sourceTree = "<group>"; };
+		0911939C1D85B96A00A6E2AA /* AllyPlanes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = AllyPlanes.atlas; sourceTree = "<group>"; };
 		091457311D58E45500986C3B /* airplanep51.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplanep51.mp3; sourceTree = "<group>"; };
 		091457321D58E45500986C3B /* airplaneFlyBy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplaneFlyBy.mp3; sourceTree = "<group>"; };
 		091457351D58E45500986C3B /* bGCannons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bGCannons.mp3; sourceTree = "<group>"; };
@@ -154,9 +160,6 @@
 		093BC80B1D7B6BBC00C745FB /* Enemy2Die.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy2Die.atlas; sourceTree = "<group>"; };
 		093BC8181D7B97AE00C745FB /* bombaway.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombaway.mp3; sourceTree = "<group>"; };
 		093BC81A1D7B97B700C745FB /* rocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rocket.mp3; sourceTree = "<group>"; };
-		093BC8261D7CC30900C745FB /* Missiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Missiles.swift; sourceTree = "<group>"; };
-		093BC8281D7CC5D600C745FB /* TurretMissiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurretMissiles.swift; sourceTree = "<group>"; };
-		093BC82A1D7CC61200C745FB /* TankMissiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TankMissiles.swift; sourceTree = "<group>"; };
 		093BC8391D7E316400C745FB /* EnemyArray.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemyArray.atlas; sourceTree = "<group>"; };
 		093BC83B1D7F9BA400C745FB /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		093EABEC1D545F370069F120 /* Images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Images.atlas; sourceTree = "<group>"; };
@@ -166,6 +169,13 @@
 		0960921A1D5453390085B693 /* skyBoom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skyBoom.mp3; sourceTree = "<group>"; };
 		0960921B1D5453390085B693 /* crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crash.mp3; sourceTree = "<group>"; };
 		0960921C1D5453390085B693 /* gunfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gunfire.mp3; sourceTree = "<group>"; };
+		0979CC791D87AE8100018C20 /* FireBullet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireBullet.sks; sourceTree = "<group>"; };
+		0979CC7B1D87AF0E00018C20 /* EnemyFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyFire.sks; sourceTree = "<group>"; };
+		0979CC7D1D87AF8700018C20 /* Bombs.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bombs.sks; sourceTree = "<group>"; };
+		0979CC7F1D87B2C800018C20 /* Missiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Missiles.sks; sourceTree = "<group>"; };
+		0979CC811D88D2A200018C20 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		0979CC831D88D2BC00018C20 /* CreditsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shephertz_App42_iOS_API.framework; sourceTree = "<group>"; };
 		098AA0961D710E77000AD49D /* guardianpi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guardianpi.ttf; sourceTree = "<group>"; };
 		098AA0981D710EAB000AD49D /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		098AA09A1D710EB8000AD49D /* InstructionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = InstructionScene.sks; sourceTree = "<group>"; };
@@ -191,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */,
+				0979CC861D890C4600018C20 /* Shephertz_App42_iOS_API.framework in Frameworks */,
 				09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */,
 				091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */,
 			);
@@ -291,8 +302,12 @@
 				090D7D0F1D8285BE00392376 /* PowerUps.sks */,
 				090D7D0D1D82843100392376 /* Soldiers.sks */,
 				090D7D0B1D82832000392376 /* Tanks.sks */,
+				0979CC7F1D87B2C800018C20 /* Missiles.sks */,
+				0979CC7B1D87AF0E00018C20 /* EnemyFire.sks */,
 				090D7D091D8282C800392376 /* Turrets.sks */,
 				090D7D071D82821800392376 /* EnemyPlanes.sks */,
+				0979CC7D1D87AF8700018C20 /* Bombs.sks */,
+				0979CC791D87AE8100018C20 /* FireBullet.sks */,
 				093205C81D82637700BF2A36 /* Player.sks */,
 				098AA09A1D710EB8000AD49D /* InstructionScene.sks */,
 				098AA09E1D710ED4000AD49D /* MainMenu.sks */,
@@ -304,9 +319,8 @@
 		0915734B1D540E9100C9B907 /* Scene.swift */ = {
 			isa = PBXGroup;
 			children = (
-				093BC82A1D7CC61200C745FB /* TankMissiles.swift */,
-				093BC8281D7CC5D600C745FB /* TurretMissiles.swift */,
-				093BC8261D7CC30900C745FB /* Missiles.swift */,
+				0979CC811D88D2A200018C20 /* GameOverScene.swift */,
+				0979CC831D88D2BC00018C20 /* CreditsScene.swift */,
 				098AA0981D710EAB000AD49D /* InstructionScene.swift */,
 				098AA09C1D710EC5000AD49D /* MainMenu.swift */,
 				0915731A1D540E1A00C9B907 /* GameScene.swift */,
@@ -326,6 +340,7 @@
 		0915734D1D540EBA00C9B907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0911939C1D85B96A00A6E2AA /* AllyPlanes.atlas */,
 				09247CED1D762C920058D35D /* Attack.atlas */,
 				09247CEE1D762C920058D35D /* AttackDamaged.atlas */,
 				09247CEF1D762C920058D35D /* Death.atlas */,
@@ -354,6 +369,7 @@
 		0915734F1D540FDE00C9B907 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0979CC851D890C4600018C20 /* Shephertz_App42_iOS_API.framework */,
 				09CC3E351D5A971B004BEB39 /* AVFoundation.framework */,
 				09D75D561D5803B300AF76C5 /* CoreMotion.framework */,
 				091573521D5410DF00C9B907 /* SpriteKit.framework */,
@@ -551,8 +567,11 @@
 				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
 				09247CF61D762C920058D35D /* Death.atlas in Resources */,
 				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,
+				0979CC7A1D87AE8100018C20 /* FireBullet.sks in Resources */,
+				0911939D1D85B96A00A6E2AA /* AllyPlanes.atlas in Resources */,
 				091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */,
 				098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */,
+				0979CC7C1D87AF0E00018C20 /* EnemyFire.sks in Resources */,
 				0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */,
 				09247CF81D762C920058D35D /* Hit.atlas in Resources */,
 				0915736D1D54392D00C9B907 /* spark.png in Resources */,
@@ -576,6 +595,7 @@
 				09247CF71D762C920058D35D /* DownDamage.atlas in Resources */,
 				098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */,
 				090D7D081D82821800392376 /* EnemyPlanes.sks in Resources */,
+				0979CC801D87B2C800018C20 /* Missiles.sks in Resources */,
 				0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */,
 				09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */,
 				09247CFA1D762C920058D35D /* UpDamage.atlas in Resources */,
@@ -584,6 +604,7 @@
 				09247CF41D762C920058D35D /* Attack.atlas in Resources */,
 				09247D081D776EBE0058D35D /* SmokeTrail.sks in Resources */,
 				098AA0B71D711150000AD49D /* LaunchScreen.storyboard in Resources */,
+				0979CC7E1D87AF8700018C20 /* Bombs.sks in Resources */,
 				093BC80C1D7B6BBC00C745FB /* Enemy1Attack.atlas in Resources */,
 				09247D191D7907A50058D35D /* TankAttack.atlas in Resources */,
 				098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */,
@@ -612,14 +633,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				093BC82B1D7CC61200C745FB /* TankMissiles.swift in Sources */,
 				093BC83C1D7F9BA400C745FB /* Utilities.swift in Sources */,
-				093BC8271D7CC30900C745FB /* Missiles.swift in Sources */,
 				0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */,
+				0979CC821D88D2A200018C20 /* GameOverScene.swift in Sources */,
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
+				0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */,
 				098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */,
-				093BC8291D7CC5D600C745FB /* TurretMissiles.swift in Sources */,
 				098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */,
 				091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */,
 			);
@@ -759,6 +779,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
+				);
 				INFOPLIST_FILE = SkyEscape/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
@@ -771,6 +795,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
+				);
 				INFOPLIST_FILE = SkyEscape/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
