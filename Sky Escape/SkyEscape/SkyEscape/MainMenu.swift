@@ -7,8 +7,6 @@
 //
 
 import SpriteKit
-import AVFoundation
-
 
 class MainMenu: SKScene {
     
@@ -17,13 +15,7 @@ class MainMenu: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        var bgMusic = SKAction.playSoundFileNamed("bgMusic", waitForCompletion: false)
-        
-        func playSound(soundVariable: SKAction) {
-            runAction(soundVariable)
-        }
-        
-        playSound(bgMusic)
+        self.runAction(SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -44,14 +36,12 @@ class MainMenu: SKScene {
                 
                 let info: CreditsScene = CreditsScene(fileNamed: "CreditsScene")!
                 info.scaleMode = .AspectFit
-                bgMusic.runAction(SKAction.stop())
                 let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
                 self.view?.presentScene(info, transition: transition)
             }
             
             let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
             game.scaleMode = .AspectFit
-            bgMusic.runAction(SKAction.stop())
             let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
             self.view?.presentScene(game, transition: transition)
         }
