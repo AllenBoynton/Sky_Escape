@@ -7,25 +7,35 @@
 //
 
 import SpriteKit
+import GameKit
+
+
+// Protocol to inform the delegate GameVC if a game is over
+protocol GameSceneDelegate {
+    func gameOver()
+}
 
 // Binary connections for collision and colliding
 struct PhysicsCategory {
     
-    static let Ground1     : UInt32 = 1    // 0x1 << 0
-    static let MyBullets2  : UInt32 = 2    // 0x1 << 1
-    static let MyPlane4    : UInt32 = 4    // 0x1 << 2
-    static let Enemy8      : UInt32 = 8    // 0x1 << 3
-    static let EnemyFire16 : UInt32 = 16   // 0x1 << 4
-    static let PowerUp32   : UInt32 = 32   // 0x1 << 5
-    static let Bombs64     : UInt32 = 64   // 0x1 << 6
-    static let Turret128   : UInt32 = 128  // 0x1 << 7
-    static let Soldiers256 : UInt32 = 256  // 0x1 << 8
-    static let Missiles512 : UInt32 = 512  // 0x1 << 9
-    static let SkyBombs1024: UInt32 = 1024 // 0x1 << 10
+    static let Ground1     : UInt32 = 1     //0x1 << 0
+    static let MyBullets2  : UInt32 = 2     //0x1 << 1
+    static let MyPlane4    : UInt32 = 4     //0x1 << 2
+    static let Enemy8      : UInt32 = 8     //0x1 << 3
+    static let EnemyFire16 : UInt32 = 16    //0x1 << 4
+    static let PowerUp32   : UInt32 = 32    //0x1 << 5
+    static let Bombs64     : UInt32 = 64    //0x1 << 6
+    static let Turret128   : UInt32 = 128   //0x1 << 7
+    static let Soldiers256 : UInt32 = 256   //0x1 << 8
+    static let Missiles512 : UInt32 = 512   //0x1 << 9
+    static let SkyBombs1024: UInt32 = 1024  //0x1 << 10
     static let All         : UInt32 = UInt32.max // all nodes
 }
 
 // HUD global variables
+var lifeNodes = [SKSpriteNode]()
+var remainingNodes = SKSpriteNode()
+var remainingLives = 3
 let maxHealth = 50
 let healthBarWidth: CGFloat = 170
 let healthBarHeight: CGFloat = 10
@@ -37,9 +47,15 @@ let darkenDuration: CFTimeInterval = 2
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameCenterDelegate : GameSceneDelegate?
+    
     
     /************************** Property constants declared ************/
     // MARK: - Property constants declared
+    
+    // SK Physics body
+    var contactBody1 = SKPhysicsBody()
+    var contactBody2 = SKPhysicsBody()
     
     // Location for touch screen
     var touchLocation = CGPointZero
@@ -50,6 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Atlas's instantiated
     var attackAtlas = SKTextureAtlas()
+    var allyAtlas = SKTextureAtlas()
     var enemyArrayAtlas = SKTextureAtlas(named: "EnemyArray")
     var enemy1Atlas = SKTextureAtlas(named: "Enemy1Attack")
     var enemy2Atlas = SKTextureAtlas(named: "Enemy2Attack")
@@ -88,6 +105,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var randomEnemy = SKSpriteNode()
     var enemyFire = SKSpriteNode()
     
+    // Ally planes
+    var randomAlly = SKSpriteNode()
+    var wingmenArray = [SKTexture]()
+    
     // Sky nodes
     var powerUps = SKSpriteNode()
     var coins = SKSpriteNode()
@@ -100,15 +121,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game metering GUI
     var myCamera = SKCameraNode()
-    var startButton = SKSpriteNode()
-    var score = 0
+    var score: Int64 = 0
     var powerUpCount = 0
     var coinCount = 0
     var health = 50
     var playerHP = maxHealth
-    var gameOver = Bool()
+    var died = Bool()
     var gamePaused = Bool()
     var gameStarted = Bool()
+    var gameOver = Bool()
     
     // Labels and images
     var healthLabel = SKLabelNode()
@@ -120,18 +141,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pauseNode = SKSpriteNode()
     var pauseButton = SKSpriteNode()
     var darkenLayer: SKSpriteNode?
+    var startButton = SKSpriteNode()
+    var restartButton = SKSpriteNode()
     var gameOverLabel: SKLabelNode?
     
     
-    /************************************* didMoveToView Function **********************************/
-    // MARK: - didMoveToView
+    /********************************* Restart Scene funcs *********************************/
+    // MARK: - Restart scenes
     
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
+    // Function to restart scene
+    func restartScene() {
+        
+        self.removeAllChildren()
+        self.removeAllActions()
+        died = false
+        gameStarted = true
+        score = 0
+        health = 20
+        startScene()
+    }
+    
+    // Starting scene, passed to didMoveToView
+    func startScene() {
         
         // Sets the physics delegate and physics body
         self.physicsWorld.gravity = CGVectorMake(0, 0)
-//        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsWorld.contactDelegate = self // Physics delegate set
         
         // Backgroung color set with RGB
@@ -142,10 +177,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // MARK: - Scroll Background
         
         // Adding scrolling Main Background
-//        createBackground()
+        createBackground()
         
         // Adding scrolling midground
-//        createMidground()
+        createMidground()
         
         // Adding scrolling foreground
         createForeground()
@@ -158,6 +193,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         startButton.removeFromParent()
         self.addChild(startButton)
+    }
+    
+    /************************************* didMoveToView Function **********************************/
+    // MARK: - didMoveToView
+    
+    override func didMoveToView(view: SKView) {
+        
+        startScene()
     }
     
     
@@ -174,10 +217,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Remove button
             startButton.removeFromParent()
             
+            // Adds pause button and function to scene
+//            self.addChild(self.pauseButtonNode())
+            
             touchLocation = touches.first!.locationInNode(self)
             
             for touch: AnyObject in touches {
                 let location = (touch as! UITouch).locationInNode(self)
+                
+                let node = self.nodeAtPoint(location)
+                
+                if (node.name == "PauseButton") || (node.name == "PauseButtonContainer") {
+                    showPauseAlert()
+                }
+                
+                /* function opens up the HUD and makes the button accessible
+                 also, has displays for health and score. */
+                createHUD()
                 
                 /* Allows to tap on screen and plane will present
                  at that axis and shoot at point touched */
@@ -194,15 +250,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.view!.addGestureRecognizer(tapRecognizer)
                 tapRecognizer.numberOfTapsRequired = 2
 
-                /* function opens up the HUD and makes the button accessible
-                 also, has displays for health and score. */
-                createHUD()
-                
-                let node = self.nodeAtPoint(location)
-                if (node.name == "PauseButton") || (node.name == "PauseButtonContainer") {
-                    showPauseAlert()
-                }
-                
                 
                 /******************************** Spawning Nodes *********************************/
                 // MARK: - Spawning
@@ -216,6 +263,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 /********************************* Spawn Timers *********************************/
                 // MARK: - Spawn Timers
                 
+                // Spawning wingman timer call
+                runAction(SKAction.repeatActionForever(SKAction.sequence([
+                    SKAction.runBlock(spawnWingman),
+                    SKAction.waitForDuration(12)
+                    ])
+                    ))
+                
                 // Spawning enemy planes
                 let xSpawn = randomBetweenNumbers(2.0, secondNum: 8.0)
                 runAction(SKAction.repeatActionForever(SKAction.sequence([
@@ -225,11 +279,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ))
                 
                 // Spawning enemy fire timer call
-//                runAction(SKAction.repeatActionForever(SKAction.sequence([
-//                    SKAction.runBlock(spawnEnemyFire),
-//                    SKAction.waitForDuration(1.5)
-//                    ])
-//                    ))
+                runAction(SKAction.repeatActionForever(SKAction.sequence([
+                    SKAction.runBlock(spawnEnemyFire),
+                    SKAction.waitForDuration(1.5)
+                    ])
+                    ))
                 
                 // Sky bomb spawn timer
                 let xSpawn2 = randomBetweenNumbers(10.0, secondNum: 20.0)
@@ -276,12 +330,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ))
                 
                 
-                /**************************** Preloading Sound & Music ****************************/
-                // MARK: - Spawning
-                                
-                // After import AVFoundation, needs do,catch statement to preload sound so no delay
+                if died == true {
+                    
+                    if restartButton.containsPoint(location) {
+                        restartScene()
+                    }
+                }
             }
         }
+//        print("\(checkPhysics())")
     }
     
     
@@ -307,9 +364,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /********************************* touchesEnded Function **************************************/
     // MARK: - touchesEnded
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
-    }
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {}
     
     
     /*********************************** Update Function *****************************************/
@@ -318,14 +373,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Update for animations and positions
     override func update(currentTime: NSTimeInterval) {
         
-        if !self.gamePaused {
-            holdGame()
-            self.scene!.view?.paused = false
-        }
+//        if !self.gamePaused && !self.gameOver {
+//            
+//        }
         
         // Move backgrounds
-//        moveBackground()
-//        moveMidground()
+        moveBackground()
+        moveMidground()
         moveForeground()
         
         // Plane's smoketrail will follow it as updating occurs
@@ -343,14 +397,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Adding to gameplay health attributes & score
         healthLabel.text = "Health: \(health)"
         scoreLabel.text = "Score: \(score)"
-
+        
         // Changes health label red if too low
         if (health <= 10) {
             healthLabel.fontColor = SKColor.redColor()
         }
         
-        // Updates check stats to see if health is 0
-//        checkIfGameIsOver()
+        loseALife()
     }
     
 
@@ -360,7 +413,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Adding scrolling background
     func createBackground() {
         
-        myBackground = SKTexture(imageNamed: "cityBG")
+        myBackground = SKTexture(imageNamed: "clouds")
         
         for i in 0...1 {
             let background = SKSpriteNode(texture: myBackground)
@@ -371,6 +424,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             background.removeFromParent()
             self.addChild(background)
+            
+            // Create physics body
+            background.physicsBody = SKPhysicsBody(rectangleOfSize: background.size)
+            background.physicsBody?.categoryBitMask = PhysicsCategory.Ground1
+            background.physicsBody?.contactTestBitMask = 0
+            background.physicsBody?.collisionBitMask = 0
+            background.physicsBody?.dynamic = false
         }
     }
     
@@ -402,6 +462,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             ground.removeFromParent()
             self.addChild(ground)
+            
+            // Create physics body
+            ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
+            ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground1
+            ground.physicsBody?.contactTestBitMask = 0
+            ground.physicsBody?.collisionBitMask = 0
+            ground.physicsBody?.dynamic = false
         }
     }
     
@@ -489,7 +556,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player) // Add our player to the scene
         
         // Animation action
-        let animateAction = SKAction.animateWithTextures(textureArray, timePerFrame: 1.0)
+        let animateAction = SKAction.animateWithTextures(textureArray, timePerFrame: 0.01)
         let animateDone = SKAction.removeFromParent()
         self.runAction(SKAction.sequence([animateAction, animateDone]))
         
@@ -511,7 +578,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.physicsBody?.dynamic = false
         bullet.physicsBody?.categoryBitMask = PhysicsCategory.MyBullets2
         bullet.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy8
-        bullet.physicsBody?.collisionBitMask = PhysicsCategory.Enemy8
+        bullet.physicsBody?.collisionBitMask = 0
         
         self.addChild(bullet) // Add bullet to the scene
         
@@ -538,7 +605,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bombs.physicsBody = SKPhysicsBody(rectangleOfSize: bombs.size)
         bombs.physicsBody?.dynamic = false
         bombs.physicsBody?.categoryBitMask = PhysicsCategory.Bombs64
-        bombs.physicsBody?.collisionBitMask = PhysicsCategory.Turret128 | PhysicsCategory.Soldiers256 | PhysicsCategory.Enemy8
+        bombs.physicsBody?.contactTestBitMask = PhysicsCategory.Turret128 | PhysicsCategory.Soldiers256 | PhysicsCategory.Enemy8 | PhysicsCategory.Ground1 | PhysicsCategory.Missiles512
+        bombs.physicsBody?.collisionBitMask = 0
         
         bombs.removeFromParent()
         addChild(bombs) // Add bombs to the scene
@@ -549,6 +617,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         // Add gun sound
         self.runAction(SKAction.playSoundFileNamed("bombaway", waitForCompletion: true))
+    }
+    
+    // Adding ally forces in background
+    func spawnWingman() {
+        
+        allyAtlas = SKTextureAtlas(named: "AllyPlanes")
+        
+        // Wingmen passby's in the distance
+        for i in 1...allyAtlas.textureNames.count {
+            let ally = "wingman\(i).png"
+            
+            wingmenArray.append(SKTexture(imageNamed: ally))
+        }
+        
+        // Generate a random index
+        let randomIndex = Int(arc4random_uniform(UInt32(wingmenArray.count)))
+        
+        // Get a random ally
+        randomAlly = SKSpriteNode(texture: wingmenArray[randomIndex])
+        
+        randomAlly.zPosition = 22
+        randomAlly.setScale(0.3)
+        
+        // Calculate random spawn points for wingmen
+        let random = CGFloat(arc4random_uniform(700) + 250)
+        randomAlly.position = CGPoint(x: -self.size.width, y: random)
+        
+        // Body physics for plane's bombs
+        randomAlly.physicsBody = SKPhysicsBody(rectangleOfSize: randomAlly.size)
+        randomAlly.physicsBody?.dynamic = false
+        randomAlly.physicsBody?.categoryBitMask = PhysicsCategory.MyPlane4
+        randomAlly.physicsBody?.contactTestBitMask = 0
+        randomAlly.physicsBody?.collisionBitMask = 0
+        
+        randomAlly.removeFromParent()
+        addChild(randomAlly) // Generate the random wingman
+        
+        // Move enemies forward with random intervals
+        let wingmanDuration = randomBetweenNumbers(12.0, secondNum: 24.0)
+        
+        // SKAction for the spritenode itself...to move forward
+        let action = SKAction.moveToX(self.size.width + 80, duration: NSTimeInterval(wingmanDuration))
+        let actionDone = SKAction.removeFromParent()
+        randomAlly.runAction(SKAction.sequence([action, actionDone]))
     }
     
     // Spawning a bonus star
@@ -575,7 +687,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         powerUps.physicsBody?.dynamic = false
         powerUps.physicsBody?.categoryBitMask = PhysicsCategory.PowerUp32
         powerUps.physicsBody?.contactTestBitMask = PhysicsCategory.MyPlane4
-        powerUps.physicsBody?.collisionBitMask = PhysicsCategory.Enemy8 | PhysicsCategory.SkyBombs1024
+        powerUps.physicsBody?.collisionBitMask = 0
         
         // Add PowerUp sound
         self.runAction(SKAction.playSoundFileNamed("powerUp", waitForCompletion: false) )
@@ -587,6 +699,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Spawn sky nodes
     func skyExplosions() {
+        
+        explosion = SKEmitterNode(fileNamed: "FireExplosion")!
         
         // Sky explosions of a normal battle
         explosion.name = "Explosion"
@@ -602,7 +716,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explosion.physicsBody = SKPhysicsBody(circleOfRadius: size.height/2)
         explosion.physicsBody?.dynamic = false
         explosion.physicsBody?.categoryBitMask = PhysicsCategory.SkyBombs1024
-        explosion.physicsBody?.contactTestBitMask = PhysicsCategory.All
+        explosion.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy8 | PhysicsCategory.MyPlane4
         explosion.physicsBody?.collisionBitMask = 0
         
         explosion.removeFromParent()
@@ -637,8 +751,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         randomEnemy.physicsBody = SKPhysicsBody(rectangleOfSize: randomEnemy.size)
         randomEnemy.physicsBody?.dynamic = false
         randomEnemy.physicsBody?.categoryBitMask = PhysicsCategory.Enemy8
-        randomEnemy.physicsBody?.contactTestBitMask = PhysicsCategory.MyBullets2
-        randomEnemy.physicsBody?.collisionBitMask = PhysicsCategory.Enemy8 | PhysicsCategory.EnemyFire16
+        randomEnemy.physicsBody?.contactTestBitMask = PhysicsCategory.MyBullets2 | PhysicsCategory.Bombs64 | PhysicsCategory.SkyBombs1024
+        randomEnemy.physicsBody?.collisionBitMask = 0
         
         // Add enemies
         self.addChild(randomEnemy)
@@ -750,7 +864,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupSoldiers() {
         
         // Allows for random y axis spawning
-        let yPos = randomBetweenNumbers(150, secondNum: 225)
+        let yPos = randomBetweenNumbers(100, secondNum: 225)
 
         // Add user's animated walking soldiers
         soldierWalk = SKScene(fileNamed: "Soldiers")!.childNodeWithName("soldierWalk")! as! SKSpriteNode
@@ -758,7 +872,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Sky bomb position on screen
         soldierWalk.position = CGPoint(x: self.frame.width, y: yPos)
         soldierWalk.name = "Soldiers"
-        soldierWalk.zPosition = 120
+        soldierWalk.zPosition = 130
         
         soldierWalk.removeFromParent()
         self.addChild(soldierWalk)
@@ -783,7 +897,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         soldierShoot = SKScene(fileNamed: "Soldiers")!.childNodeWithName("soldierShoot")! as! SKSpriteNode
         
         // Sky bomb position on screen
-        soldierShoot.position = CGPoint(x: self.frame.width, y: 185)
+        soldierShoot.position = CGPoint(x: self.frame.width, y: 155)
         soldierShoot.name = "Shooters"
         soldierShoot.zPosition = 120
         
@@ -807,12 +921,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /************************************ didBeginContact *****************************************/
     // MARK: - didBeginContact
     
-    var contactBody1: SKPhysicsBody!
-    var contactBody2: SKPhysicsBody!
-    
     func didBeginContact(contact: SKPhysicsContact) {
         
+        // beginContact constants
+        contactBody1 = contact.bodyA
+        contactBody2 = contact.bodyB
+        
+        // Perform an if/else so we do not have to repeat and reverse the statements
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            
             contactBody1 = contact.bodyA
             contactBody2 = contact.bodyB
         } else {
@@ -821,16 +938,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Ground VS MyPlane
-        if contactBody1.categoryBitMask == PhysicsCategory.Ground1 && contactBody2.categoryBitMask == PhysicsCategory.MyPlane4 {
+        if ((contactBody1.categoryBitMask & PhysicsCategory.Ground1 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.MyPlane4 != 0)) {
+            print("We hit the ground")
             
             blownUpOne()
             
             // Check points
             health = 0
-//            checkIfGameIsOver()
+            
+            showGameOverAlert()
         }
             // MyBullet VS Planes
-        if contactBody1.categoryBitMask == PhysicsCategory.MyBullets2 && contactBody2.categoryBitMask == PhysicsCategory.Enemy8 {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Enemy8 != 0)) {
+            print("We shot the plane")
         
             blownUpBoth()
             
@@ -838,15 +958,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score += 1
         }
             // Bombs VS Turret
-        if ((contactBody1.categoryBitMask == PhysicsCategory.Bombs64) && (contactBody2.categoryBitMask == PhysicsCategory.Turret128)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.Bombs64 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Turret128 != 0)) {
+            print("Bomb hit turret")
             
             blownUpBoth()
             
-            // Hitting an the enemy adds score and health
+             // Hitting an the enemy adds score and health
             score += 2
         }
             // MyBullet VS Turret
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyBullets2) && (contactBody2.categoryBitMask == PhysicsCategory.Turret128)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Turret128 != 0)) {
+            print("Bullets hit turret")
             
             blownUpBoth()
             
@@ -854,7 +976,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score += 2
         }
             // MyBullet VS Soldiers
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyBullets2) && (contactBody2.categoryBitMask == PhysicsCategory.Soldiers256)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Soldiers256 != 0)) {
+            print("We shot the soldiers")
             
             contactBody2.node?.removeFromParent()
             contactBody1.node?.removeFromParent()
@@ -862,8 +985,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Hitting an the enemy adds score
             score += 1
         }
-            // Bombs VS Soldiers
-        if ((contactBody1.categoryBitMask == PhysicsCategory.Bombs64) && (contactBody2.categoryBitMask == PhysicsCategory.Soldiers256)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.Bombs64 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Soldiers256 != 0)) {
+            print("Bombs hit soldiers")
             
             explode = SKEmitterNode(fileNamed: "Explode")!
             explode.position = (contactBody2.node?.position)!
@@ -874,15 +997,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             contactBody1.node?.removeFromParent()
             contactBody2.node?.removeFromParent()
             
-            // Calling pre-loaded sound of an explosion
             // Add crashing sound
             self.runAction(SKAction.playSoundFileNamed("crash", waitForCompletion: true))
             
             // Points per each soldier hit
             score += 1
         }
-            // Bomb vs ground
-        if contactBody1.categoryBitMask == PhysicsCategory.Bombs64 && contactBody2.categoryBitMask == PhysicsCategory.Ground1 {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.Bombs64 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Ground1 != 0)) {
+            print("Bomb hit the ground")
             
             explode = SKEmitterNode(fileNamed: "Explode")!
             explode.position = (contactBody1.node?.position)!
@@ -896,18 +1018,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Add crashing sound
             self.runAction(SKAction.playSoundFileNamed("crash", waitForCompletion: true))
         }
-            // MyPlane VS Enemy plane
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyPlane4) && (contactBody2.categoryBitMask == PhysicsCategory.Enemy8)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyPlane4 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Enemy8 != 0)) {
+            print("Planes collide")
             
             blownUpBoth()
-            
+        
             // Configure points
-            health = 0
-            playerHP = 0
-//            checkIfGameIsOver()
+            showGameOverAlert()
         }
-            // Player vs enemy bullets
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyPlane4) && (contactBody2.categoryBitMask == PhysicsCategory.EnemyFire16)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyPlane4 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.EnemyFire16 != 0)) {
+            print("Plane takes fire")
             
             explode = SKEmitterNode(fileNamed: "Explode")!
             
@@ -923,8 +1043,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             health -= 1
             playerHP = max(0, health - 1)
         }
-            // Player vs PowerUp
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyPlane4) && (contactBody2.categoryBitMask == PhysicsCategory.PowerUp32)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyPlane4 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.PowerUp32 != 0)) {
+            print("Plane makes contact with Power Up")
             
             explode = SKEmitterNode(fileNamed: "Explode")!
             explode.position = contactBody2.node!.position
@@ -942,28 +1062,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             powerUpCount += 1
             playerHP = max(0, health + 1)
         }
-            // Skybomb VS Enemy
-        if ((contactBody1.categoryBitMask == PhysicsCategory.SkyBombs1024) && (contactBody2.categoryBitMask == PhysicsCategory.Enemy8)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.SkyBombs1024 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Enemy8 != 0)) {
+            print("SkyBomb hit enemy")
             
             blownUpOne()
-            
+        
             // Sky bomb hits enemy - we get points
             score += 1
         }
-            // Player VS skybombs
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyPlane4) && (contactBody2.categoryBitMask == PhysicsCategory.SkyBombs1024)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyPlane4 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.SkyBombs1024 != 0)) {
+            print("Skybomb hit us")
             
             blownUpOne()
-            
-            // Health/Score
+        
+             // Health/Score
             health -= 5
             playerHP = max(0, health - 5)
         }
-            // Player VS missile
-        if ((contactBody1.categoryBitMask == PhysicsCategory.MyPlane4) && (contactBody2.categoryBitMask == PhysicsCategory.Missiles512)) {
+        else if ((contactBody1.categoryBitMask & PhysicsCategory.MyPlane4 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Missiles512 != 0)) {
+            print("Missile hit us")
             
             blownUpOne()
-            
+         
             // Points/Score
             health -= 10
             playerHP = max(0, health - 10)
@@ -982,11 +1102,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(explosion)
         self.addChild(smoke)
         
-        runAction(SKAction.waitForDuration(2), completion: { self.explosion.removeFromParent() })
-        runAction(SKAction.waitForDuration(3), completion: { self.smoke.removeFromParent() })
-        
         contactBody1.node!.removeFromParent()
         contactBody2.node!.removeFromParent()
+        
+        runAction(SKAction.waitForDuration(2), completion: { self.explosion.removeFromParent() })
+        runAction(SKAction.waitForDuration(3), completion: { self.smoke.removeFromParent() })
         
         // Add crashing sound
         self.runAction(SKAction.playSoundFileNamed("crash", waitForCompletion: true))
@@ -1004,10 +1124,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(explosion)
         self.addChild(smoke)
         
+        contactBody2.node!.removeFromParent()
+        
         runAction(SKAction.waitForDuration(2), completion: { self.explosion.removeFromParent() })
         runAction(SKAction.waitForDuration(3), completion: { self.smoke.removeFromParent() })
-        
-        contactBody2.node!.removeFromParent()
         
         // Add crashing sound
         self.runAction(SKAction.playSoundFileNamed("crash", waitForCompletion: true))
@@ -1017,8 +1137,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /*************************************** GUI ******************************************/
     // Show Pause Alert
     
+    // Show Pause Alert
     func showPauseAlert() {
-        
         self.gamePaused = true
         let alert = UIAlertController(title: "Pause", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default)  { _ in
@@ -1027,6 +1147,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.view?.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Function to give pause attributes within pause alert
+    func holdGame() {
+        if self.scene!.view?.paused == true {
+
+            // Stop movement, fade out, move to center, fade in
+            player.removeAllActions()
+            self.player.runAction(SKAction.fadeOutWithDuration(1) , completion: {
+                self.player.position = CGPointMake(self.size.width / 2, self.size.height / 2)
+                self.player.runAction(SKAction.fadeInWithDuration(1), completion: {
+                    self.scene!.view?.paused = false
+                })
+            })
+        }
+    }
+    
+    
+    /*************************************** HUD ******************************************/
+    // Heads Up Display
+
+    // Heads Up Display attributes
     func createHUD() {
         
         // Adding HUD with pause
@@ -1035,6 +1175,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         display.position = CGPointMake(0, self.size.height - display.size.height)
         display.zPosition = 15
         
+        // Amount of lives
+        let livesLeft = CGSizeMake(display.size.height - 10, display.size.height - 10)
+        for i in 0...remainingLives {
+            remainingNodes.position = CGPointMake(remainingNodes.size.width * 1.3 * (1.0 + CGFloat(i)) + display.size.width * 0.25, (display.size.height - 5) / 2)
+            remainingNodes = SKSpriteNode(imageNamed: "life")
+            lifeNodes.append(remainingNodes)
+            remainingNodes.size = livesLeft
+            display.addChild(remainingNodes)
+        }
+        
         // Pause button container
         pauseNode.position = CGPoint(x: display.size.width / 2, y: display.size.height / 2)
         pauseNode.size = CGSizeMake(display.size.height * 3, display.size.height * 2.5)
@@ -1042,18 +1192,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Pause button
         pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.zPosition = 1000
-        pauseButton.size = CGSize(width: 75, height: 75)
-        pauseButton.position = CGPoint(x: display.size.width / 2, y: display.size.height / 2 - 15)
+        pauseButton.position = CGPoint(x: display.size.width / 2 , y: display.size.height - pauseButton.size.height / 2 - 15)
+        pauseButton.size = CGSize(width: 100, height: 100)
         pauseButton.name = "PauseButton"
+        pauseButton.zPosition = 1000
         
         // Health label
-        healthLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        healthLabel = SKLabelNode(fontNamed: "American Typewriter")
         health = 20
         healthLabel.text = "Health: \(health)"
         healthLabel.fontSize = display.size.height
         healthLabel.fontColor = SKColor.whiteColor()
-        healthLabel.position = CGPoint(x: 25, y: display.size.height / 2 - 25)
         healthLabel.horizontalAlignmentMode = .Left
         healthLabel.zPosition = 15
         
@@ -1065,44 +1214,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         powerUps.name = "PowerUp"
         
         // Label to let user know the count of power ups
-        powerUpLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        powerUpLabel = SKLabelNode(fontNamed: "American Typewriter")
         powerUpLabel.zPosition = 100
         powerUpCount = 0
         powerUpLabel.color = UIColor.redColor()
         powerUpLabel.colorBlendFactor = 1.0
         powerUpLabel.text = " X \(powerUpCount)"
         powerUpLabel.fontSize = powerUps.size.height
-        powerUpLabel.position = CGPoint(x: powerUps.frame.width + 125, y: display.size.height / 2 - 105)
+        powerUpLabel.position = CGPoint(x: powerUps.frame.width + 115, y: display.size.height / 2 - 105)
         
         // Score label
-        scoreLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        scoreLabel = SKLabelNode(fontNamed: "American Typewriter")
         score = 0
-        scoreLabel.text = "Score: \(score)"
+        scoreLabel.text = "Score: \(score )"
         scoreLabel.fontSize = display.size.height
         scoreLabel.fontColor = SKColor.whiteColor()
-        scoreLabel.position = CGPoint(x: display.size.width - 30, y: display.size.height / 2 - 25)
+        scoreLabel.position = CGPoint(x: display.size.width - 25, y: display.size.height / 2 - 25)
         scoreLabel.horizontalAlignmentMode = .Right
         scoreLabel.zPosition = 15
         
         // Coin Image
         coinImage = SKSpriteNode(imageNamed: "Coin_1")
+        coinImage.position = CGPoint(x: self.size.width - 225, y: display.size.height / 2 - 80)
         coinImage.zPosition = 200
         coinImage.size = CGSize(width: 75, height: 75)
-        coinImage.position = CGPoint(x: self.size.width - 200, y: display.size.height / 2 - 85)
         coinImage.name = "Coin"
         
         // Label to let user know the count of coins collected
-        coinCountLbl = SKLabelNode(fontNamed: "Optima-ExtraBlack")
+        coinCountLbl = SKLabelNode(fontNamed: "American Typewriter")
+        coinCountLbl.position = CGPoint(x: self.frame.width - 100, y: display.size.height / 2 - 105)
         coinCountLbl.zPosition = 200
         coinCount = 0
         coinCountLbl.color = UIColor.yellowColor()
         coinCountLbl.colorBlendFactor = 1.0
         coinCountLbl.text = " X \(coinCount)"
         coinCountLbl.fontSize = powerUps.size.height
-        coinCountLbl.position = CGPoint(x: self.frame.width - 75, y: display.size.height / 2 - 115)
         
         self.addChild(display)
-        pauseNode.removeFromParent()
         display.addChild(pauseNode)
         display.addChild(pauseButton)
         display.addChild(healthLabel)
@@ -1145,32 +1293,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         node.size = barSize
     }
 
-    // Sets the initial values for our variables
-//    func initializeValues(){
-//        
-//        self.removeAllChildren()
-//        
-//        gameOverLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
-//        gameOverLabel!.text = "GAME OVER"
-//        gameOverLabel!.fontSize = 80
-//        gameOverLabel!.fontColor = SKColor.blackColor()
-//        gameOverLabel!.position = CGPoint(x: CGRectGetMinX(self.frame)/2, y: (CGRectGetMinY(self.frame)/2))
-//        
-//        gameOverLabel?.removeFromParent()
-//        self.addChild(gameOverLabel!)
-//    }
-//    
-//    // Check if the game is over by looking at our health
-//    // Shows game over screen if needed
-//    func checkIfGameIsOver(){
-//        if (health <= 0 || score >= 20){
-//            self.removeAllChildren()
-//            showGameOverScreen()
-//            gameOver = true
-//        }
-//    }
-//    
-//    // Displays the game over screen
+    // Check if the game is over by looking at our lives left
+    func loseALife() {
+        
+//        self.gamePaused = true
+        
+        // Remove one life from hud
+        if remainingLives >= 0 {
+            lifeNodes[remainingLives - 1].alpha = 0.0
+            remainingLives -= 1
+        }
+        
+        // check if remaining lifes exists
+        if (remainingLives == 0) {
+            showGameOverAlert()
+        }
+        
+        // Stop movement, fade out, move to center, fade in
+        player.removeAllActions()
+        self.player.runAction(SKAction.fadeOutWithDuration(1) , completion: {
+            self.player.position = CGPointMake(self.size.width/2, self.size.height/2)
+            self.player.runAction(SKAction.fadeInWithDuration(1), completion: {
+//                self.gamePaused = false
+            })
+        })
+    }
+    
+    // Displays the game over screen
+    func showGameOverAlert() {
+        self.gamePaused = true
+        self.gameOver = true
+        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)  { _ in
+            
+        // Restore lifes in HUD
+        remainingLives = 3
+            for i in 0..<3 {
+                lifeNodes[i].alpha = 1.0
+            }
+            
+        // Reset score
+        self.saveHighScore(self.score)
+        self.score = 0
+        self.scoreLabel.text = "\(00)"
+        self.gamePaused = true
+        })
+    }
+    
+    // Saves all scores that are produced
+    func saveHighScore(number: Int64) {
+        
+        if GKLocalPlayer.localPlayer().authenticated {
+            
+            let scoreReporter = GKScore(leaderboardIdentifier: "HIGH_SCORE")
+            
+            scoreReporter.value = Int64(number)
+            
+            let scoreArray: [GKScore] = [scoreReporter]
+            
+            GKScore.reportScores(scoreArray, withCompletionHandler: nil)
+        }
+    }
+    
 //    func showGameOverScreen(){
 //        gameOverLabel = SKLabelNode(fontNamed: "Optima-ExtraBlack")
 //        gameOverLabel!.text = "Game Over!  Score: \(score)"
@@ -1180,27 +1364,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        
 //        gameOverLabel?.removeFromParent()
 //        self.addChild(gameOverLabel!)
+//        
+////        restartScene()
+//        createButton()
 //    }
     
-    func holdGame() {
+    // Function to restart
+    func createButton() {
         
-        self.scene!.view?.paused = false
-        
-        // Stop movement, fade out, move to center, fade in
-        player.removeAllActions()
-        self.player.runAction(SKAction.fadeOutWithDuration(1) , completion: {
-            self.player.position = CGPointMake(self.size.width / 2, self.size.height / 2)
-            self.player.runAction(SKAction.fadeInWithDuration(1), completion: {
-                self.scene!.view?.paused = true
-            })
-        })
+        restartButton = SKSpriteNode(color: SKColor.redColor(), size: CGSize(width: 200, height: 100))
+        restartButton.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        restartButton.zPosition = 160
+        self.addChild(restartButton)
     }
-
-    // Add sound to other classes to avoid AV being nil and crashing
-    func playSound(soundVariable: SKAction) {
-        runAction(soundVariable)
-    }
-
+    
     
     /********************************** Simulating Physics ***************************************/
     // MARK: - Simulate Physics
@@ -1229,5 +1406,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func random(min min: CGFloat, max: CGFloat) -> CGFloat {
         assert(min < max)
         return random() * (max - min) + min
+    }
+    
+    
+    // MARK: - Analyse the collision/contact set up.
+    func checkPhysics() {
+        
+        // Create an array of all the nodes with physicsBodies
+        var physicsNodes = [SKNode]()
+        
+        //Get all physics bodies
+        enumerateChildNodesWithName("//.") { node, _ in
+            if let _ = node.physicsBody {
+                physicsNodes.append(node)
+            } else {
+                print("\(node.name) does not have a physics body so cannot collide or be involved in contacts.")
+            }
+        }
+        
+        //For each node, check it's category against every other node's collion and contctTest bit mask
+        for node in physicsNodes {
+            let category = node.physicsBody!.categoryBitMask
+            // Identify the node by its category if the name is blank
+            let name = node.name != nil ? node.name : "Category \(category)"
+            let collisionMask = node.physicsBody!.collisionBitMask
+            let contactMask = node.physicsBody!.contactTestBitMask
+            
+            // If all bits of the collisonmask set, just say it collides with everything.
+            if collisionMask == UInt32.max {
+                print("\(name) collides with everything")
+            }
+            
+            for otherNode in physicsNodes {
+                if (node != otherNode) && (node.physicsBody?.dynamic == true) {
+                    let otherCategory = otherNode.physicsBody!.categoryBitMask
+                    // Identify the node by its category if the name is blank
+                    let otherName = otherNode.name != nil ? otherNode.name : "Category \(otherCategory)"
+                    
+                    // If the collisonmask and category match, they will collide
+                    if ((collisionMask & otherCategory) != 0) && (collisionMask != UInt32.max) {
+                        print("\(name) collides with \(otherName)")
+                    }
+                    // If the contactMAsk and category match, they will contact
+                    if (contactMask & otherCategory) != 0 {print("\(name) notifies when contacting \(otherName)")}
+                }
+            }
+        }
     }
 }
