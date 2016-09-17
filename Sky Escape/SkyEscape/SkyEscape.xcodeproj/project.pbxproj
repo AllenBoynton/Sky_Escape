@@ -13,6 +13,8 @@
 		091153461D89DE77009A6F79 /* rifle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091153451D89DE77009A6F79 /* rifle.mp3 */; };
 		091153481D89DF34009A6F79 /* marching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091153471D89DF34009A6F79 /* marching.mp3 */; };
 		091191191D5A1C810096801E /* FireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091191181D5A1C810096801E /* FireExplosion.sks */; };
+		0912A7D91D8B88D8008DB959 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912A7D81D8B88D8008DB959 /* GameCenter.swift */; };
+		0912A7DD1D8B9A26008DB959 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0912A7DC1D8B9A26008DB959 /* GameKit.framework */; };
 		091457381D58E45500986C3B /* airplanep51.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457311D58E45500986C3B /* airplanep51.mp3 */; };
 		091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457321D58E45500986C3B /* airplaneFlyBy.mp3 */; };
 		0914573C1D58E45500986C3B /* bGCannons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457351D58E45500986C3B /* bGCannons.mp3 */; };
@@ -27,6 +29,9 @@
 		091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091573521D5410DF00C9B907 /* SpriteKit.framework */; };
 		0915736D1D54392D00C9B907 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0915736B1D54392D00C9B907 /* spark.png */; };
 		091630911D653F6700E86A4E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091630901D653F6700E86A4E /* GameScene.sks */; };
+		09234C8D1D8BAF310027137F /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09234C8C1D8BAF310027137F /* GameOverScene.sks */; };
+		09234C8F1D8BBE3C0027137F /* AllyPlanes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */; };
+		09234C911D8BC75C0027137F /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09234C901D8BC75C0027137F /* FBConnect.bundle */; };
 		09247CF41D762C920058D35D /* Attack.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09247CED1D762C920058D35D /* Attack.atlas */; };
 		09247D081D776EBE0058D35D /* SmokeTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09247D071D776EBE0058D35D /* SmokeTrail.sks */; };
 		09247D0C1D78EE3A0058D35D /* shoot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09247D0B1D78EE3A0058D35D /* shoot.mp3 */; };
@@ -95,6 +100,8 @@
 		091153451D89DE77009A6F79 /* rifle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rifle.mp3; sourceTree = "<group>"; };
 		091153471D89DF34009A6F79 /* marching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = marching.mp3; sourceTree = "<group>"; };
 		091191181D5A1C810096801E /* FireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireExplosion.sks; sourceTree = "<group>"; };
+		0912A7D81D8B88D8008DB959 /* GameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		0912A7DC1D8B9A26008DB959 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		091457311D58E45500986C3B /* airplanep51.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplanep51.mp3; sourceTree = "<group>"; };
 		091457321D58E45500986C3B /* airplaneFlyBy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplaneFlyBy.mp3; sourceTree = "<group>"; };
 		091457351D58E45500986C3B /* bGCannons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bGCannons.mp3; sourceTree = "<group>"; };
@@ -115,6 +122,9 @@
 		091573521D5410DF00C9B907 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		0915736B1D54392D00C9B907 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		091630901D653F6700E86A4E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		09234C8C1D8BAF310027137F /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = AllyPlanes.atlas; sourceTree = "<group>"; };
+		09234C901D8BC75C0027137F /* FBConnect.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBConnect.bundle; sourceTree = "<group>"; };
 		09247CED1D762C920058D35D /* Attack.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Attack.atlas; sourceTree = "<group>"; };
 		09247D071D776EBE0058D35D /* SmokeTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeTrail.sks; sourceTree = "<group>"; };
 		09247D0B1D78EE3A0058D35D /* shoot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shoot.mp3; sourceTree = "<group>"; };
@@ -169,6 +179,7 @@
 				09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */,
 				09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */,
 				091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */,
+				0912A7DD1D8B9A26008DB959 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +257,7 @@
 		091573481D540E4D00C9B907 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0912A7D81D8B88D8008DB959 /* GameCenter.swift */,
 				0915731C1D540E1A00C9B907 /* GameViewController.swift */,
 				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
 			);
@@ -267,6 +279,7 @@
 				090D7D0D1D82843100392376 /* Soldiers.sks */,
 				0979CC7F1D87B2C800018C20 /* Missiles.sks */,
 				090D7D091D8282C800392376 /* Turrets.sks */,
+				09234C8C1D8BAF310027137F /* GameOverScene.sks */,
 				0979CC941D8921AF00018C20 /* CreditsScene.sks */,
 				098AA09A1D710EB8000AD49D /* InstructionScene.sks */,
 				098AA09E1D710ED4000AD49D /* MainMenu.sks */,
@@ -299,6 +312,8 @@
 		0915734D1D540EBA00C9B907 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09234C901D8BC75C0027137F /* FBConnect.bundle */,
+				09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */,
 				09247CED1D762C920058D35D /* Attack.atlas */,
 				093BC8391D7E316400C745FB /* EnemyArray.atlas */,
 				093BC8071D7B6BBC00C745FB /* EnemyPlanes */,
@@ -310,7 +325,7 @@
 				093EABEC1D545F370069F120 /* Images.atlas */,
 				098AA0B21D71103A000AD49D /* Thank you.pdf */,
 				091573261D540E1A00C9B907 /* Info.plist */,
-				098AA0961D710E77000AD49D /* guardianpi.ttf */,
+				0961E6F01D8C5B8400F42E42 /* Fonts */,
 				096092161D5453390085B693 /* Sound */,
 			);
 			name = Resources;
@@ -319,6 +334,7 @@
 		0915734F1D540FDE00C9B907 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0912A7DC1D8B9A26008DB959 /* GameKit.framework */,
 				0979CC871D89105100018C20 /* AudioToolbox.framework */,
 				09CC3E351D5A971B004BEB39 /* AVFoundation.framework */,
 				09D75D561D5803B300AF76C5 /* CoreMotion.framework */,
@@ -384,6 +400,14 @@
 				0948E8051D5CEDBC004F7E9F /* startGame.mp3 */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		0961E6F01D8C5B8400F42E42 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				098AA0961D710E77000AD49D /* guardianpi.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,10 +478,13 @@
 				TargetAttributes = {
 					091573121D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 979TTQWNS8;
+						DevelopmentTeam = 6GTM24L94G;
 						SystemCapabilities = {
-							com.apple.InterAppAudio = {
+							com.apple.GameCenter = {
 								enabled = 1;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
 							};
 						};
 					};
@@ -507,6 +534,7 @@
 				096092221D5453390085B693 /* skyBoom.mp3 in Resources */,
 				092B6EC41D8A7657008D6804 /* ricochet.mp3 in Resources */,
 				090D7D101D8285BE00392376 /* PowerUps.sks in Resources */,
+				09234C8F1D8BBE3C0027137F /* AllyPlanes.atlas in Resources */,
 				090D7D0A1D8282C800392376 /* Turrets.sks in Resources */,
 				096092231D5453390085B693 /* crash.mp3 in Resources */,
 				0979CC951D8921AF00018C20 /* CreditsScene.sks in Resources */,
@@ -535,7 +563,9 @@
 				091630911D653F6700E86A4E /* GameScene.sks in Resources */,
 				098AA0B31D71103A000AD49D /* Thank you.pdf in Resources */,
 				0979CC801D87B2C800018C20 /* Missiles.sks in Resources */,
+				09234C911D8BC75C0027137F /* FBConnect.bundle in Resources */,
 				0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */,
+				09234C8D1D8BAF310027137F /* GameOverScene.sks in Resources */,
 				09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */,
 				096092201D5453390085B693 /* biplaneFlying.mp3 in Resources */,
 				093BC8191D7B97AE00C745FB /* bombaway.mp3 in Resources */,
@@ -576,6 +606,7 @@
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
 				0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */,
+				0912A7D91D8B88D8008DB959 /* GameCenter.swift in Sources */,
 				098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */,
 				098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */,
 				091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */,
@@ -716,14 +747,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SkyEscape/SkyEscape.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
 				);
 				INFOPLIST_FILE = SkyEscape/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.fullsail.SkyEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -733,14 +764,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SkyEscape/SkyEscape.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyEscape.xcodeproj",
 				);
 				INFOPLIST_FILE = SkyEscape/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscape;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.fullsail.SkyEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
