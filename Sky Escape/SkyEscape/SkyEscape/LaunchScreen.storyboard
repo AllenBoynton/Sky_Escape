@@ -15,7 +15,7 @@
         <!--View Controller-->
         <scene sceneID="y77-N5-Mxt">
             <objects>
-                <viewController id="aw3-1m-hpc" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="aw3-1m-hpc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yNM-kT-36o"/>
                         <viewControllerLayoutGuide type="bottom" id="ZVk-R2-loN"/>
@@ -36,7 +36,7 @@
                                 <color key="textColor" red="0.81568627449999997" green="0.0" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="shadowOffset" width="2" height="-2"/>
+                                <size key="shadowOffset" width="1" height="-1"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ABtechLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-aN-PzA">
                                 <rect key="frame" x="120" y="50" width="200" height="200"/>
@@ -57,8 +57,9 @@
                                 <color key="shadowColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <size key="shadowOffset" width="2" height="-2"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyFokker1" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-hM-bkH">
-                                <rect key="frame" x="410" y="66" width="256" height="256"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wingman2.png" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-hM-bkH">
+                                <rect key="frame" x="430" y="55" width="256" height="256"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="256" id="gPw-xd-psy"/>
                                     <constraint firstAttribute="width" constant="256" id="mmE-KM-mrA"/>
@@ -68,12 +69,12 @@
                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="leading" secondItem="Oac-Es-Y2p" secondAttribute="leadingMargin" id="1pC-18-1yt"/>
-                            <constraint firstItem="UAq-Uz-rGl" firstAttribute="top" secondItem="jSP-hM-bkH" secondAttribute="bottom" constant="40" id="Jdy-uz-6S7"/>
+                            <constraint firstItem="jSP-hM-bkH" firstAttribute="top" secondItem="yNM-kT-36o" secondAttribute="bottom" constant="35" id="8nU-Kl-wXW"/>
                             <constraint firstItem="ZVk-R2-loN" firstAttribute="top" secondItem="UAq-Uz-rGl" secondAttribute="bottom" id="QGc-s7-k8g"/>
                             <constraint firstAttribute="trailing" secondItem="UAq-Uz-rGl" secondAttribute="trailing" id="Y5C-BL-0fe"/>
                             <constraint firstItem="UAq-Uz-rGl" firstAttribute="leading" secondItem="Oac-Es-Y2p" secondAttribute="leading" id="Z2X-Q0-ONI"/>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="centerX" secondItem="2M0-aN-PzA" secondAttribute="centerX" id="ZK7-wR-tna"/>
-                            <constraint firstAttribute="trailing" secondItem="jSP-hM-bkH" secondAttribute="trailing" constant="70" id="gyn-xK-Ro1"/>
+                            <constraint firstAttribute="trailing" secondItem="jSP-hM-bkH" secondAttribute="trailing" constant="50" id="gyn-xK-Ro1"/>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="top" secondItem="2M0-aN-PzA" secondAttribute="bottom" id="kub-U9-3iO"/>
                             <constraint firstItem="2M0-aN-PzA" firstAttribute="top" secondItem="yNM-kT-36o" secondAttribute="bottom" constant="30" id="yK1-k2-STu"/>
                         </constraints>
@@ -88,7 +89,7 @@
     </scenes>
     <resources>
         <image name="ABtechLogo" width="1536" height="1536"/>
-        <image name="MyFokker1" width="256" height="256"/>
         <image name="clouds" width="1920" height="1080"/>
+        <image name="wingman2.png" width="256" height="256"/>
     </resources>
 </document>
