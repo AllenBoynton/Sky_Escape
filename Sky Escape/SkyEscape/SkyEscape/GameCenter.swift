@@ -36,7 +36,7 @@ class GameCenter: UIViewController, GKGameCenterControllerDelegate {
                 self.presentViewController(view!, animated: true, completion: nil)
             }
             else {
-//                print(GKLocalPlayer.localPlayer().authenticated)
+                print(GKLocalPlayer.localPlayer().authenticated)
             }
         }
     }
