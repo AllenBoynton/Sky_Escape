@@ -12,7 +12,7 @@ import GameKit
 
 // Protocol to inform the delegate GameVC if a game is over
 protocol GameSceneDelegate {
-    func gameOver()
+    func showLeaderBoard()
 }
 
 // Binary connections for collision and colliding
@@ -33,7 +33,7 @@ struct PhysicsCategory {
 }
 
 // HUD global variables
-var lifeNodes = [SKSpriteNode]()
+var lifeNodes: [SKSpriteNode] = []
 var remainingNodes = SKSpriteNode()
 var remainingLives = 3
 let maxHealth = 50
@@ -157,6 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         died = false
         gameStarted = true
         score = 0
+        remainingLives = 3
         health = 20
         startScene()
     }
@@ -217,9 +218,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Remove button
             startButton.removeFromParent()
             
-            // Adds pause button and function to scene
-//            self.addChild(self.pauseButtonNode())
-            
             touchLocation = touches.first!.locationInNode(self)
             
             for touch: AnyObject in touches {
@@ -227,7 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 let node = self.nodeAtPoint(location)
                 
-                if (node.name == "PauseButton") || (node.name == "PauseButtonContainer") {
+                if (node.name! == "PauseButton") || (node.name! == "PauseButtonContainer") {
                     showPauseAlert()
                 }
                 
@@ -338,7 +336,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-//        print("\(checkPhysics())")
     }
     
     
@@ -373,37 +370,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Update for animations and positions
     override func update(currentTime: NSTimeInterval) {
         
-//        if !self.gamePaused && !self.gameOver {
-//            
-//        }
-        
-        // Move backgrounds
-        moveBackground()
-        moveMidground()
-        moveForeground()
-        
-        // Plane's smoketrail will follow it as updating occurs
-        smokeTrail.position = CGPoint(x: player.position.x - 80, y: player.position.y - 10)
-        smokeTrail.zPosition = 90
-        smokeTrail.targetNode = self
-        smokeTrail.removeFromParent()
-        addChild(smokeTrail)
-        
-        // Healthbar GUI
-        playerHealthBar.position = CGPoint(x: player.position.x, y: player.position.y - player.size.height / 2 + 30)
-        playerHealthBar.zPosition = 100
-        updateHealthBar(playerHealthBar, withHealthPoints: playerHP)
-        
-        // Adding to gameplay health attributes & score
-        healthLabel.text = "Health: \(health)"
-        scoreLabel.text = "Score: \(score)"
-        
-        // Changes health label red if too low
-        if (health <= 10) {
-            healthLabel.fontColor = SKColor.redColor()
+        if !self.gamePaused && !self.gameOver {
+            
+            // Move backgrounds
+            moveBackground()
+            moveMidground()
+            moveForeground()
+            
+            // Plane's smoketrail will follow it as updating occurs
+            smokeTrail.position = CGPoint(x: player.position.x - 80, y: player.position.y - 10)
+            smokeTrail.zPosition = 90
+            smokeTrail.targetNode = self
+            smokeTrail.removeFromParent()
+            addChild(smokeTrail)
+            
+            // Healthbar GUI
+            playerHealthBar.position = CGPoint(x: player.position.x, y: player.position.y - player.size.height / 2 + 30)
+            playerHealthBar.zPosition = 100
+            updateHealthBar(playerHealthBar, withHealthPoints: playerHP)
+            
+            // Adding to gameplay health attributes & score
+            healthLabel.text = "Health: \(health)"
+            scoreLabel.text = "Score: \(score)"
+            
+            // Changes health label red if too low
+            if (health <= 10) {
+                healthLabel.fontColor = SKColor.redColor()
+            }
         }
-        
-        loseALife()
     }
     
 
@@ -532,10 +526,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // From the Player class
     func setupPlayer() {
         
-        attackAtlas = SKTextureAtlas(named: "Attack")
+        attackAtlas = SKTextureAtlas(named: "Attack.atlas")
         
         for i in 1...attackAtlas.textureNames.count {
-            let player = "MyFokker\(i)"
+            let player = "MyFokker\(i).png"
             textureArray.append(SKTexture(imageNamed: player))
         }
         
@@ -556,7 +550,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player) // Add our player to the scene
         
         // Animation action
-        let animateAction = SKAction.animateWithTextures(textureArray, timePerFrame: 0.01)
+        let animateAction = SKAction.animateWithTextures(textureArray, timePerFrame: 0.05)
         let animateDone = SKAction.removeFromParent()
         self.runAction(SKAction.sequence([animateAction, animateDone]))
         
@@ -882,7 +876,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         soldierWalk.physicsBody?.dynamic = false
         soldierWalk.physicsBody?.categoryBitMask = PhysicsCategory.Soldiers256
         soldierWalk.physicsBody?.contactTestBitMask = PhysicsCategory.Bombs64 | PhysicsCategory.MyBullets2 | PhysicsCategory.MyPlane4
-        soldierWalk.physicsBody?.collisionBitMask = PhysicsCategory.Soldiers256
+        soldierWalk.physicsBody?.collisionBitMask = 0
         
         // Move soldiers forward
         let walkAcrossScreen = SKAction.moveTo(CGPoint(x: -40, y: yPos), duration: 20)
@@ -909,7 +903,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         soldierShoot.physicsBody?.dynamic = false
         soldierShoot.physicsBody?.categoryBitMask = PhysicsCategory.Soldiers256
         soldierShoot.physicsBody?.contactTestBitMask = PhysicsCategory.Bombs64 | PhysicsCategory.MyBullets2 | PhysicsCategory.MyPlane4
-        soldierShoot.physicsBody?.collisionBitMask = PhysicsCategory.Soldiers256
+        soldierShoot.physicsBody?.collisionBitMask = 0
         
         // Move soldiers forward
         let shootPlanes = SKAction.moveTo(CGPoint(x: -40, y: 185), duration: 35)
@@ -937,7 +931,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             contactBody2 = contact.bodyA
         }
         
-        // Ground VS MyPlane
         if ((contactBody1.categoryBitMask & PhysicsCategory.Ground1 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.MyPlane4 != 0)) {
             print("We hit the ground")
             
@@ -948,7 +941,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             showGameOverAlert()
         }
-            // MyBullet VS Planes
         else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Enemy8 != 0)) {
             print("We shot the plane")
         
@@ -957,7 +949,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Hitting an the enemy adds score and health
             score += 1
         }
-            // Bombs VS Turret
         else if ((contactBody1.categoryBitMask & PhysicsCategory.Bombs64 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Turret128 != 0)) {
             print("Bomb hit turret")
             
@@ -966,7 +957,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
              // Hitting an the enemy adds score and health
             score += 2
         }
-            // MyBullet VS Turret
         else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Turret128 != 0)) {
             print("Bullets hit turret")
             
@@ -975,7 +965,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Hitting an the enemy adds score and health
             score += 2
         }
-            // MyBullet VS Soldiers
         else if ((contactBody1.categoryBitMask & PhysicsCategory.MyBullets2 != 0) && (contactBody2.categoryBitMask & PhysicsCategory.Soldiers256 != 0)) {
             print("We shot the soldiers")
             
@@ -1173,15 +1162,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         display = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(self.size.width, self.size.height * 0.06))
         display.anchorPoint = CGPointMake(0, 0)
         display.position = CGPointMake(0, self.size.height - display.size.height)
-        display.zPosition = 15
+        display.zPosition = 200
         
         // Amount of lives
-        let livesLeft = CGSizeMake(display.size.height - 10, display.size.height - 10)
-        for i in 0...remainingLives {
-            remainingNodes.position = CGPointMake(remainingNodes.size.width * 1.3 * (1.0 + CGFloat(i)) + display.size.width * 0.25, (display.size.height - 5) / 2)
+        let livesSize = CGSizeMake(display.size.height - 10, display.size.height - 10)
+        for i in 0...remainingLives - 1{
             remainingNodes = SKSpriteNode(imageNamed: "life")
+            remainingNodes.position = CGPointMake(remainingNodes.size.width * 3.0 * (1.0 + CGFloat(i) / 5), (display.size.height - 5) / 2)
             lifeNodes.append(remainingNodes)
-            remainingNodes.size = livesLeft
+            remainingNodes.size = livesSize
+            remainingNodes.removeFromParent()
             display.addChild(remainingNodes)
         }
         
@@ -1192,13 +1182,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Pause button
         pauseButton = SKSpriteNode(imageNamed: "pause")
-        pauseButton.position = CGPoint(x: display.size.width / 2 , y: display.size.height - pauseButton.size.height / 2 - 15)
+        pauseButton.position = CGPoint(x: display.size.width / 2 , y: display.size.height / 2 - 25)
         pauseButton.size = CGSize(width: 100, height: 100)
         pauseButton.name = "PauseButton"
         pauseButton.zPosition = 1000
         
         // Health label
         healthLabel = SKLabelNode(fontNamed: "American Typewriter")
+        healthLabel.position = CGPoint(x: 25, y: display.size.height / 2 - 25)
         health = 20
         healthLabel.text = "Health: \(health)"
         healthLabel.fontSize = display.size.height
@@ -1208,47 +1199,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Power Up Health Hearts
         powerUps = SKSpriteNode(imageNamed: "life_power_up_1")
-        powerUps.zPosition = 100
-        powerUps.size = CGSize(width: 75, height: 75)
         powerUps.position = CGPoint(x: 75, y: display.size.height / 2 - 75)
+        powerUps.size = CGSize(width: 75, height: 75)
         powerUps.name = "PowerUp"
+        powerUps.zPosition = 100
         
         // Label to let user know the count of power ups
         powerUpLabel = SKLabelNode(fontNamed: "American Typewriter")
-        powerUpLabel.zPosition = 100
+        powerUpLabel.position = CGPoint(x: powerUps.frame.width + 115, y: display.size.height / 2 - 105)
+        powerUpLabel.text = " X \(powerUpCount)"
         powerUpCount = 0
+        powerUpLabel.fontSize = powerUps.size.height
         powerUpLabel.color = UIColor.redColor()
         powerUpLabel.colorBlendFactor = 1.0
-        powerUpLabel.text = " X \(powerUpCount)"
-        powerUpLabel.fontSize = powerUps.size.height
-        powerUpLabel.position = CGPoint(x: powerUps.frame.width + 115, y: display.size.height / 2 - 105)
+        powerUpLabel.zPosition = 100
         
         // Score label
         scoreLabel = SKLabelNode(fontNamed: "American Typewriter")
+        scoreLabel.position = CGPoint(x: display.size.width - 25, y: display.size.height / 2 - 25)
+        scoreLabel.text = "Score: \(score)"
         score = 0
-        scoreLabel.text = "Score: \(score )"
         scoreLabel.fontSize = display.size.height
         scoreLabel.fontColor = SKColor.whiteColor()
-        scoreLabel.position = CGPoint(x: display.size.width - 25, y: display.size.height / 2 - 25)
         scoreLabel.horizontalAlignmentMode = .Right
         scoreLabel.zPosition = 15
         
         // Coin Image
         coinImage = SKSpriteNode(imageNamed: "Coin_1")
         coinImage.position = CGPoint(x: self.size.width - 225, y: display.size.height / 2 - 80)
-        coinImage.zPosition = 200
         coinImage.size = CGSize(width: 75, height: 75)
         coinImage.name = "Coin"
+        coinImage.zPosition = 200
         
         // Label to let user know the count of coins collected
         coinCountLbl = SKLabelNode(fontNamed: "American Typewriter")
         coinCountLbl.position = CGPoint(x: self.frame.width - 100, y: display.size.height / 2 - 105)
-        coinCountLbl.zPosition = 200
+        coinCountLbl.text = " X \(coinCount)"
+        coinCountLbl.fontSize = powerUps.size.height
         coinCount = 0
         coinCountLbl.color = UIColor.yellowColor()
         coinCountLbl.colorBlendFactor = 1.0
-        coinCountLbl.text = " X \(coinCount)"
-        coinCountLbl.fontSize = powerUps.size.height
+        coinCountLbl.zPosition = 200
         
         self.addChild(display)
         display.addChild(pauseNode)
@@ -1294,12 +1285,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     // Check if the game is over by looking at our lives left
-    func loseALife() {
+    func diedOnce() {
         
-//        self.gamePaused = true
+        self.gamePaused = true
         
         // Remove one life from hud
-        if remainingLives >= 0 {
+        if remainingLives > 1 {
             lifeNodes[remainingLives - 1].alpha = 0.0
             remainingLives -= 1
         }
@@ -1314,7 +1305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.player.runAction(SKAction.fadeOutWithDuration(1) , completion: {
             self.player.position = CGPointMake(self.size.width/2, self.size.height/2)
             self.player.runAction(SKAction.fadeInWithDuration(1), completion: {
-//                self.gamePaused = false
+                self.gamePaused = false
             })
         })
     }
@@ -1328,14 +1319,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         // Restore lifes in HUD
         remainingLives = 3
-            for i in 0..<3 {
+            for i in 1..<3 {
                 lifeNodes[i].alpha = 1.0
             }
             
         // Reset score
         self.saveHighScore(self.score)
         self.score = 0
-        self.scoreLabel.text = "\(00)"
+        self.scoreLabel.text = "\(0)"
         self.gamePaused = true
         })
     }

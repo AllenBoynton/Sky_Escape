@@ -13,7 +13,6 @@
 		091153461D89DE77009A6F79 /* rifle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091153451D89DE77009A6F79 /* rifle.mp3 */; };
 		091153481D89DF34009A6F79 /* marching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091153471D89DF34009A6F79 /* marching.mp3 */; };
 		091191191D5A1C810096801E /* FireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091191181D5A1C810096801E /* FireExplosion.sks */; };
-		0912A7D91D8B88D8008DB959 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0912A7D81D8B88D8008DB959 /* GameCenter.swift */; };
 		0912A7DD1D8B9A26008DB959 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0912A7DC1D8B9A26008DB959 /* GameKit.framework */; };
 		091457381D58E45500986C3B /* airplanep51.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457311D58E45500986C3B /* airplanep51.mp3 */; };
 		091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091457321D58E45500986C3B /* airplaneFlyBy.mp3 */; };
@@ -100,7 +99,6 @@
 		091153451D89DE77009A6F79 /* rifle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rifle.mp3; sourceTree = "<group>"; };
 		091153471D89DF34009A6F79 /* marching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = marching.mp3; sourceTree = "<group>"; };
 		091191181D5A1C810096801E /* FireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireExplosion.sks; sourceTree = "<group>"; };
-		0912A7D81D8B88D8008DB959 /* GameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 		0912A7DC1D8B9A26008DB959 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		091457311D58E45500986C3B /* airplanep51.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplanep51.mp3; sourceTree = "<group>"; };
 		091457321D58E45500986C3B /* airplaneFlyBy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airplaneFlyBy.mp3; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 		091573481D540E4D00C9B907 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0912A7D81D8B88D8008DB959 /* GameCenter.swift */,
 				0915731C1D540E1A00C9B907 /* GameViewController.swift */,
 				098AA0A01D710EFA000AD49D /* RandomFunction.swift */,
 			);
@@ -606,7 +603,6 @@
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
 				0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */,
-				0912A7D91D8B88D8008DB959 /* GameCenter.swift in Sources */,
 				098AA09D1D710EC5000AD49D /* MainMenu.swift in Sources */,
 				098AA0991D710EAB000AD49D /* InstructionScene.swift in Sources */,
 				091573171D540E1A00C9B907 /* AppDelegate.swift in Sources */,
