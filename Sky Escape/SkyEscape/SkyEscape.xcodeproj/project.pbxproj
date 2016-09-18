@@ -41,6 +41,7 @@
 		092B6EC01D8A1986008D6804 /* rocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 092B6EBF1D8A1986008D6804 /* rocket.mp3 */; };
 		092B6EC21D8A1A95008D6804 /* Coins.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 092B6EC11D8A1A95008D6804 /* Coins.atlas */; };
 		092B6EC41D8A7657008D6804 /* ricochet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 092B6EC31D8A7657008D6804 /* ricochet.mp3 */; };
+		092FD36F1D8E5289001110CD /* EnemyPlanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092FD36E1D8E5289001110CD /* EnemyPlanes.swift */; };
 		093BC80C1D7B6BBC00C745FB /* Enemy1Attack.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC8081D7B6BBC00C745FB /* Enemy1Attack.atlas */; };
 		093BC80D1D7B6BBC00C745FB /* Enemy1Die.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC8091D7B6BBC00C745FB /* Enemy1Die.atlas */; };
 		093BC80E1D7B6BBC00C745FB /* Enemy2Attack.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC80A1D7B6BBC00C745FB /* Enemy2Attack.atlas */; };
@@ -141,6 +142,7 @@
 		092B6EBF1D8A1986008D6804 /* rocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rocket.mp3; sourceTree = "<group>"; };
 		092B6EC11D8A1A95008D6804 /* Coins.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Coins.atlas; sourceTree = "<group>"; };
 		092B6EC31D8A7657008D6804 /* ricochet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ricochet.mp3; sourceTree = "<group>"; };
+		092FD36E1D8E5289001110CD /* EnemyPlanes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyPlanes.swift; sourceTree = "<group>"; };
 		093BC8081D7B6BBC00C745FB /* Enemy1Attack.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy1Attack.atlas; sourceTree = "<group>"; };
 		093BC8091D7B6BBC00C745FB /* Enemy1Die.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy1Die.atlas; sourceTree = "<group>"; };
 		093BC80A1D7B6BBC00C745FB /* Enemy2Attack.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy2Attack.atlas; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				098AA0981D710EAB000AD49D /* InstructionScene.swift */,
 				098AA09C1D710EC5000AD49D /* MainMenu.swift */,
 				0915731A1D540E1A00C9B907 /* GameScene.swift */,
+				092FD36E1D8E5289001110CD /* EnemyPlanes.swift */,
 			);
 			name = Scene.swift;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0915731B1D540E1A00C9B907 /* GameScene.swift in Sources */,
+				092FD36F1D8E5289001110CD /* EnemyPlanes.swift in Sources */,
 				0915731D1D540E1A00C9B907 /* GameViewController.swift in Sources */,
 				098AA0A11D710EFA000AD49D /* RandomFunction.swift in Sources */,
 				0979CC841D88D2BC00018C20 /* CreditsScene.swift in Sources */,

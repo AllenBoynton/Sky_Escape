@@ -91,10 +91,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .Landscape
+            return .LandscapeLeft
         }
         else if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            return .Landscape
+            return .LandscapeLeft
         }
         else {
             return .All
