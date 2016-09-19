@@ -564,7 +564,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.zPosition = 100
 
         // Body physics for player's planes
-        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "MyFokker2.png"), size: player.size)
         player.physicsBody?.dynamic = false
         player.physicsBody?.usesPreciseCollisionDetection = true
         player.physicsBody?.categoryBitMask = PhysicsCategory.PlayerMask
@@ -1436,6 +1436,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             remainingLives -= 1
         }
         
+        // Need to end game within 1 min per life
+        if timesecond >= 59 {
+            score += 10
+            scoreLabel.text = "\(score)"
+            remainingLives -= 1
+        }
+
         // check if remaining lifes exists
         if remainingLives == 0 {
             showGameOverAlert()
@@ -1455,7 +1462,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func showGameOverAlert() {
         pauseGame()
         self.gameOver = true
-        let alert = UIAlertController(title: "Game Over", message: "Score Time: \(self.timescore/60):\(timesecond)\nScore: \(score)", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)  { _ in
             
         // Restore lifes in HUD
