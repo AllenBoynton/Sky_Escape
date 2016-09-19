@@ -19,7 +19,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         scene.gameCenterDelegate = self
         
-        if let scene = GameScene(fileNamed: "GameScene") {
+        if let scene = MainMenu(fileNamed: "MainMenu") {
             
             // Configure the view.
             let skView = self.view as! SKView
