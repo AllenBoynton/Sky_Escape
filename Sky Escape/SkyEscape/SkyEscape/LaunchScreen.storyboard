@@ -58,7 +58,7 @@
                                 <size key="shadowOffset" width="2" height="-2"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashFokker" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-hM-bkH">
-                                <rect key="frame" x="326" y="37.5" width="350" height="225"/>
+                                <rect key="frame" x="326" y="57.5" width="350" height="225"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="225" id="gPw-xd-psy"/>
@@ -73,7 +73,7 @@
                             <constraint firstAttribute="trailing" secondItem="UAq-Uz-rGl" secondAttribute="trailing" id="Y5C-BL-0fe"/>
                             <constraint firstItem="UAq-Uz-rGl" firstAttribute="leading" secondItem="Oac-Es-Y2p" secondAttribute="leading" id="Z2X-Q0-ONI"/>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="centerX" secondItem="2M0-aN-PzA" secondAttribute="centerX" id="ZK7-wR-tna"/>
-                            <constraint firstItem="jSP-hM-bkH" firstAttribute="centerY" secondItem="2M0-aN-PzA" secondAttribute="centerY" id="dqW-c0-gjN"/>
+                            <constraint firstItem="jSP-hM-bkH" firstAttribute="centerY" secondItem="2M0-aN-PzA" secondAttribute="centerY" constant="20" id="dqW-c0-gjN"/>
                             <constraint firstAttribute="trailing" secondItem="jSP-hM-bkH" secondAttribute="trailing" constant="60" id="gyn-xK-Ro1"/>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="top" secondItem="2M0-aN-PzA" secondAttribute="bottom" id="kub-U9-3iO"/>
                             <constraint firstItem="2M0-aN-PzA" firstAttribute="top" secondItem="yNM-kT-36o" secondAttribute="bottom" constant="30" id="yK1-k2-STu"/>

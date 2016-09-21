@@ -19,7 +19,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         scene.gameCenterDelegate = self
         
-        if let scene = MainMenu(fileNamed: "MainMenu") {
+        if let scene = GameScene(fileNamed: "GameScene") {
             
             // Configure the view.
             let skView = self.view as! SKView
@@ -30,7 +30,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             skView.presentScene(scene)
         }
