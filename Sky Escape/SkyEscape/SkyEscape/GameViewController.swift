@@ -60,6 +60,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     func showLeaderBoard() {
         
         let viewController = self.view.window?.rootViewController
+        
         let gameCenterViewController = GKGameCenterViewController()
         
         gameCenterViewController.gameCenterDelegate = self

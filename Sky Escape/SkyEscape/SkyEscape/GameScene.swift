@@ -417,16 +417,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             // Achievement - 10 Power Ups = 1 extra life
-//            if (powerUpCount == 10) {
-//                remainingLives += 1
-//                self.runAction(SKAction.playSoundFileNamed("startGame", waitForCompletion: false))
-//                powerUpCount = 0
-//                powerUpLabel.text = "X  \(powerUpCount)"
-//            }
+            if (powerUpCount == 10) {
+                remainingLives += 1
+                self.runAction(SKAction.playSoundFileNamed("startGame", waitForCompletion: false))
+                powerUpCount = 0
+            }
             
             // Achievement = 50 kills and get an achievement (gun upgrade)
             if (score == 50) {
                 self.runAction(SKAction.playSoundFileNamed("taDa", waitForCompletion: false))
+            }
+            
+            if (score == 100) {
+                self.runAction(SKAction.playSoundFileNamed("taDa", waitForCompletion: false))
+            }
+            
+            if (score == 200) {
+                self.runAction(SKAction.playSoundFileNamed("bGCannons", waitForCompletion: false))
             }
         }
     }
@@ -1238,17 +1245,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         display.zPosition = 200
         
         // Amount of lives
-//        let livesSize = CGSizeMake(display.size.height - 10, display.size.height - 10)
-//        
-//        for i in 0...remainingLives {
-//            
-//            remainingNodes = SKSpriteNode(imageNamed: "life")
-//            remainingNodes.size = livesSize
-//            remainingNodes.position = CGPointMake(remainingNodes.size.width * 1.5 * (1.0 + CGFloat(i)), display.size.height / 2)
-//            lifeNodes.append(remainingNodes)
-//            remainingNodes.removeFromParent()
-//            remainingNodes.zPosition = 175
-//        }
+        let livesSize = CGSizeMake(display.size.height - 10, display.size.height - 10)
+        
+        for i in 0...remainingLives {
+            
+            remainingNodes = SKSpriteNode(imageNamed: "life")
+            remainingNodes.size = livesSize
+            remainingNodes.position = CGPointMake(remainingNodes.size.width * 1.5 * (1.0 + CGFloat(i)), display.size.height / 2)
+            lifeNodes.append(remainingNodes)
+            remainingNodes.removeFromParent()
+            remainingNodes.zPosition = 175
+        }
         
         // Pause button
         pauseButton = SKSpriteNode(imageNamed: "pause")
@@ -1318,7 +1325,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         coinCountLbl.zPosition = 200
         
         self.addChild(display)
-//        display.addChild(remainingNodes)
+        display.addChild(remainingNodes)
         display.addChild(pauseButton)
         display.addChild(healthLabel)
         display.addChild(powerUps)
@@ -1335,13 +1342,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.pauseGame()
         
         // Remove one life from hud
-//        if remainingLives > 1 {
-//            lifeNodes[remainingLives - 1].alpha = 0.0
-//            remainingLives -= 1
-//        }
+        if remainingLives > 1 {
+            lifeNodes[remainingLives - 1].alpha = 0.0
+            remainingLives -= 1
+        }
         
         // check if remaining lifes exists
-        if /*remainingLives == 0 || */score >= 100 {
+        if remainingLives == 0 || score >= 100 {
             showGameOverAlert()
         }
         
@@ -1361,14 +1368,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func showGameOverAlert() {
         pauseGame()
         self.gameOver = true
-//        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: UIAlertControllerStyle.Alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)  { _ in
-//        
-//            // Restore lifes in HUD
-//            remainingLives = 3
-//            for i in 1..<3 {
-//                lifeNodes[i].alpha = 1.0
-//            }
+        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default)  { _ in
+        
+            // Restore lifes in HUD
+            remainingLives = 3
+            for i in 1..<3 {
+                lifeNodes[i].alpha = 1.0
+            }
         
 //            // Reset score
 //            self.score = 0
@@ -1381,13 +1388,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            self.restartScene()
 //            self.playGame()
             
-//            })
+            })
         
         // show alert
-//        self.view?.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
 
         self.saveHighScore(score)
-        
+
         self.gameCenterDelegate?.showLeaderBoard()
     }
     
