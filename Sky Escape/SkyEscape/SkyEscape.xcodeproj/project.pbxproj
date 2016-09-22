@@ -46,6 +46,7 @@
 		093BC83A1D7E316400C745FB /* EnemyArray.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093BC8391D7E316400C745FB /* EnemyArray.atlas */; };
 		093C88A61D9055CE00DC2BFA /* taDa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 093C88A51D9055CE00DC2BFA /* taDa.mp3 */; };
 		093C88AE1D91E9FA00DC2BFA /* FireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 093C88AD1D91E9FA00DC2BFA /* FireExplosion.sks */; };
+		093C88B41D93896800DC2BFA /* EnemyDeath.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093C88B31D93896800DC2BFA /* EnemyDeath.atlas */; };
 		093EABED1D545F370069F120 /* Images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 093EABEC1D545F370069F120 /* Images.atlas */; };
 		0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0948E8051D5CEDBC004F7E9F /* startGame.mp3 */; };
 		0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 096092171D5453390085B693 /* bgMusic.mp3 */; };
@@ -145,6 +146,7 @@
 		093BC8391D7E316400C745FB /* EnemyArray.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemyArray.atlas; sourceTree = "<group>"; };
 		093C88A51D9055CE00DC2BFA /* taDa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = taDa.mp3; sourceTree = "<group>"; };
 		093C88AD1D91E9FA00DC2BFA /* FireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireExplosion.sks; sourceTree = "<group>"; };
+		093C88B31D93896800DC2BFA /* EnemyDeath.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EnemyDeath.atlas; sourceTree = "<group>"; };
 		093EABEC1D545F370069F120 /* Images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Images.atlas; sourceTree = "<group>"; };
 		0948E8051D5CEDBC004F7E9F /* startGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startGame.mp3; sourceTree = "<group>"; };
 		096092171D5453390085B693 /* bgMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic.mp3; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			children = (
 				09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */,
 				093BC8391D7E316400C745FB /* EnemyArray.atlas */,
+				093C88B31D93896800DC2BFA /* EnemyDeath.atlas */,
 				093BC8071D7B6BBC00C745FB /* EnemyPlanes */,
 				09247D121D7907A50058D35D /* SoldierShoot.atlas */,
 				09247D131D7907A50058D35D /* SoldierWalk.atlas */,
@@ -567,6 +570,7 @@
 				090D7D0E1D82843200392376 /* SoldierWalk.sks in Resources */,
 				09949C321D8DCE3800B7F613 /* Enemy4.sks in Resources */,
 				09949C301D8DCE2100B7F613 /* Enemy3.sks in Resources */,
+				093C88B41D93896800DC2BFA /* EnemyDeath.atlas in Resources */,
 				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
 				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,
 				091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */,

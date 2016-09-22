@@ -56,15 +56,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         }
     }
     
-    // Continue the Game, if GameCenter Auth state has been changed
-    func gameCenterStateChanged() {
-        
-        self.scene.gamePaused = false
-    }
-    
     // Retrieves the GC VC leaderboard
     func showLeaderBoard() {
         
+        let viewController = self.view.window?.rootViewController
         let gameCenterViewController = GKGameCenterViewController()
         
         gameCenterViewController.gameCenterDelegate = self
@@ -74,7 +69,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         gameCenterViewController.leaderboardIdentifier = "HIGH_SCORE"
         
         // Show leaderboard
-        self.presentViewController(gameCenterViewController, animated: true, completion: nil)
+        viewController?.presentViewController(gameCenterViewController, animated: true, completion: nil)
+    }
+    
+    // Continue the Game, if GameCenter Auth state has been changed
+    func gameCenterStateChanged() {
+        
+        self.scene.gamePaused = false
     }
     
     // Continue the game after GameCenter is closed
