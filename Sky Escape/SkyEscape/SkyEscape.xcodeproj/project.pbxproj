@@ -27,7 +27,8 @@
 		091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091573521D5410DF00C9B907 /* SpriteKit.framework */; };
 		0915736D1D54392D00C9B907 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0915736B1D54392D00C9B907 /* spark.png */; };
 		091630911D653F6700E86A4E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091630901D653F6700E86A4E /* GameScene.sks */; };
-		09234C8D1D8BAF310027137F /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09234C8C1D8BAF310027137F /* GameOverScene.sks */; };
+		091AF32C1D95581800E184FF /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 091AF32B1D95581800E184FF /* coin.mp3 */; };
+		091AF32E1D955ECF00E184FF /* Explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 091AF32D1D955ECF00E184FF /* Explode.sks */; };
 		09234C8F1D8BBE3C0027137F /* AllyPlanes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */; };
 		09247D081D776EBE0058D35D /* SmokeTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09247D071D776EBE0058D35D /* SmokeTrail.sks */; };
 		09247D0C1D78EE3A0058D35D /* shoot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 09247D0B1D78EE3A0058D35D /* shoot.mp3 */; };
@@ -79,7 +80,6 @@
 		09949C341D8DD46B00B7F613 /* SoldierShoot.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09949C331D8DD46B00B7F613 /* SoldierShoot.sks */; };
 		09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC3E351D5A971B004BEB39 /* AVFoundation.framework */; };
 		09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09D75D4E1D550BBC00AF76C5 /* Smoke.sks */; };
-		09D75D511D550BE800AF76C5 /* Explode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09D75D501D550BE800AF76C5 /* Explode.sks */; };
 		09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D75D561D5803B300AF76C5 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,7 +127,8 @@
 		091573521D5410DF00C9B907 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		0915736B1D54392D00C9B907 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		091630901D653F6700E86A4E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		09234C8C1D8BAF310027137F /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		091AF32B1D95581800E184FF /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
+		091AF32D1D955ECF00E184FF /* Explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explode.sks; sourceTree = "<group>"; };
 		09234C8E1D8BBE3C0027137F /* AllyPlanes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = AllyPlanes.atlas; sourceTree = "<group>"; };
 		09247D071D776EBE0058D35D /* SmokeTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeTrail.sks; sourceTree = "<group>"; };
 		09247D0B1D78EE3A0058D35D /* shoot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shoot.mp3; sourceTree = "<group>"; };
@@ -181,7 +182,6 @@
 		09949C331D8DD46B00B7F613 /* SoldierShoot.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SoldierShoot.sks; sourceTree = "<group>"; };
 		09CC3E351D5A971B004BEB39 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		09D75D4E1D550BBC00AF76C5 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
-		09D75D501D550BE800AF76C5 /* Explode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explode.sks; sourceTree = "<group>"; };
 		09D75D561D5803B300AF76C5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -301,7 +301,6 @@
 				09949C2D1D8DCE0700B7F613 /* Enemy2.sks */,
 				09949C251D8DCA5F00B7F613 /* Enemy1.sks */,
 				09949C271D8DCA5F00B7F613 /* Player.sks */,
-				09234C8C1D8BAF310027137F /* GameOverScene.sks */,
 				0979CC941D8921AF00018C20 /* CreditsScene.sks */,
 				098AA09A1D710EB8000AD49D /* InstructionScene.sks */,
 				098AA09E1D710ED4000AD49D /* MainMenu.sks */,
@@ -367,8 +366,8 @@
 		091573691D54390400C9B907 /* Emmitter */ = {
 			isa = PBXGroup;
 			children = (
+				091AF32D1D955ECF00E184FF /* Explode.sks */,
 				093C88AD1D91E9FA00DC2BFA /* FireExplosion.sks */,
-				09D75D501D550BE800AF76C5 /* Explode.sks */,
 				09D75D4E1D550BBC00AF76C5 /* Smoke.sks */,
 				09247D071D776EBE0058D35D /* SmokeTrail.sks */,
 				0915736B1D54392D00C9B907 /* spark.png */,
@@ -405,6 +404,7 @@
 				096092171D5453390085B693 /* bgMusic.mp3 */,
 				096092181D5453390085B693 /* biplaneFlying.mp3 */,
 				093BC8181D7B97AE00C745FB /* bombaway.mp3 */,
+				091AF32B1D95581800E184FF /* coin.mp3 */,
 				0960921B1D5453390085B693 /* crash.mp3 */,
 				0960921C1D5453390085B693 /* gunfire.mp3 */,
 				091153471D89DF34009A6F79 /* marching.mp3 */,
@@ -494,7 +494,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Full Sail";
 				TargetAttributes = {
 					091573121D540E1A00C9B907 = {
@@ -575,8 +575,8 @@
 				09949C301D8DCE2100B7F613 /* Enemy3.sks in Resources */,
 				093C88B41D93896800DC2BFA /* EnemyDeath.atlas in Resources */,
 				091457381D58E45500986C3B /* airplanep51.mp3 in Resources */,
-				09D75D511D550BE800AF76C5 /* Explode.sks in Resources */,
 				091457391D58E45500986C3B /* airplaneFlyBy.mp3 in Resources */,
+				091AF32C1D95581800E184FF /* coin.mp3 in Resources */,
 				098AA0971D710E77000AD49D /* guardianpi.ttf in Resources */,
 				0948E8091D5CEDBC004F7E9F /* startGame.mp3 in Resources */,
 				0915736D1D54392D00C9B907 /* spark.png in Resources */,
@@ -599,7 +599,6 @@
 				0979CC801D87B2C800018C20 /* Missiles.sks in Resources */,
 				0960921F1D5453390085B693 /* bgMusic.mp3 in Resources */,
 				09949C2A1D8DCA5F00B7F613 /* Enemy1.sks in Resources */,
-				09234C8D1D8BAF310027137F /* GameOverScene.sks in Resources */,
 				093C88AE1D91E9FA00DC2BFA /* FireExplosion.sks in Resources */,
 				09D75D4F1D550BBC00AF76C5 /* Smoke.sks in Resources */,
 				096092201D5453390085B693 /* biplaneFlying.mp3 in Resources */,
@@ -612,6 +611,7 @@
 				09949C341D8DD46B00B7F613 /* SoldierShoot.sks in Resources */,
 				092B6EC21D8A1A95008D6804 /* Coins.atlas in Resources */,
 				098AA0A91D710FDB000AD49D /* powerUp.mp3 in Resources */,
+				091AF32E1D955ECF00E184FF /* Explode.sks in Resources */,
 				098AA0BB1D7134E3000AD49D /* mp5Gun.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,8 +704,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -751,8 +753,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -771,6 +775,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"Texture Atlas Maximum Size" = 4096x4096;
 				VALIDATE_PRODUCT = YES;

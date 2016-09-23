@@ -36,6 +36,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         }
         
         authenticatePlayer()
+//        scene.updateAchievements()
     }
     
     // Authenticates the user to access to the GC
@@ -56,6 +57,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         }
     }
     
+    // Continue the Game, if GameCenter Auth state has been changed
+    func gameCenterStateChanged() {
+        
+        self.scene.gamePaused = false
+    }
+    
     // Retrieves the GC VC leaderboard
     func showLeaderBoard() {
         
@@ -65,20 +72,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         gameCenterViewController.gameCenterDelegate = self
         
+        //        if shouldShowLeaderboard {
+        
         gameCenterViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         
-        gameCenterViewController.viewState = GKGameCenterViewControllerState.Achievements
-        
         gameCenterViewController.leaderboardIdentifier = "HIGH_SCORE"
+        //        }
+        //        else {
+        //            gameCenterViewController.viewState = .Achievements
+        //        }
         
         // Show leaderboard
         viewController?.presentViewController(gameCenterViewController, animated: true, completion: nil)
-    }
-    
-    // Continue the Game, if GameCenter Auth state has been changed
-    func gameCenterStateChanged() {
-        
-        self.scene.gamePaused = false
     }
     
     // Continue the game after GameCenter is closed

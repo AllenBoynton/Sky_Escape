@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="aw3-1m-hpc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aw3-1m-hpc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="guardianpi.ttf">
+        <array key="guardianpi.ttf">
             <string>GuardianProItalic</string>
-            <string>GuardianProItalic</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -27,42 +27,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clouds" translatesAutoresizingMaskIntoConstraints="NO" id="be4-uc-dTj">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <frame key="frameInset" width="667" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © 2016 Allen Boynton. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAq-Uz-rGl">
-                                <rect key="frame" x="0.0" y="323" width="667" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="qqB-QW-uGr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GuardianProItalic" family="Guardian Pro Italic" pointSize="17"/>
-                                <color key="textColor" red="0.81568627449999997" green="0.0" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.81568627449999997" green="0.0" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="-1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABtech Applications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WNQ-O9-skf">
-                                <rect key="frame" x="20" y="211" width="333.5" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="2z3-zK-3Nm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GuardianProItalic" family="Guardian Pro Italic" pointSize="28"/>
-                                <color key="textColor" red="0.81568627450980391" green="0.0" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.81568627450980391" green="0.0" blue="0.019607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="2" height="-2"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashFokker" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-hM-bkH">
-                                <rect key="frame" x="293" y="40" width="333.5" height="224.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ABtechLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-aN-PzA">
-                                <rect key="frame" x="51.5" y="80" width="166.5" height="166.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2M0-aN-PzA" secondAttribute="height" multiplier="1:1" id="cOQ-et-u79"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.64203774929046631" green="0.80266940593719482" blue="0.99919462203979492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WNQ-O9-skf" firstAttribute="leading" secondItem="Oac-Es-Y2p" secondAttribute="leadingMargin" id="1pC-18-1yt"/>
                             <constraint firstItem="2M0-aN-PzA" firstAttribute="width" secondItem="Oac-Es-Y2p" secondAttribute="width" multiplier="0.25" id="3s1-ER-72R"/>
@@ -79,8 +76,6 @@
                             <constraint firstItem="2M0-aN-PzA" firstAttribute="top" secondItem="yNM-kT-36o" secondAttribute="bottom" constant="60" id="yK1-k2-STu"/>
                         </constraints>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcB-bc-ia6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
