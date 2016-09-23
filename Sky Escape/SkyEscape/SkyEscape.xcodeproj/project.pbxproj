@@ -500,6 +500,7 @@
 					091573121D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 6GTM24L94G;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -515,11 +516,13 @@
 					0915732A1D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 979TTQWNS8;
+						LastSwiftMigration = 0800;
 						TestTargetID = 091573121D540E1A00C9B907;
 					};
 					091573351D540E1A00C9B907 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 979TTQWNS8;
+						LastSwiftMigration = 0800;
 						TestTargetID = 091573121D540E1A00C9B907;
 					};
 				};
@@ -788,6 +791,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.fullsail.SkyEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -806,6 +810,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.fullsail.SkyEscape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -819,6 +824,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyEscape.app/SkyEscape";
 			};
 			name = Debug;
@@ -831,6 +837,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyEscape.app/SkyEscape";
 			};
 			name = Release;
@@ -843,6 +850,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = SkyEscape;
 			};
 			name = Debug;
@@ -854,6 +862,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FullSail.SkyEscapeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_TARGET_NAME = SkyEscape;
 			};
 			name = Release;

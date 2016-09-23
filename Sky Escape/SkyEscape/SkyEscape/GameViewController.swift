@@ -67,6 +67,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         gameCenterViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         
+        gameCenterViewController.viewState = GKGameCenterViewControllerState.Achievements
+        
         gameCenterViewController.leaderboardIdentifier = "HIGH_SCORE"
         
         // Show leaderboard
