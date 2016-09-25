@@ -10,6 +10,13 @@ import UIKit
 import SpriteKit
 import GameKit
 
+let leaderboardID = "HIGH_SCORE"
+let ach500KillsID = "50_Kills"
+let achPowerUpID  = "Extra_Life"
+
+/************************************ Game Center Methods *****************************************/
+// MARK: - Game Center Methods
+
 class GameViewController: UIViewController, GKGameCenterControllerDelegate, GameSceneDelegate {
     
     var scene = GameScene()
@@ -19,7 +26,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         scene.gameCenterDelegate = self
         
-        if let scene = GameScene(fileNamed: "GameScene") {
+        if let scene = MainMenu(fileNamed: "MainMenu") {
             
             // Configure the view.
             let skView = self.view as! SKView
@@ -36,25 +43,47 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         }
         
         authenticatePlayer()
-//        scene.updateAchievements()
+        scene.updateAchievements()
     }
     
     // Authenticates the user to access to the GC
     func authenticatePlayer() {
         
-        let localPlayer = GKLocalPlayer.localPlayer()
+        NSNotificationCenter.defaultCenter().addObserver(
+            
+            self, selector: #selector(GameViewController.authenticationDidChange(_:)),
+            name: GKPlayerAuthenticationDidChangeNotificationName,
+            object: nil
+        )
         
-        localPlayer.authenticateHandler = {
-            (view, error) in
-
-            if view != nil {
-
-                self.presentViewController(view!, animated: true, completion: nil)
-            }
-            else {
-                print(GKLocalPlayer.localPlayer().authenticated)
-            }
+        GKLocalPlayer.localPlayer().authenticateHandler = {
+            viewController, error in
+            
+            guard let vc = viewController else { return }
+            
+            self.presentViewController(vc, animated: true, completion: nil)
         }
+    }
+    
+    func authenticationDidChange(notification: NSNotification) {
+        reportScore(1530) // report example score after user logs in
+    }
+    
+    // Reporting score
+    func reportScore(score: Int64) {
+        
+        let gkScore = GKScore(leaderboardIdentifier: leaderboardID)
+        gkScore.value = score
+        
+        GKScore.reportScores([gkScore]) { error in
+            guard error == nil  else { return }
+            
+            let alController = GKGameCenterViewController()
+            alController.leaderboardIdentifier = leaderboardID
+            alController.gameCenterDelegate = self
+            alController.viewState = .Leaderboards
+            
+            self.presentViewController(alController, animated: true, completion: nil)   }
     }
     
     // Continue the Game, if GameCenter Auth state has been changed
@@ -64,7 +93,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     }
     
     // Retrieves the GC VC leaderboard
-    func showLeaderBoard() {
+    func showLeaderboard() {
         
         let viewController = self.view.window?.rootViewController
         
@@ -72,15 +101,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         gameCenterViewController.gameCenterDelegate = self
         
-        //        if shouldShowLeaderboard {
+        gameCenterViewController.viewState = .Leaderboards
         
-        gameCenterViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+        gameCenterViewController.viewState = .Achievements
         
-        gameCenterViewController.leaderboardIdentifier = "HIGH_SCORE"
-        //        }
-        //        else {
-        //            gameCenterViewController.viewState = .Achievements
-        //        }
+        gameCenterViewController.leaderboardIdentifier = leaderboardID
         
         // Show leaderboard
         viewController?.presentViewController(gameCenterViewController, animated: true, completion: nil)
@@ -93,7 +118,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         scene.gameOver = false
     }
-    
+
     override func shouldAutorotate() -> Bool {
         return true
     }
@@ -114,6 +139,3 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         return true
     }
 }
-
-// Checks font names available for code use
-//        print("\(checkPhysics())")
