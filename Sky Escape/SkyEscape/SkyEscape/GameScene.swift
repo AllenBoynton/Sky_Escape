@@ -1255,7 +1255,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Check if the game is over by looking at our lives left
     func diedOnce() {
         
-        died = true
         self.pauseGame()
         
         // check if remaining lifes exists
@@ -1264,7 +1263,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else {
             
-            died = false
             print("Player died and will continue with next life")
             
             // Remove one life from hud
@@ -1324,10 +1322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             powerUpAchievement?.percentComplete = Double(powerUpCount / 100)
             powerUpAchievement?.showsCompletionBanner = true
             
-            GKAchievement.reportAchievements([(powerUpAchievement)!], withCompletionHandler: nil)
-            
-            remainingLives += 1
-            powerUpCount = 0
+            GKAchievement.reportAchievements([powerUpAchievement!], withCompletionHandler: nil)
         }
         
         // Incremental achievement ************************************************************

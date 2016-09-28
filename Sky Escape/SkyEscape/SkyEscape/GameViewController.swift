@@ -49,13 +49,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     // Authenticates the user to access to the GC
     func authenticatePlayer() {
         
-        NSNotificationCenter.defaultCenter().addObserver(
-            
-            self, selector: #selector(GameViewController.authenticationDidChange(_:)),
-            name: GKPlayerAuthenticationDidChangeNotificationName,
-            object: nil
-        )
-        
         GKLocalPlayer.localPlayer().authenticateHandler = {
             viewController, error in
             
@@ -63,8 +56,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             
             self.presentViewController(vc, animated: true, completion: nil)
         }
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, selector: #selector(GameViewController.authenticationDidChange(_:)),
+            name: GKPlayerAuthenticationDidChangeNotificationName,
+            object: nil
+        )
     }
-    
     func authenticationDidChange(notification: NSNotification) {
         reportScore(1530) // report example score after user logs in
     }
@@ -78,12 +76,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         GKScore.reportScores([gkScore]) { error in
             guard error == nil  else { return }
             
-            let alController = GKGameCenterViewController()
-            alController.leaderboardIdentifier = leaderboardID
-            alController.gameCenterDelegate = self
-            alController.viewState = .Leaderboards
+            let vc = GKGameCenterViewController()
+            vc.leaderboardIdentifier = leaderboardID
+            vc.gameCenterDelegate = self
+            vc.viewState = .Leaderboards
             
-            self.presentViewController(alController, animated: true, completion: nil)   }
+            self.presentViewController(vc, animated: true, completion: nil)   }
     }
     
     // Continue the Game, if GameCenter Auth state has been changed
