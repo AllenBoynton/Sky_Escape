@@ -37,7 +37,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFit
+            scene.scaleMode = .aspectFit
             
             skView.presentScene(scene)
         }
@@ -54,34 +54,34 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             
             guard let vc = viewController else { return }
             
-            self.presentViewController(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self, selector: #selector(GameViewController.authenticationDidChange(_:)),
-            name: GKPlayerAuthenticationDidChangeNotificationName,
+            name: NSNotification.Name(rawValue: GKPlayerAuthenticationDidChangeNotificationName),
             object: nil
         )
     }
-    func authenticationDidChange(notification: NSNotification) {
+    func authenticationDidChange(_ notification: Notification) {
         reportScore(1530) // report example score after user logs in
     }
     
     // Reporting score
-    func reportScore(score: Int64) {
+    func reportScore(_ score: Int64) {
         
         let gkScore = GKScore(leaderboardIdentifier: leaderboardID)
         gkScore.value = score
         
-        GKScore.reportScores([gkScore]) { error in
+        GKScore.report([gkScore], withCompletionHandler: { error in
             guard error == nil  else { return }
             
             let vc = GKGameCenterViewController()
             vc.leaderboardIdentifier = leaderboardID
             vc.gameCenterDelegate = self
-            vc.viewState = .Leaderboards
+            vc.viewState = .leaderboards
             
-            self.presentViewController(vc, animated: true, completion: nil)   }
+            self.present(vc, animated: true, completion: nil)   }) 
     }
     
     // Continue the Game, if GameCenter Auth state has been changed
@@ -99,41 +99,41 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         
         gameCenterViewController.gameCenterDelegate = self
         
-        gameCenterViewController.viewState = .Leaderboards
+        gameCenterViewController.viewState = .leaderboards
         
-        gameCenterViewController.viewState = .Achievements
+        gameCenterViewController.viewState = .achievements
         
         gameCenterViewController.leaderboardIdentifier = leaderboardID
         
         // Show leaderboard
-        viewController?.presentViewController(gameCenterViewController, animated: true, completion: nil)
+        viewController?.present(gameCenterViewController, animated: true, completion: nil)
     }
     
     // Continue the game after GameCenter is closed
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         
-        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+        gameCenterViewController.dismiss(animated: true, completion: nil)
         
         scene.gameOver = false
     }
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .LandscapeLeft
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .landscapeLeft
         }
-        else if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            return .LandscapeLeft
+        else if UIDevice.current.userInterfaceIdiom == .pad {
+            return .landscapeLeft
         }
         else {
-            return .All
+            return .all
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 }

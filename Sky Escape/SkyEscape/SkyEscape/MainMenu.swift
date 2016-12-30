@@ -10,11 +10,11 @@ import SpriteKit
 
 class MainMenu: SKScene {
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
         self.addChild(self.infoButtonNode())
         
-        self.runAction(SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true))
+        self.run(SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true))
     }
     
     // Info button to show credits
@@ -29,25 +29,25 @@ class MainMenu: SKScene {
         return infoNode
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch: AnyObject in touches {
-            let location = (touch as! UITouch).locationInNode(self)
+            let location = (touch as! UITouch).location(in: self)
             
-            let node = self.nodeAtPoint(location)
+            let node = self.atPoint(location)
             
             if (node.name! == "infoButtonNode") {
                 
                 let info: CreditsScene = CreditsScene(fileNamed: "CreditsScene")!
-                info.scaleMode = .AspectFit
-                let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(2.0)
+                info.scaleMode = .aspectFit
+                let transition: SKTransition = SKTransition.doorsOpenHorizontal(withDuration: 2.0)
                 self.view?.presentScene(info, transition: transition)
             }
             else {
                 
                 let game: InstructionScene = InstructionScene(fileNamed: "InstructionScene")!
-                game.scaleMode = .AspectFit
-                let transition: SKTransition = SKTransition.doorsOpenHorizontalWithDuration(3.0)
+                game.scaleMode = .aspectFit
+                let transition: SKTransition = SKTransition.doorsOpenHorizontal(withDuration: 3.0)
                 self.view?.presentScene(game, transition: transition)
             }
         }
