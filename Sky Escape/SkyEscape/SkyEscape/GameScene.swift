@@ -163,6 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         powerUpCount = 0
         coinCount = 0
         startScene()
+        playGame()
     }
     
     // Starting scene, passed to didMoveToView
@@ -179,10 +180,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBackground()
         
         // Adding scrolling midground
-        createMidground()
+//        createMidground()
         
         // Adding scrolling foreground
-        createForeground()
+//        createForeground()
         
         // Call function to setup player's plane
         setupPlayer()
@@ -383,8 +384,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Contact statements
             if ((firstBody.categoryBitMask & PhysicsCategory.BulletMask != 0) && (secondBody.categoryBitMask & PhysicsCategory.EnemyMask != 0)) {
-                secondBody.node!.removeFromParent()
-                enemyExplosion(secondBody.node!)
+                if (PhysicsCategory.EnemyMask != 0) {
+                    enemyExplosion(secondBody.node!)
+                }
+                else {
+                    secondBody.node!.removeFromParent()
+                }
                 score += 1
             }
                 
@@ -412,7 +417,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             else if ((firstBody.categoryBitMask & PhysicsCategory.PlayerMask != 0) && (secondBody.categoryBitMask & PhysicsCategory.EnemyMask != 0)) {
                 enemyExplosion(firstBody.node!)
-                enemyExplosion(secondBody.node!)
+                if (PhysicsCategory.EnemyMask != 0) {
+                    enemyExplosion(secondBody.node!)
+                }
+                else {
+                    secondBody.node?.removeFromParent()
+                }
                 smokeTrail.removeFromParent()
                 bullet.removeFromParent()
                 bothNodesGone()
@@ -428,7 +438,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else if ((firstBody.categoryBitMask & PhysicsCategory.PlayerMask != 0) && (secondBody.categoryBitMask & PhysicsCategory.PowerMask != 0)) {
                 sparks(secondBody.node!.position)
                 secondBody.node!.removeFromParent()
-                self.run(SKAction.playSoundFileNamed("taDa", waitForCompletion: false))
+                run(SKAction.playSoundFileNamed("taDa", waitForCompletion: false))
                 health += 20
                 powerUpCount += 1
             }
@@ -479,13 +489,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Update for animations and positions
     override func update(_ currentTime: TimeInterval) {
-        
         if !self.gamePaused && !self.gameOver {
         
             // Move backgrounds
             moveBackground()
-            moveMidground()
-            moveForeground()
+//            moveMidground()
+//            moveForeground()
             
             // Plane's smoketrail will follow it as updating occurs
             smokeTrail.position = CGPoint(x: player.position.x - 80, y: player.position.y - 10)
@@ -516,7 +525,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Adding scrolling background
     func createBackground() {
         
-        let myBackground = SKTexture(imageNamed: "cartoonCloudsBGLS")
+        let myBackground = SKTexture(imageNamed: "cityBG")
         
         for i in 0...1 {
             let background = SKSpriteNode(texture: myBackground)
@@ -1106,7 +1115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Function to restart & play scene again
     func continueButton() {
-        
         continueBTN = SKSpriteNode(imageNamed: "continue")
         continueBTN.size = CGSize(width: 200, height: 100)
         continueBTN.name = "Continue"
@@ -1116,11 +1124,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         continueBTN.removeFromParent()
         addChild(continueBTN)
         continueBTN.run(SKAction.scale(to: 1.0, duration: 0.4))
+        restartScene()
     }
     
     // Heads Up Display attributes
     func createHUD() {
-        
         // Adding HUD with pause
         display = SKSpriteNode(color: UIColor.black, size: CGSize(width: self.size.width, height: self.size.height * 0.06))
         display.anchorPoint = CGPoint(x: 0, y: 0)
@@ -1258,11 +1266,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.pauseGame()
         
         // check if remaining lifes exists
-        if remainingLives <= 0 || score >= 50 {
+        if remainingLives <= 1 {
             showGameOverAlert()
         }
         else {
-            
             print("Player died and will continue with next life")
             
             // Remove one life from hud
@@ -1312,62 +1319,62 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Game Center
 
     // Achievements function
-    func updateAchievements() {
-        
-        // Achievement - 100 Power Ups = 1 extra life *****************************************
-        if (powerUpCount == 100) {
-            
-            powerUpAchievement = GKAchievement(identifier: achPowerUpID)
-            
-            powerUpAchievement?.percentComplete = Double(powerUpCount / 100)
-            powerUpAchievement?.showsCompletionBanner = true
-            
-            GKAchievement.report([powerUpAchievement!], withCompletionHandler: nil)
-        }
-        
-        // Incremental achievement ************************************************************
-        if score <= 500 {
-            
-            let achievement = GKAchievement(identifier: ach500KillsID)
-            
-            achievement.percentComplete = Double(score / 500)
-            achievement.showsCompletionBanner = true  // use Game Center's UI
-            
-            GKAchievement.report([achievement], withCompletionHandler: nil)
-        }
-        if score <= 50 {
-            progressPercentage = score * 500 / 50
-            achievementIdentifier = ach500KillsID
-        }
-        else if score <= 125 {
-            progressPercentage = score * 500 / 125
-            achievementIdentifier = ach500KillsID
-        }
-        else if score <= 250 {
-            progressPercentage = score * 500 / 250
-            achievementIdentifier = ach500KillsID
-        }
-        do {
-            progressPercentage = score * 500 / 500
-            achievementIdentifier = ach500KillsID
-        }
-        scoreAchievement = GKAchievement(identifier: ach500KillsID)
-        scoreAchievement?.percentComplete = Double(progressPercentage)
-    
-        // Load the user's current achievement progress anytime
-        GKAchievement.loadAchievements() { achievements, error in
-            guard let achievements = achievements else { return }
-            
-            print(achievements)
-        }
-    }
+//    func updateAchievements() {
+//        
+//        // Achievement - 100 Power Ups = 1 extra life *****************************************
+//        if (powerUpCount == 100) {
+//            
+//            powerUpAchievement = GKAchievement(identifier: achPowerUpID)
+//            
+//            powerUpAchievement?.percentComplete = Double(powerUpCount / 100)
+//            powerUpAchievement?.showsCompletionBanner = true
+//            
+//            GKAchievement.report([powerUpAchievement!], withCompletionHandler: nil)
+//        }
+//        
+//        // Incremental achievement ************************************************************
+//        if score <= 500 {
+//            
+//            let achievement = GKAchievement(identifier: ach500KillsID)
+//            
+//            achievement.percentComplete = Double(score / 500)
+//            achievement.showsCompletionBanner = true  // use Game Center's UI
+//            
+//            GKAchievement.report([achievement], withCompletionHandler: nil)
+//        }
+//        if score <= 50 {
+//            progressPercentage = score * 500 / 50
+//            achievementIdentifier = ach500KillsID
+//        }
+//        else if score <= 125 {
+//            progressPercentage = score * 500 / 125
+//            achievementIdentifier = ach500KillsID
+//        }
+//        else if score <= 250 {
+//            progressPercentage = score * 500 / 250
+//            achievementIdentifier = ach500KillsID
+//        }
+//        do {
+//            progressPercentage = score * 500 / 500
+//            achievementIdentifier = ach500KillsID
+//        }
+//        scoreAchievement = GKAchievement(identifier: ach500KillsID)
+//        scoreAchievement?.percentComplete = Double(progressPercentage)
+//    
+//        // Load the user's current achievement progress anytime
+//        GKAchievement.loadAchievements() { achievements, error in
+//            guard let achievements = achievements else { return }
+//            
+//            print(achievements)
+//        }
+//    }
     
     
     /********************************** Simulating Physics ***************************************/
     // MARK: - Simulate Physics
     
     override func didSimulatePhysics() {
-        
+        //TO DO: MAY NOT BE NEEDED
     }
     
     

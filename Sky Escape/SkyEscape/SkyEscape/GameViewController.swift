@@ -21,6 +21,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     var scene = GameScene()
     
+    /// The local player object.
+    let gameCenterPlayer = GKLocalPlayer.localPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,13 +46,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
         }
         
         authenticatePlayer()
-        scene.updateAchievements()
+//        scene.updateAchievements()
     }
     
     // Authenticates the user to access to the GC
     func authenticatePlayer() {
-        
-        GKLocalPlayer.localPlayer().authenticateHandler = {
+                
+        gameCenterPlayer.authenticateHandler = {
             viewController, error in
             
             guard let vc = viewController else { return }
@@ -63,6 +66,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             object: nil
         )
     }
+    
+    func notificationReceived() {
+        print("GKPlayerAuthenticationDidChangeNotificationName - Authentication Status: \(gameCenterPlayer.isAuthenticated)")
+    }
+    
     func authenticationDidChange(_ notification: Notification) {
         reportScore(1530) // report example score after user logs in
     }
@@ -86,7 +94,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     // Continue the Game, if GameCenter Auth state has been changed
     func gameCenterStateChanged() {
-        
         self.scene.gamePaused = false
     }
     
@@ -94,7 +101,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     func showLeaderboard() {
         
         let viewController = self.view.window?.rootViewController
-        
+
         let gameCenterViewController = GKGameCenterViewController()
         
         gameCenterViewController.gameCenterDelegate = self
@@ -111,7 +118,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     // Continue the game after GameCenter is closed
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        
+
         gameCenterViewController.dismiss(animated: true, completion: nil)
         
         scene.gameOver = false
@@ -123,10 +130,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return .landscapeLeft
+            return .landscape
         }
         else if UIDevice.current.userInterfaceIdiom == .pad {
-            return .landscapeLeft
+            return .landscape
         }
         else {
             return .all

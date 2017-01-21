@@ -74,6 +74,9 @@
 		09949C321D8DCE3800B7F613 /* Enemy4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09949C311D8DCE3800B7F613 /* Enemy4.sks */; };
 		09949C341D8DD46B00B7F613 /* SoldierShoot.sks in Resources */ = {isa = PBXBuildFile; fileRef = 09949C331D8DD46B00B7F613 /* SoldierShoot.sks */; };
 		09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC3E351D5A971B004BEB39 /* AVFoundation.framework */; };
+		09CC412C1E33DD080099989D /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC412B1E33DD070099989D /* PassKit.framework */; };
+		09CC412E1E33DD110099989D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC412D1E33DD110099989D /* StoreKit.framework */; };
+		09CC41301E33DD150099989D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CC412F1E33DD150099989D /* MapKit.framework */; };
 		09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D75D561D5803B300AF76C5 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +173,9 @@
 		09949C311D8DCE3800B7F613 /* Enemy4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Enemy4.sks; sourceTree = "<group>"; };
 		09949C331D8DD46B00B7F613 /* SoldierShoot.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SoldierShoot.sks; sourceTree = "<group>"; };
 		09CC3E351D5A971B004BEB39 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		09CC412B1E33DD070099989D /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		09CC412D1E33DD110099989D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		09CC412F1E33DD150099989D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		09D75D561D5803B300AF76C5 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -179,7 +185,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09CC3E361D5A971B004BEB39 /* AVFoundation.framework in Frameworks */,
+				09CC412C1E33DD080099989D /* PassKit.framework in Frameworks */,
 				09D75D571D5803B300AF76C5 /* CoreMotion.framework in Frameworks */,
+				09CC412E1E33DD110099989D /* StoreKit.framework in Frameworks */,
+				09CC41301E33DD150099989D /* MapKit.framework in Frameworks */,
 				091573531D5410DF00C9B907 /* SpriteKit.framework in Frameworks */,
 				0912A7DD1D8B9A26008DB959 /* GameKit.framework in Frameworks */,
 			);
@@ -340,6 +349,9 @@
 		0915734F1D540FDE00C9B907 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09CC412F1E33DD150099989D /* MapKit.framework */,
+				09CC412D1E33DD110099989D /* StoreKit.framework */,
+				09CC412B1E33DD070099989D /* PassKit.framework */,
 				0912A7DC1D8B9A26008DB959 /* GameKit.framework */,
 				0979CC871D89105100018C20 /* AudioToolbox.framework */,
 				09CC3E351D5A971B004BEB39 /* AVFoundation.framework */,
@@ -482,8 +494,17 @@
 							com.apple.GameCenter = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
+								enabled = 1;
 							};
 						};
 					};
