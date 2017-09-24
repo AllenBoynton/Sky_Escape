@@ -4,7 +4,7 @@
 //
 //  Created by Allen Boynton on 8/3/16.
 //  Copyright (c) 2016 Full Sail. All rights reserved.
-//
+//  Converted to iOS 11 and Swift 4 9/23/17
 
 import UIKit
 import AVFoundation
@@ -180,10 +180,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBackground()
         
         // Adding scrolling midground
-//        createMidground()
+        createMidground()
         
         // Adding scrolling foreground
-//        createForeground()
+        createForeground()
         
         // Call function to setup player's plane
         setupPlayer()
@@ -307,7 +307,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Call function when play sound
-        self.run(SKAction.playSoundFileNamed("startGame", waitForCompletion: false))
+//        self.run(SKAction.playSoundFileNamed("startGame", waitForCompletion: false))
         
         touchLocation = touches.first!.location(in: self)
         
@@ -493,8 +493,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             // Move backgrounds
             moveBackground()
-//            moveMidground()
-//            moveForeground()
+            moveMidground()
+            moveForeground()
             
             // Plane's smoketrail will follow it as updating occurs
             smokeTrail.position = CGPoint(x: player.position.x - 80, y: player.position.y - 10)
@@ -685,7 +685,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Create the bombs for our plane to drop
-    func fireBombs() {
+    @objc func fireBombs() {
         
         bombs = SKSpriteNode(imageNamed: "bomb")
         

@@ -59,19 +59,25 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
             
             self.present(vc, animated: true, completion: nil)
         }
-
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(GameViewController.authenticationDidChange(_:)),
-            name: NSNotification.Name(rawValue: GKPlayerAuthenticationDidChangeNotificationName),
-            object: nil
-        )
+        
+        // Define identifier
+        let notificationName = Notification.Name("NotificationIdentifier")
+        
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.authenticationDidChange(_:)), name: notificationName, object: nil)
+        
+        // Post notification
+        NotificationCenter.default.post(name: notificationName, object: nil)
+        
+        // Stop listening notification
+        NotificationCenter.default.removeObserver(self, name: notificationName, object: nil);
     }
     
     func notificationReceived() {
         print("GKPlayerAuthenticationDidChangeNotificationName - Authentication Status: \(gameCenterPlayer.isAuthenticated)")
     }
     
-    func authenticationDidChange(_ notification: Notification) {
+    @objc func authenticationDidChange(_ notification: Notification) {
         reportScore(1530) // report example score after user logs in
     }
     

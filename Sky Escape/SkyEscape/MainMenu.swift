@@ -14,7 +14,7 @@ class MainMenu: SKScene {
         
         self.addChild(self.infoButtonNode())
         
-        self.run(SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true))
+//        self.run(SKAction.playSoundFileNamed("bgMusic", waitForCompletion: true))
     }
     
     // Info button to show credits
